@@ -286,6 +286,11 @@ section{padding-block:46px}
   .abtabs{position:static;flex-direction:row;flex-wrap:wrap;gap:6px;border-left:0}
   .abtab{margin:0;border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:14.5px}
   .abtab.on{border-color:var(--accent)}
+  /* on a phone the tabs are tapped, not hovered, so the box can follow the open
+     panel instead of always being as tall as the longest one */
+  .abpanes{display:block}
+  .abpanes .abpane{display:none}
+  .abpanes .abpane.on{display:flex}
 }
 .rec{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
   box-shadow:var(--shadow);padding:22px 22px 24px;display:flex;flex-direction:column;gap:14px}
