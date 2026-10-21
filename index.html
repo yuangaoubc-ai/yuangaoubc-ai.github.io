@@ -1,0 +1,1509 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Yuan Gao — Working Ground</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#FAFAF7; --surface:#FFFFFF; --surface-2:#F3F3EE;
+  --ink:#101110; --ink-2:#4B4D49; --ink-3:#86887F;
+  --line:#E5E5DE; --line-2:#CFCFC6;
+  --accent:#0E6E45; --accent-2:#0A5234; --accent-soft:#E7F2EC;
+  --land:#EDEDE6; --land-2:#E3E3DA;
+
+  --t-tfl:#0E6E45; --t-tsa:#1C6FB0; --t-fnwl:#B5641A; --t-private:#657C26;
+  --t-field:#C0392B; --t-fma:#8A6D3B; --t-app:#2A8A80; --t-crown:#6D4AA8; --t-community:#B83D6B; --t-school:#3F4A55;
+
+  --ramp-lo:#CFE6D8; --ramp-hi:#0B5A3A;
+  --r:14px;
+  --shadow:0 1px 2px rgba(16,17,16,.04), 0 10px 30px -18px rgba(16,17,16,.28);
+  --maxw:1240px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0A0B0A; --surface:#131513; --surface-2:#1B1E1A;
+    --ink:#F1F2EE; --ink-2:#B6B9B2; --ink-3:#7F837A;
+    --line:#232622; --line-2:#363A34;
+    --accent:#3FCB8E; --accent-2:#6FE0AC; --accent-soft:#122A20;
+    --land:#1A1D19; --land-2:#23271F;
+    --t-tfl:#45C98D; --t-tsa:#5FAEEE; --t-fnwl:#E39A4E; --t-private:#A9C254;
+    --t-field:#EE7B68; --t-fma:#D4B483; --t-app:#5CC6BA; --ramp-lo:#2B4A3A; --ramp-hi:#63E3A6; --t-crown:#AE92E8; --t-community:#ED7AA3; --t-school:#93A3B2;
+    --shadow:0 0 0 1px rgba(255,255,255,.03), 0 18px 44px -28px #000;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0A0B0A; --surface:#131513; --surface-2:#1B1E1A;
+  --ink:#F1F2EE; --ink-2:#B6B9B2; --ink-3:#7F837A;
+  --line:#232622; --line-2:#363A34;
+  --accent:#3FCB8E; --accent-2:#6FE0AC; --accent-soft:#122A20;
+  --land:#1A1D19; --land-2:#23271F;
+  --t-tfl:#45C98D; --t-tsa:#5FAEEE; --t-fnwl:#E39A4E; --t-private:#A9C254;
+  --t-field:#EE7B68; --t-fma:#D4B483; --t-app:#5CC6BA; --ramp-lo:#2B4A3A; --ramp-hi:#63E3A6; --t-crown:#AE92E8; --t-community:#ED7AA3; --t-school:#93A3B2;
+  --shadow:0 0 0 1px rgba(255,255,255,.03), 0 18px 44px -28px #000;
+}
+
+/* Reveals are opt-in: without the root class every section renders at rest,
+   so a reader with no JS, with reduced motion, or looking at a thumbnail sees
+   the finished page rather than an empty one. */
+:root.reveal-on .reveal{opacity:0;transform:translateY(22px)}
+:root.reveal-on .reveal.in{opacity:1;transform:none;
+  transition:opacity .75s cubic-bezier(.22,.68,.16,1), transform .75s cubic-bezier(.22,.68,.16,1)}
+:root.reveal-on .reveal.in.instant{transition:none}
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);
+  z-index:50;transition:width .1s linear;pointer-events:none}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"IBM Plex Sans","Noto Sans SC",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:24px}
+h1,h2,h3{margin:0;font-family:"Bricolage Grotesque","Noto Sans SC",system-ui,sans-serif;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
+a{color:inherit}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.eyebrow{font-family:"IBM Plex Mono","Noto Sans SC",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+/* ---------- header ---------- */
+header.top{background:var(--surface);border-bottom:1px solid var(--line)}
+.topgrid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:center;padding-block:30px 28px}
+h1{font-size:clamp(38px,6.6vw,68px);line-height:.95;font-weight:700}
+.who{display:flex;gap:24px;align-items:center}
+.avatar{width:112px;height:112px;border-radius:50%;object-fit:cover;flex:none;display:block;
+  border:3px solid var(--surface);box-shadow:0 0 0 1.5px var(--accent), 0 10px 28px -14px rgba(0,0,0,.45)}
+@media (max-width:640px){ .who{flex-direction:column;align-items:flex-start;gap:16px} .avatar{width:88px;height:88px} }
+h1 .cred{display:block;font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:400;letter-spacing:.22em;color:var(--accent);margin-top:14px}
+.role{margin:16px 0 0;color:var(--ink-2);font-size:clamp(15.5px,2vw,18.5px);max-width:50ch}
+.role b{color:var(--ink);font-weight:600}
+.topright{display:flex;flex-direction:column;align-items:flex-end;gap:16px}
+.langsw{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;padding:7px 15px;border:1px solid var(--line-2);border-radius:999px;background:transparent;color:var(--ink-3);cursor:pointer}
+.langsw:hover{border-color:var(--accent);color:var(--accent)}
+.langsw b{color:var(--ink);font-weight:600}
+.langsw i{font-style:normal;opacity:.4;padding:0 3px}
+.meta{display:grid;grid-template-columns:auto auto;gap:5px 20px;margin:0;font-family:"IBM Plex Mono","Noto Sans SC",monospace;font-size:12px}
+.meta dt{color:var(--ink-3);letter-spacing:.1em;text-transform:uppercase}
+.meta dd{margin:0;text-align:right;color:var(--ink-2)}
+.meta a{text-decoration:none;border-bottom:1px solid var(--line-2)}
+.meta a:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ---------- hero line ---------- */
+.lede{padding-block:54px 8px}
+.lede p{font-family:"Bricolage Grotesque","Noto Sans SC",serif;font-weight:500;font-size:clamp(24px,4.4vw,44px);line-height:1.14;letter-spacing:-.025em;max-width:17ch;margin:14px 0 0}
+.lede p.ledesub{margin:18px 0 0;font-family:"IBM Plex Sans","Noto Sans SC",sans-serif;font-weight:400;letter-spacing:0;
+  font-size:clamp(15.5px,1.9vw,18px);color:var(--ink-2);max-width:54ch;line-height:1.6}
+.more{position:relative;outline:none}
+.lede p.ledesub.more{margin-top:14px}
+.lede-big .more-sum::after{font-size:.45em;vertical-align:middle}
+.lede-big .more-det{font-family:"IBM Plex Sans","Noto Sans SC",sans-serif;font-weight:400;letter-spacing:0}
+.lede p.ledesub.more + .ledesub.more{margin-top:6px}
+.more-sum{border-bottom:1px dashed var(--line-2);cursor:default}
+.more-sum::after{content:" +";font-family:"IBM Plex Mono",monospace;font-size:.85em;color:var(--ink-3)}
+.more-det{position:absolute;left:0;top:calc(100% + 8px);z-index:30;width:min(48ch,100%);box-sizing:border-box;
+  background:var(--surface);border:1px solid var(--accent);border-radius:12px;box-shadow:0 22px 48px -18px rgba(0,0,0,.38);
+  padding:14px 16px;font-size:14.5px;line-height:1.6;color:var(--ink-2);
+  visibility:hidden;opacity:0;transform:translateY(-4px);transition:opacity .18s,transform .18s,visibility 0s linear .18s}
+.more:hover .more-det,.more:focus-visible .more-det,.more.open .more-det{visibility:visible;opacity:1;transform:none;
+  transition:opacity .18s,transform .18s}
+.more:hover .more-sum,.more:focus-visible .more-sum,.more.open .more-sum{border-bottom-color:var(--accent)}
+@media (max-width:700px){
+  .more-det{position:static;display:none;margin-top:8px;width:auto}
+  .more.open .more-det{display:block}
+}
+.lede em{font-style:normal;color:var(--accent)}
+
+/* ---------- sections ---------- */
+section{padding-block:46px}
+.sec-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+.sec-head h2{font-size:clamp(24px,3.4vw,34px)}
+.sec-note{color:var(--ink-2);font-size:15px;max-width:68ch;margin:0 0 26px}
+
+/* ---------- controls ---------- */
+.controls{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+.ctrlrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ctrlrow .lbl{font-family:"IBM Plex Mono","Noto Sans SC",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-right:4px}
+.pill{
+  font-family:"IBM Plex Sans","Noto Sans SC",sans-serif;font-size:13.5px;font-weight:500;
+  padding:8px 16px;border:1px solid var(--line-2);border-radius:999px;
+  background:var(--surface);color:var(--ink-2);cursor:pointer;line-height:1.2;
+  transition:border-color .15s,color .15s,background .15s;
+}
+.pill:hover{border-color:var(--accent);color:var(--accent)}
+.pill[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.pill .n{font-family:"IBM Plex Mono",monospace;font-size:11px;opacity:.55;margin-left:7px}
+.pill.view[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* ---------- scrubber ---------- */
+.scrubwrap{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  box-shadow:var(--shadow);padding:18px 20px 16px;margin-bottom:18px}
+.readout{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+.readout .emp{font-family:"Bricolage Grotesque","Noto Sans SC",sans-serif;font-size:21px;font-weight:600;letter-spacing:-.02em;color:var(--ink);line-height:1.15}
+.readout .yrs{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink-3)}
+.readout .cnt{font-family:"IBM Plex Mono","Noto Sans SC",monospace;font-size:11.5px;color:var(--accent);margin-left:auto}
+.scrubrow{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:6px}
+.rowlbls{position:relative;height:122px;min-width:34px}
+.rowlbls span{position:absolute;left:0;transform:translateY(-50%);font-family:"IBM Plex Mono","Noto Sans SC",monospace;
+  font-size:10.5px;letter-spacing:.04em;color:var(--ink-3);white-space:nowrap}
+.rowlbls .rl-w{top:33px}
+.rowlbls .rl-s{top:83px}
+.scrub{position:relative;height:122px}
+.axis{position:absolute;left:10px;right:10px;top:0;height:14px}
+.axisbreak{position:absolute;top:2px;width:10px;height:12px;transform:translateX(-50%);
+  background:linear-gradient(105deg,transparent 38%,var(--ink-3) 38%,var(--ink-3) 46%,transparent 46%,transparent 58%,var(--ink-3) 58%,var(--ink-3) 66%,transparent 66%)}
+.axis span{position:absolute;transform:translateX(-50%);font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-3)}
+.axis span.clash{visibility:hidden}
+.bands{position:absolute;left:10px;right:10px;top:18px;height:96px}
+.bandrow{position:absolute;left:0;right:0}
+.bandrow.work{top:0;height:30px}
+.bandrow.study{top:54px;height:22px}
+.band{position:absolute;top:0;height:100%;border-radius:8px;border:0;padding:0;display:block;
+  overflow:hidden;cursor:pointer;transition:opacity .18s,box-shadow .18s;
+  background-color:currentColor;opacity:.62;
+  font-family:"IBM Plex Mono","Noto Sans SC",monospace;font-size:10px}
+.bandrow.study .band{border-radius:6px}
+.band .inlbl{position:absolute;left:9px;top:50%;transform:translateY(-50%);
+  color:var(--ink);white-space:nowrap;letter-spacing:.02em}
+.band:hover{opacity:.85}
+.band.on{opacity:1;box-shadow:0 0 0 2px var(--surface), 0 0 0 3.5px var(--ink)}
+.band.on .inlbl{color:var(--bg);font-weight:600}
+.bandlbl{position:absolute;top:34px;transform:translateX(-50%);white-space:nowrap;
+  font-family:"IBM Plex Mono","Noto Sans SC",monospace;font-size:10.5px;color:var(--ink-3);pointer-events:none}
+.bandlbl.study{top:80px}
+.bandlbl.narrow{font-size:9px;letter-spacing:0}
+.bandlbl.clash{visibility:hidden}
+.bandlbl.on{color:var(--ink);font-weight:500}
+@media (max-width:700px){ .bandlbl.narrow,.bandlbl .lx{display:none} }
+.head{position:absolute;top:12px;width:2px;height:82px;background:var(--ink);border-radius:2px;pointer-events:none}
+.head::after{content:"";position:absolute;left:-8px;top:-10px;width:18px;height:18px;border-radius:50%;
+  background:var(--ink);border:3px solid var(--surface);box-shadow:0 2px 6px rgba(0,0,0,.25)}
+#time{position:absolute;left:0;right:0;top:12px;width:100%;height:42px;margin:0;
+  -webkit-appearance:none;appearance:none;background:transparent;cursor:grab}
+#time:active{cursor:grabbing}
+#time:focus{outline:none}
+#time::-webkit-slider-runnable-track{height:42px;background:transparent}
+#time::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:42px;background:transparent;border:0}
+#time::-moz-range-track{height:42px;background:transparent}
+#time::-moz-range-thumb{width:26px;height:42px;background:transparent;border:0}
+.scrubfoot{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.hint{font-family:"IBM Plex Mono","Noto Sans SC",monospace;font-size:11px;color:var(--ink-3);margin-left:auto}
+.pill.toggle{display:inline-flex;align-items:center;gap:9px}
+.pill.toggle::before{content:"";width:16px;height:16px;border-radius:5px;border:1.5px solid var(--line-2);
+  flex:none;display:grid;place-items:center;font-size:11px;line-height:1;font-weight:700}
+.pill.toggle[aria-pressed="true"]::before{content:"¹3";background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* ---------- map ---------- */
+.mapgrid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,1fr);gap:24px;align-items:start}
+.mapcard{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:8px;overflow:hidden}
+.mapcard svg{display:block;width:100%;height:auto;border-radius:calc(var(--r) - 6px);background:var(--surface-2)}
+
+.mapctl{position:absolute;right:18px;top:18px;z-index:2;display:flex;flex-direction:column;
+  background:var(--surface);border:1px solid var(--line);border-radius:11px;overflow:hidden;box-shadow:var(--shadow)}
+.mapctl button{font-family:"IBM Plex Sans","Noto Sans SC",sans-serif;font-size:12.5px;font-weight:500;
+  padding:9px 14px;border:0;background:transparent;color:var(--ink-2);cursor:pointer;text-align:left;white-space:nowrap}
+.mapctl button+button{border-top:1px solid var(--line)}
+.mapctl button:hover{background:var(--surface-2);color:var(--accent)}
+.mapctl button[aria-pressed="true"]{background:var(--accent);color:#fff}
+.mapzoom{position:absolute;right:18px;bottom:18px;z-index:2;display:flex;flex-direction:column;
+  background:var(--surface);border:1px solid var(--line);border-radius:11px;overflow:hidden;box-shadow:var(--shadow)}
+.mapzoom button{width:36px;height:34px;border:0;background:transparent;color:var(--ink-2);
+  font-size:17px;line-height:1;cursor:pointer;font-family:"IBM Plex Sans",sans-serif}
+.mapzoom button+button{border-top:1px solid var(--line)}
+.mapzoom button:hover{background:var(--surface-2);color:var(--accent)}
+.mapcard svg{cursor:grab;touch-action:pan-y}
+.mapcard svg.dragging{cursor:grabbing}
+
+.world{fill:var(--land-2);stroke:none}
+.prov{fill:none;stroke:var(--line-2);stroke-width:.7;vector-effect:non-scaling-stroke}
+.bcland{fill:var(--land);stroke:var(--line-2);stroke-width:1;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.btsa{fill:var(--ink);fill-opacity:0;stroke:var(--line-2);stroke-width:.6;vector-effect:non-scaling-stroke;opacity:.6;pointer-events:all}
+.btfl{fill:var(--t-tfl);fill-opacity:.05;stroke:var(--t-tfl);stroke-width:.6;vector-effect:non-scaling-stroke;opacity:.45}
+.btsa:hover,.btfl:hover{opacity:1;stroke-width:1.4}
+
+.area{cursor:pointer}
+.area .fill{fill:currentColor;fill-opacity:.34;stroke:currentColor;stroke-width:1.4;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.area .dot{fill:currentColor;stroke:var(--surface);stroke-width:2;vector-effect:non-scaling-stroke}
+.area .lbl{font-family:"IBM Plex Mono","Noto Sans SC",monospace;font-size:11.5px;font-weight:500;
+  fill:var(--ink);paint-order:stroke;stroke:var(--surface);stroke-width:3.5px;stroke-linejoin:round;
+  opacity:0;transition:opacity .15s;pointer-events:none}
+.area:hover .lbl,.area:focus .lbl,.area.sel .lbl{opacity:1}
+.area:hover .fill{fill-opacity:.5}
+.area.off{opacity:.07}
+.area.off{pointer-events:none}
+#areas.focus .area:not(.sel):not(.off){opacity:.28}
+#areas.focus .area.sel .fill{fill-opacity:.62;stroke-width:2.2}
+.area.sel .fill{fill-opacity:.62}
+.area.sel .lbl{fill:var(--accent);font-weight:600}
+
+/* ---------- rail ---------- */
+.rail{display:flex;flex-direction:column;gap:16px;position:sticky;top:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:20px 20px 22px;border-left:4px solid currentColor}
+.card .tag{display:inline-flex;align-items:center;gap:7px;font-family:"IBM Plex Mono","Noto Sans SC",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:currentColor}
+.card .tag i{width:7px;height:7px;border-radius:50%;background:currentColor;display:block}
+.card h3{font-size:21px;margin:10px 0 3px;line-height:1.2;color:var(--ink)}
+.card .yrs{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3)}
+.card p{font-size:14.5px;color:var(--ink-2);margin:12px 0 0;line-height:1.65}
+.card .by{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-family:"IBM Plex Mono","Noto Sans SC",monospace;font-size:11.5px;color:var(--ink-3)}
+.card .by b{color:var(--ink-2);font-weight:500}
+.card .src{margin-top:6px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-3)}
+
+.unitlist{list-style:none;margin:0;padding:0;max-height:360px;overflow-y:auto;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.unitlist li+li{border-top:1px solid var(--line)}
+.unitlist button{width:100%;display:grid;grid-template-columns:9px minmax(0,1fr) auto;gap:12px;align-items:center;
+  background:none;border:0;padding:11px 16px;text-align:left;cursor:pointer;color:inherit;font:inherit}
+.unitlist button:hover{background:var(--surface-2)}
+.unitlist .sw{width:8px;height:8px;border-radius:50%;background:currentColor}
+.unitlist .nm{font-size:14px;color:var(--ink-2)}
+.unitlist .yr{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3);white-space:nowrap}
+.unitlist li.off{display:none}
+.unitlist li.sel .nm{color:var(--accent);font-weight:600}
+
+.legend{display:flex;flex-wrap:wrap;gap:9px 18px}
+.legend span{display:inline-flex;align-items:center;gap:7px;font-family:"IBM Plex Mono","Noto Sans SC",monospace;font-size:11px;color:var(--ink-3)}
+.legend i{width:9px;height:9px;border-radius:3px;background:currentColor;display:block}
+.basenote,.offsheet{margin:0;font-family:"IBM Plex Mono","Noto Sans SC",monospace;font-size:11px;color:var(--ink-3);line-height:1.75}
+.offsheet{margin-top:14px}
+
+/* ---------- record ---------- */
+.about{display:grid;grid-template-columns:minmax(170px,230px) minmax(0,1fr);gap:28px;margin-top:22px;align-items:start}
+.abtabs{display:flex;flex-direction:column;border-left:2px solid var(--line);position:sticky;top:76px}
+.abtab{appearance:none;background:none;border:0;border-left:2px solid transparent;margin-left:-2px;
+  text-align:left;cursor:pointer;padding:12px 16px;border-radius:0 10px 10px 0;
+  font-family:"Bricolage Grotesque","Noto Sans SC",system-ui,sans-serif;font-size:17px;font-weight:500;
+  letter-spacing:-.015em;color:var(--ink-3);transition:color .15s,border-color .15s,background-color .15s}
+.abtab:hover{color:var(--ink)}
+.abtab.on{color:var(--ink);border-left-color:var(--accent);background:var(--surface)}
+.abtab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.abpanes{display:grid}
+.abpane{grid-area:1/1;visibility:hidden;opacity:0;transform:translateY(4px);
+  transition:opacity .2s,transform .2s,visibility 0s linear .2s}
+.abpane.on{visibility:visible;opacity:1;transform:none;transition:opacity .2s,transform .2s}
+@media (max-width:700px){
+  .about{grid-template-columns:1fr;gap:14px}
+  .abtabs{position:static;flex-direction:row;flex-wrap:wrap;gap:6px;border-left:0}
+  .abtab{margin:0;border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:14.5px}
+  .abtab.on{border-color:var(--accent)}
+}
+.rec{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  box-shadow:var(--shadow);padding:22px 22px 24px;display:flex;flex-direction:column;gap:14px}
+.rec .kv{grid-template-columns:auto minmax(0,1fr);gap:10px 18px;font-size:14px}
+.rec .kv dt{padding-top:3px;font-size:10.5px}
+.rec .kv dd{line-height:1.6}
+@media (max-width:700px){ .rec .kv{grid-template-columns:1fr;gap:3px} .rec .kv dd{margin-bottom:11px} }
+
+/* ---------- capabilities ---------- */
+.caps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:24px}
+.cap{position:relative;height:112px;outline:none}
+.cap-in{position:absolute;left:0;right:0;top:0;min-height:100%;box-sizing:border-box;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);
+  padding:20px 46px 20px 22px;transition:border-color .18s,box-shadow .18s}
+.cap-in::after{content:"+";position:absolute;right:18px;top:15px;font-family:"IBM Plex Mono",monospace;
+  font-size:17px;color:var(--ink-3);transition:transform .18s}
+:root.reveal-on .cap:nth-child(2){transition-delay:.07s}
+:root.reveal-on .cap:nth-child(3){transition-delay:.14s}
+:root.reveal-on .cap:nth-child(5){transition-delay:.07s}
+:root.reveal-on .cap:nth-child(6){transition-delay:.14s}
+:root.reveal-on .cap:nth-child(8){transition-delay:.07s}
+:root.reveal-on .cap:nth-child(9){transition-delay:.14s}
+.cap h3{font-size:17px;margin:0;letter-spacing:-.015em}
+.cap h3::before{content:"";display:block;width:26px;height:3px;border-radius:2px;background:var(--accent);margin-bottom:12px}
+.cap p{display:none;margin:12px 0 0;font-size:14.5px;color:var(--ink-2);line-height:1.65}
+.cap:hover,.cap:focus-visible,.cap.open{z-index:20}
+.cap:hover .cap-in,.cap:focus-visible .cap-in,.cap.open .cap-in{border-color:var(--accent);
+  box-shadow:0 22px 48px -18px rgba(0,0,0,.38)}
+.cap:hover .cap-in::after,.cap:focus-visible .cap-in::after,.cap.open .cap-in::after{transform:rotate(45deg)}
+.cap:hover p,.cap:focus-visible p,.cap.open p{display:block;animation:capin .2s ease}
+@keyframes capin{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.stack{display:flex;flex-direction:column;gap:12px}
+.kv{display:grid;grid-template-columns:auto minmax(0,1fr);gap:7px 20px;font-size:14.5px;margin:0}
+.kv dt{font-family:"IBM Plex Mono","Noto Sans SC",monospace;font-size:11px;color:var(--ink-3);letter-spacing:.1em;text-transform:uppercase;padding-top:5px}
+.kv dd{margin:0;color:var(--ink-2)}
+.kv dd b{color:var(--ink);font-weight:600}
+.tools{display:flex;flex-wrap:wrap;gap:7px}
+.tools span{font-family:"IBM Plex Mono",monospace;font-size:12px;border-radius:7px;padding:6px 11px;color:var(--ink);
+  border:1px solid color-mix(in oklab, var(--ramp-hi) var(--w,0%), var(--line));
+  background:color-mix(in oklab, var(--ramp-hi) var(--w,0%), var(--surface))}
+.tools span.deep{color:var(--bg);font-weight:500}
+.find{border-radius:var(--r);background:var(--accent-soft);padding:20px 22px;border:1px solid transparent}
+.find p{margin:0;font-size:15px;color:var(--ink);line-height:1.65}
+.find .eyebrow{color:var(--accent);margin-bottom:8px;display:block}
+
+footer{border-top:1px solid var(--line);background:var(--surface);margin-top:34px}
+.foot{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;padding-block:38px 40px;align-items:flex-end}
+.foot h2{font-size:clamp(22px,3vw,30px);max-width:20ch}
+.foot .links{display:flex;flex-direction:column;gap:6px;font-family:"IBM Plex Mono",monospace;font-size:13.5px;text-align:right}
+.foot a{text-decoration:none;border-bottom:1px solid var(--line-2)}
+.foot a:hover{color:var(--accent);border-color:var(--accent)}
+.copyright{margin:6px 0 0;font-family:"IBM Plex Mono","Noto Sans SC",monospace;font-size:10.5px;color:var(--ink-3);max-width:88ch;line-height:1.8}
+.colophon{margin:0;font-family:"IBM Plex Mono","Noto Sans SC",monospace;font-size:10.5px;color:var(--ink-3);max-width:88ch;line-height:1.8}
+.fineprint{padding-bottom:34px}
+
+@media (max-width:1100px){ .caps{grid-template-columns:repeat(2,minmax(0,1fr))} .cap:last-child:nth-child(odd){grid-column:1/-1} }
+@media (max-width:700px){ .caps{grid-template-columns:1fr} .cap{height:auto} .cap-in{position:static;min-height:0} }
+@media (max-width:980px){
+  .mapgrid{grid-template-columns:1fr}
+  .rail{position:static}
+  .pipe{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .topgrid{grid-template-columns:1fr;align-items:start}
+  .topright{align-items:flex-start}
+  .meta dd{text-align:left}
+  .pipe{grid-template-columns:1fr}
+  .lede{padding-block:38px 4px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<header class="top">
+  <div class="wrap topgrid">
+    <div class="who">
+      <img class="avatar" src="headshot.jpg" width="112" height="112"
+           alt="Yuan Gao in a cut block, in field gear" loading="eager">
+      <div>
+      <h1>Yuan&nbsp;Gao<span class="cred">MF · RPF</span></h1>
+      <p class="role"
+         data-en="Resource Analyst at <b>Forsite Consultants</b>. In natural resource management since 2013 — timber and fibre supply analysis, habitat and land use constraints, forest estate modelling, and the spatial data work underneath all of it."
+        >Resource Analyst at <b>Forsite Consultants</b>. In natural resource management since 2013 — timber and fibre supply analysis, habitat and land use constraints, forest estate modelling, and the spatial data work underneath all of it.</p>
+      </div>
+    </div>
+    <div class="topright">
+      <button type="button" class="langsw" id="langToggle" hidden><b>EN</b><i>/</i></button>
+      <dl class="meta">
+        <dt data-en="Based">Based</dt><dd data-en="Nanaimo, BC">Nanaimo, BC</dd>
+        <dt data-en="Licence">Licence</dt><dd data-en="RPF, FPBC">RPF, FPBC</dd>
+        <dt data-en="Models">Models</dt><dd>Patchworks · Woodstock</dd>
+        <dt aria-hidden="true"></dt><dd><a href="https://www.linkedin.com/in/yuangao-ubc/" data-en="LinkedIn">LinkedIn</a></dd>
+      </dl>
+    </div>
+  </div>
+</header>
+
+<div class="wrap lede">
+  <span class="eyebrow" data-en="What this page is">What this page is</span>
+  <p class="more lede-big" tabindex="0">
+    <span class="more-sum" data-en="A resource professional is easiest to read <em>on the ground he has worked</em>.">A resource professional is easiest to read <em>on the ground he has worked</em>.</span>
+    <span class="more-det" data-en="The map below holds every management unit I have worked on. Drag the timeline to walk through them in order.">The map below holds every management unit I have worked on.</span>
+  </p>
+  <p class="ledesub more" tabindex="0">
+    <span class="more-sum" data-en="Every job I&rsquo;ve had has been in natural resources.">Every job I&rsquo;ve had has been in natural resources.</span>
+    <span class="more-det" data-en="It probably started with my grandfather — catching grasshoppers, growing vegetables, watching the little crabs on the shore.">It probably started with my grandfather.</span>
+  </p>
+  <p class="ledesub more" tabindex="0">
+    <span class="more-sum" data-en="And the work has never mattered more.">And the work has never mattered more.</span>
+    <span class="more-det" data-en="Monitored wildlife populations have fallen by an average of 73% since 1970. Around a million species face extinction. In 2024 the tropics lost 6.7 million hectares of primary forest, the most on record, nearly half of it to fire.">Monitored wildlife populations have fallen by an average of 73% since 1970.</span>
+  </p>
+</div>
+
+<main class="wrap">
+
+  <section id="map">
+    <div class="sec-head reveal">
+      <h2 data-en="The working ground">The working ground</h2>
+    </div>
+    <p class="sec-note reveal"
+       data-en="Every boundary on this map comes from publicly available sources — the BC government's open data layers, with Natural Earth for coastlines — and none of it from a client's files. Drag the playhead to light up a whole period at once, or untick the box to follow each project by its own dates; zoom out when the work leaves the province."
+      >Every boundary on this map comes from publicly available sources, and none of it from a client's files.</p>
+
+    <div class="scrubwrap reveal">
+      <div class="readout">
+        <span class="emp" id="roEmp"></span>
+        <span class="yrs" id="roYrs"></span>
+        <span class="cnt" id="roCnt"></span>
+      </div>
+      <div class="scrubrow">
+      <div class="rowlbls" aria-hidden="true">
+        <span class="rl-w" data-en="Work">Work</span>
+        <span class="rl-s" data-en="Study">Study</span>
+      </div>
+      <div class="scrub">
+        <div class="axis" id="axis"></div>
+        <div class="bands" id="bands"></div>
+        <input type="range" id="time" min="0" max="1000" step="1" value="960" aria-label="Period">
+        <div class="head" id="head"></div>
+      </div>
+      </div>
+      <div class="scrubfoot">
+        <button class="pill toggle" id="allBtn" type="button" aria-pressed="true"
+                data-en="Whole period at once">Whole period at once</button>
+        <span class="hint" id="modeHint"></span>
+      </div>
+    </div>
+
+    <div class="mapgrid">
+      <div>
+        <div class="mapcard reveal">
+          <div class="mapctl" id="mapctl" role="group" aria-label="Map extent"></div>
+          <div class="mapzoom">
+            <button type="button" id="zin" aria-label="Zoom in">+</button>
+            <button type="button" id="zout" aria-label="Zoom out">−</button>
+          </div>
+          <svg id="bcmap" viewBox="0 0 1000 800" role="img" aria-label="Map of the forest tenures and areas Yuan Gao has worked on"></svg>
+        </div>
+        <p class="offsheet" id="scopeNote"></p>
+      </div>
+
+      <div class="rail reveal">
+        <div class="card" id="detail" aria-live="polite"></div>
+        <ul class="unitlist" id="unitlist"></ul>
+        <div class="legend" id="legend"></div>
+        <p class="basenote"
+           data-en="Base layer: all 37 timber supply areas and 34 tree farm licences in British Columbia, generalised for drawing."
+          >Hairlines behind the work: every timber supply area and tree farm licence in British Columbia.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="strengths">
+    <div class="sec-head reveal">
+      <h2 data-en="Core skills">Core skills</h2>
+    </div>
+    <p class="sec-note reveal"
+       data-en="Each of these has more than one project behind it, and each can be checked against the map above. Hover over a card, or tap it, for the detail."
+      >Each of these has more than one project behind it, and each can be checked against the map above.</p>
+
+    <div class="caps">
+      <div class="cap reveal" tabindex="0"><div class="cap-in">
+        <h3 data-en="Building the analysis from scratch">Building the analysis from scratch</h3>
+        <p data-en="A Patchworks model built from nothing: the resultant, the THLB netdown, the fragments file, the yield tracks, and the scenario model on top of them. Taking a land base from raw inventory to a harvest level that holds up, and able to say why every reduction is there. There is no perfect model, only one that is useful and that the client is satisfied with.">A Patchworks model built from nothing: the resultant, the THLB netdown, the fragments file, the yield tracks, and the scenario model on top of them.</p>
+      </div></div>
+      <div class="cap reveal" tabindex="0"><div class="cap-in">
+        <h3 data-en="Picking up someone else&rsquo;s model">Picking up someone else&rsquo;s model</h3>
+        <p data-en="Five of the last ten projects started as somebody else&rsquo;s file. The skill is reading quickly what the last analyst did and why — back-engineering a model far enough to verify it — then knowing when to stay consistent with their choices, so the client gets one coherent analysis, and when a choice has to change. A 2019 model revived, a released base case extended without being touched, a rebuild in the 100 Mile House TSA, and work on the provincial model in the Williams Lake TSA.">Five of the last ten projects started as somebody else&rsquo;s file.</p>
+      </div></div>
+      <div class="cap reveal" tabindex="0"><div class="cap-in">
+        <h3 data-en="Proving a number">Proving a number</h3>
+        <p data-en="A rebuild in the 100 Mile House TSA checked against its source, and provincial results in the Williams Lake TSA reconciled with the ministry&rsquo;s own summary. A retention percentage checked four different ways. A report checked against what the model actually did before it went out. And the old and new versions of the provincial site index data compared side by side, to find where they disagree.">A rebuild in the 100 Mile House TSA checked against its source.</p>
+      </div></div>
+      <div class="cap reveal" tabindex="0"><div class="cap-in">
+        <h3 data-en="Habitat and land use constraints">Habitat and land use constraints</h3>
+        <p data-en="What binds most of these models is not the trees. Each Government Actions Regulation order, land use order and stewardship commitment is read line by line, until the analysis carries what the biologist who wrote it meant — caribou, mountain goat, moose, goshawk, marbled murrelet, spotted owl, ungulate winter range, ecosystem networks, watershed equivalent clearcut area, old growth and seral stage, pine mushroom. On one project they were tested one at a time, so each could be priced on its own.">What binds most of these models is not the trees.</p>
+      </div></div>
+      <div class="cap reveal" tabindex="0"><div class="cap-in">
+        <h3 data-en="Operations and the mill end">Operations and the mill end</h3>
+        <p data-en="A harvest level means something only if it can be cut, hauled and sold. That takes knowing how operations really run on the ground — block layout, access, seasons, equipment — and how the mills at the far end of the haul work, which is what any fibre or biomass analysis turns on.">A harvest level means something only if it can be cut, hauled and sold.</p>
+      </div></div>
+      <div class="cap reveal" tabindex="0"><div class="cap-in">
+        <h3 data-en="In the field">In the field</h3>
+        <p data-en="A full coastal and interior season behind the desk work. Driving resource roads and calling kilometres on the road radio, by truck, snowmobile and ATV; cruise and site plots; clinometer readings for slope and tree height; increment cores for tree age; ecosystem plots and stream assessment; cut block and road layout on conventional, tethered and cable ground.">A full coastal and interior season behind the desk work.</p>
+      </div></div>
+      <div class="cap reveal" tabindex="0"><div class="cap-in">
+        <h3 data-en="Scripting the whole build">Scripting the whole build</h3>
+        <p data-en="Python and arcpy for the data build, BeanShell on the model side. Thirty-six provincial layers that download themselves; scripted desktop projects with frozen inputs and an independent check script beside them; a released version tagged and archived before the data is branched. Fluent with AI coding tools — Claude Code, ChatGPT, Copilot — used within company policy, with every line they produce reviewed by hand: as an RPF I answer for the numbers, not the tool.">Python and arcpy for the data build, BeanShell on the model side.</p>
+      </div></div>
+      <div class="cap reveal" tabindex="0"><div class="cap-in">
+        <h3 data-en="Working to the approval, not just the client">Working to the approval, not just the client</h3>
+        <p data-en="The client has to be satisfied — that is the job — but it is not the whole job. A management plan goes to the Province for approval, so the analysis also has to clear the ministry, and the client has to be walked through what the ministry will ask before it asks. An assumptions document to the Ministry, a Tree Farm Licence analysis behind a licensee&rsquo;s submission, and a briefing written for a Chief and Council.">The client has to be satisfied — that is the job — but it is not the whole job.</p>
+      </div></div>
+      <div class="cap reveal" tabindex="0"><div class="cap-in">
+        <h3 data-en="Knowing the budget">Knowing the budget</h3>
+        <p data-en="Past the initial training period, every project has come in inside its budget. Knowing what the hours are for is part of doing the analysis well. At Ecora, billable utilisation ran at 93% for the year to date, against a 90% target.">Past the initial training period, every project has come in inside its budget.</p>
+      </div></div>
+    </div>
+    </section>
+
+  <section id="record">
+    <div class="sec-head reveal">
+      <h2 data-en="About">About</h2>
+    </div>
+
+    <div class="about reveal">
+      <div class="abtabs" role="tablist" aria-label="About">
+      <button class="abtab on" type="button" role="tab" id="abt-0" aria-controls="abp-0" aria-selected="true" tabindex="0"
+              data-en="Licence &amp; training">Licence &amp; training</button>
+      <button class="abtab" type="button" role="tab" id="abt-1" aria-controls="abp-1" aria-selected="false" tabindex="-1"
+              data-en="Education">Education</button>
+      <button class="abtab" type="button" role="tab" id="abt-h" aria-controls="abp-h" aria-selected="false" tabindex="-1"
+              data-en="Honours">Honours</button>
+      <button class="abtab" type="button" role="tab" id="abt-2" aria-controls="abp-2" aria-selected="false" tabindex="-1"
+              data-en="Written">Written</button>
+      <button class="abtab" type="button" role="tab" id="abt-3" aria-controls="abp-3" aria-selected="false" tabindex="-1"
+              data-en="Beside the work">Beside the work</button>
+      <button class="abtab" type="button" role="tab" id="abt-4" aria-controls="abp-4" aria-selected="false" tabindex="-1"
+              data-en="Tools">Tools</button>
+      <button class="abtab" type="button" role="tab" id="abt-5" aria-controls="abp-5" aria-selected="false" tabindex="-1"
+              data-en="Ground covered">Ground covered</button>
+      </div>
+      <div class="abpanes">
+      <div class="rec abpane on" role="tabpanel" id="abp-0" aria-labelledby="abt-0">
+        <dl class="kv">
+          <dt data-en="Registration">Registration</dt>
+          <dd data-en="<b>Registered Professional Forester</b>, Forest Professionals British Columbia">Registered Professional Forester, FPBC</dd>
+          <dt data-en="Certificate">Certificate</dt>
+          <dd data-en="<b>Professional Specialization Certificate in Ecological Restoration</b>, University of Victoria — completed; a soil desktop analysis and a coastal sand ecosystem restoration plan among the coursework">Professional Specialization Certificate in Ecological Restoration, UVic</dd>
+          <dt data-en="First Nations">First Nations</dt>
+          <dd data-en="<b>201 Indigenous Awareness Certification</b>, Indigenous Awareness Canada · <b>Indigenous Awareness</b>, Indigenous Corporate Training Inc., 2021. Much of the work on this map has been for First Nations or on their territories, and it starts from respect for their rights and title and for what they know of the land.">201 Indigenous Awareness Certification · Indigenous Awareness, ICT Inc.</dd>
+          <dt data-en="Safety">Safety</dt>
+          <dd data-en="<b>Occupational First Aid Level 3</b>, WorkSafeBC (renewal due) · WHMIS 2015 · CORE Hunter and Firearms Safety · search and rescue training in avalanche, swiftwater, rope and ice rescue · BC Class 5 licence. Safety ahead of the schedule: on one cruising program, plots that had become unsafe to reach were moved rather than visited, with more than twenty relocation maps so the sample still held.">OFA Level 3 · WHMIS 2015 · CORE · search and rescue training · BC Class 5</dd>
+          <dt data-en="Also">Also</dt>
+          <dd>ASCEND, IEC-BC, 2015</dd>
+          <dt data-en="Languages">Languages</dt>
+          <dd data-en="English and Mandarin, both working proficiency">English and Mandarin</dd>
+          <dt data-en="Experience">Experience</dt>
+          <dd data-en="<b>Eight and a half years</b> in natural resources: four co-op terms, three research and teaching posts, then four full-time roles — unbroken since 2020">Eight and a half years in natural resources</dd>
+        </dl>
+      </div>
+      <div class="rec abpane" role="tabpanel" id="abp-1" aria-labelledby="abt-1">
+        <dl class="kv">
+          <dt>2018</dt>
+          <dd data-en="<b>BSc (Honours), Natural Resource Management</b>, University of British Columbia, with co-op — four work terms and more than sixteen months of paid work before graduating. A dual honours degree with Nanjing Forestry University.">BSc (Hons) Natural Resource Management, UBC</dd>
+          <dt>2018–19</dt>
+          <dd data-en="Graduate coursework at the University of Eastern Finland, Joensuu, alongside the research assistantship at the European Forest Institute">Graduate coursework, University of Eastern Finland, Joensuu</dd>
+          <dt>2020</dt>
+          <dd data-en="<b>Master of Forestry</b>, University of British Columbia, 2018–2020, awarded May 2020 with an 83% average. President of the Forestry Graduate Student Association.">Master of Forestry, UBC</dd>
+        </dl>
+      </div>
+      <div class="rec abpane" role="tabpanel" id="abp-h" aria-labelledby="abt-h">
+        <dl class="kv">
+          <dt>2014</dt>
+          <dd data-en="Outstanding Student Scholarship, Nanjing Forestry University">Outstanding Student Scholarship, Nanjing Forestry University</dd>
+          <dt>2015</dt>
+          <dd data-en="China National Excellent Bachelor Student Honours, Nanjing Forestry University">China National Excellent Bachelor Student Honours, Nanjing Forestry University</dd>
+          <dt aria-hidden="true"></dt>
+          <dd data-en="<b>Major UBC–UBG Scholarship</b> (United Benefits Group Fujian Forestry Scholarship), University of British Columbia — the only one given in 2015">Major UBC–UBG Scholarship (United Benefits Group Fujian Forestry Scholarship), University of British Columbia</dd>
+          <dt>2016</dt>
+          <dd data-en="Dean&rsquo;s Honour Roll, University of British Columbia; also a Faculty of Forestry Scholarship during the BSc">Dean’s Honour Roll, University of British Columbia; also a Faculty of Forestry Scholarship during the BSc</dd>
+          <dt>2018</dt>
+          <dd data-en="<b>China National Excellent Graduation Honours (Forestry)</b> — fifty are given across China each year">China National Excellent Graduation Honours (Forestry)</dd>
+          <dt aria-hidden="true"></dt>
+          <dd data-en="Graduation with Honours, Nanjing Forestry University — two a year in the Faculty of International Education">Graduation with Honours, Nanjing Forestry University</dd>
+          <dt aria-hidden="true"></dt>
+          <dd data-en="UBC degree awarded &ldquo;With Honours&rdquo;">UBC degree awarded “With Honours”</dd>
+          <dt aria-hidden="true"></dt>
+          <dd data-en="<b>First prize</b>, National English Competition for College Students, Ministry of Education, China">First prize, National English Competition for College Students, Ministry of Education, China</dd>
+          <dt aria-hidden="true"></dt>
+          <dd data-en="International Tuition Award, University of British Columbia">International Tuition Award, University of British Columbia</dd>
+          <dt aria-hidden="true"></dt>
+          <dd data-en="TRANSFOR-M Internship Scholarship, University of Eastern Finland">TRANSFOR-M Internship Scholarship, University of Eastern Finland</dd>
+        </dl>
+      </div>
+      <div class="rec abpane" role="tabpanel" id="abp-2" aria-labelledby="abt-2">
+        <dl class="kv">
+          <dt data-en="Undergraduate thesis">Undergraduate thesis</dt>
+          <dd data-en="An evaluation of the ecological impact of eucalyptus plantations in southern China — UBC Faculty of Forestry">An evaluation of the ecological impact of eucalyptus plantations in southern China</dd>
+          <dt data-en="Graduate thesis">Graduate thesis</dt>
+          <dd data-en="<i>Towards climate-smart forestry in China</i>: an overview of climate impacts on forests, forest resources and management, and the forest sector in China — European Forest Institute">Climate impacts on China&rsquo;s forests and forest sector — EFI</dd>
+          <dt data-en="Patents">Patents</dt>
+          <dd data-en="Eight granted Chinese patents, from an earlier career in engineering and well before any of the above">Eight granted Chinese patents, from an earlier career in engineering</dd>
+        </dl>
+      </div>
+      <div class="rec abpane" role="tabpanel" id="abp-3" aria-labelledby="abt-3">
+        <dl class="kv">
+          <dt>2015</dt>
+          <dd data-en="Volunteer at the <b>UBC Botanical Garden</b>, helping run its &ldquo;Walk in the Woods&rdquo; event">Volunteer, UBC Botanical Garden</dd>
+          <dt>Jan–Apr 2017</dt>
+          <dd data-en="<b>Search and rescue volunteer</b>, BC Search and Rescue Association — 40 hours on the Hug a Tree and AdventureSmart programs, with training in compass, map, radio, fire starting, avalanche, swiftwater, rope and ice rescue">Search and rescue volunteer, BC Search and Rescue Association</dd>
+          <dt>Sep–Dec 2017</dt>
+          <dd data-en="Volunteer with the <b>BC Public Service</b> — one-day field projects in wetland restoration and tree planting, and the Spotted Owl regeneration project">Volunteer, BC Public Service: wetland restoration, tree planting, spotted owl</dd>
+          <dt>Dec 2017</dt>
+          <dd data-en="<b>Chair</b> of the BC Public Service &ldquo;Co-op to Career&rdquo; conference, with the Ministry of Forests, Lands and Natural Resource Operations">Chair, BC Public Service Co-op to Career conference</dd>
+          <dt>2018–19</dt>
+          <dd data-en="Student ambassador and debate society member while in Joensuu, Finland">Student ambassador and debate society, Joensuu</dd>
+          <dt>Aug–Oct 2022</dt>
+          <dd data-en="Volunteer on the <b>United Way</b> workplace campaign at Mosaic Forest Management, which raised more than $70,000 for United Way BC Central and North Vancouver Island">Volunteer, United Way workplace campaign</dd>
+          <dt>Oct 2022</dt>
+          <dd data-en="Represented the <b>Association of BC Forest Professionals</b> at the 4th Annual Indigenous Forestry ForestConnect Fair, Vancouver Island University">Represented the ABCFP, Indigenous Forestry ForestConnect Fair</dd>
+          <dt>2023–</dt>
+          <dd data-en="<b>Western Painted Turtle Ambassador</b>, Nanaimo and Area Land Trust. Four nesting seasons at Buttertubs Marsh: evening surveys from mid-May to late July, nesting recorded to the trust&rsquo;s protocol, nests caged against raccoon and crow predation, feeding its monitoring dataset for a species at risk.">Western Painted Turtle Ambassador, Nanaimo and Area Land Trust</dd>
+          <dt>2024–</dt>
+          <dd data-en="Helped found, with a few friends, a board game club that meets at the Nanaimo Harbourfront Library and at Vancouver Island University, and has helped run it since. Two years of it: the job is explaining a rule set to a stranger at whatever level of detail they need, and noticing when that level is wrong.">Helped found a board game club, with friends</dd>
+        </dl>
+      </div>
+      <div class="rec abpane" role="tabpanel" id="abp-4" aria-labelledby="abt-4">
+        <div class="tools">
+          <span class="deep" style="--w:100%">Patchworks</span><span class="deep" style="--w:93%">Remsoft Woodstock</span><span class="deep" style="--w:87%">ArcGIS Pro</span><span class="deep" style="--w:80%">Python / arcpy</span><span class="deep" style="--w:73%">BeanShell</span>
+          <span class="deep" style="--w:67%">SQL</span><span class="deep" style="--w:60%">R</span><span class="deep" style="--w:53%">QGIS</span><span style="--w:47%">Power BI</span><span style="--w:40%">VDYP</span>
+          <span style="--w:33%">TIPSY</span><span style="--w:27%">GPS Pathfinder</span><span style="--w:20%">MATLAB</span><span style="--w:13%">Land Resource Manager</span><span style="--w:7%">git</span>
+        </div>
+      </div>
+      <div class="rec abpane" role="tabpanel" id="abp-5" aria-labelledby="abt-5">
+        <dl class="kv">
+          <dt data-en="Tenures">Tenures</dt>
+          <dd data-en="Tree farm licences, timber supply areas, First Nations woodland licences, private managed forest, and Crown land administered under the Land Act">TFLs, TSAs, First Nations woodland licences, private managed forest, Crown land</dd>
+          <dt data-en="Regions">Regions</dt>
+          <dd data-en="Vancouver Island and the south coast, the Fraser Valley to the Sea to Sky, the Cariboo and Thompson–Okanagan interior, the Skeena and the far north, and Haida Gwaii">Vancouver Island, the south coast, the interior, the Skeena, the far north, Haida Gwaii</dd>
+          <dt data-en="Beyond BC">Beyond BC</dt>
+          <dd data-en="Research in Finland and in China, and a dual degree between Vancouver and Nanjing">Research in Finland and China</dd>
+          <dt data-en="Scale">Scale</dt>
+          <dd data-en="From a single cut block laid out on foot to timber supply models for whole management units">From a single cut block to whole management units</dd>
+        </dl>
+      </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot reveal">
+    <div>
+      <span class="eyebrow" data-en="Contact">Contact</span>
+      <h2 data-en="Happy to talk about any of it.">Happy to talk about any of it.</h2>
+      <p class="sec-note reveal" style="margin:12px 0 0;max-width:40ch"
+         data-en="Part of staying registered is continuing professional development. Always glad to compare notes with other RPFs, and with RPBios. What I want from this work is simple: decisions about BC&rsquo;s forests made on numbers that foresters, biologists and First Nations can all trust. Every model I build is a small step towards that."
+        >Continuing professional development: always glad to compare notes with other RPFs, and with RPBios.</p>
+    </div>
+    <div class="links">
+      <a href="https://www.linkedin.com/in/yuangao-ubc/">linkedin.com/in/yuangao-ubc</a>
+      <span style="color:var(--ink-3)" data-en="Nanaimo, British Columbia">Nanaimo, British Columbia</span>
+    </div>
+  </div>
+  <div class="wrap fineprint">
+  <p class="copyright"
+       data-en="© 2026 Yuan Gao. Text, design and photograph all rights reserved. Boundaries from the BC Data Catalogue (Open Government Licence – British Columbia) and Natural Earth."
+      >© 2026 Yuan Gao. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="geo.js?v=3"></script>
+<script>
+var TYPES = {
+  tfl:       {en:"Tree Farm Licence",      color:"var(--t-tfl)"},
+  tsa:       {en:"Timber Supply Area",      color:"var(--t-tsa)"},
+  fnwl:      {en:"First Nations tenure",          color:"var(--t-fnwl)"},
+  private:   {en:"Private managed forest",          color:"var(--t-private)"},
+  field:     {en:"Field engineering",            color:"var(--t-field)"},
+  crown:     {en:"Crown land administration",        color:"var(--t-crown)"},
+  community: {en:"Community &amp; urban forestry", color:"var(--t-community)"},
+  school:    {en:"University &amp; research", color:"var(--t-school)"},
+  fma:       {en:"Outside British Columbia",             color:"var(--t-fma)"}
+};
+
+
+var UNITS = [
+  { id:"mackenzie-2017", name:{en:"Mackenzie — co-op term"}, type:"field", t0:2017.0, t1:2017.33, geo:GEO_MACKENZIE,
+    client:{en:"Forsite Consultants — Field Engineer, co-op term"},
+    text:{en:"Cut boundary layout and harvest planning, topographic and reconnaissance mapping, and road design and traversing, on the Canfor Mackenzie and Conifex Mackenzie projects. In the same months, 40 hours in town as a search and rescue volunteer. The firm I came back to as an analyst in 2025."} },
+
+  { id:"hainan", name:{en:"Hainan — APP China"}, type:"private", t0:2016.42, t1:2016.67, pt:[109.20,19.74],
+    client:{en:"APP China Jinhua Forestry, Yangpu — Commissioner, Department of Sustainability, co-op term"},
+    text:{en:"Supervised seven regional forestation departments to keep standard operating procedures applied consistently, and translated eight GPS standards documents from the company’s English-language office in Indonesia. Trained local foresters on GPS operation, safety gear, marking boundaries in the field and identifying protected wildlife species. Organised the logistics of a joint inspection ahead of FSC certification, accompanied the CFCC/PEFC and due-diligence certifications, and wrote the summary report for CFCC/PEFC."} },
+
+  { id:"efi", name:{en:"Joensuu, Finland"}, type:"school", t0:2018.7, t1:2019.6, pt:[29.76,62.60],
+    client:{en:"European Forest Institute, Joensuu"},
+    text:{en:"Research assistant at the European Forest Institute: mapped forest-related research activities across Europe — who works on what, and where the gaps are — and wrote the graduate thesis there, an overview of climate impacts on China&apos;s forests, forest resources and management, and forest sector, as groundwork towards climate-smart forestry in China."} },
+
+  { id:"njfu", name:{en:"Nanjing, China"}, type:"school", t0:2018.35, t1:2018.65, pt:[118.78,32.06],
+    client:{en:"Nanjing Forestry University, SLRF Laboratory"},
+    text:{en:"UAV LiDAR monitoring of bamboo growth: data collection, airborne laser scanning point cloud processing, normalization, image filtering and model construction in R and MATLAB. Also the other half of a dual bachelor's degree."} },
+
+  { id:"fibre-two-tsa", name:{en:"Fibre analysis"}, type:"tsa", t0:2026.5, t1:2026.9, geo:GEO_KAMLOOPS.concat(GEO_VALEMOUNT),
+    client:{en:"Fibre analysis — tactical model"},
+    text:{en:"A fibre analysis on a tactical model, in progress."} },
+
+  { id:"williamslake-tsr", name:{en:"Williams Lake TSA — TSR review"}, type:"tsa", t0:2026.75, t1:2026.9, geo:GEO_WILLIAMSLAKE,
+    client:{en:"Timber supply review support"},
+    text:{en:"Support for the timber supply review, in progress."} },
+
+  { id:"fnwl-kispiox", name:{en:"Woodland licence — Kispiox TSA"}, type:"fnwl", t0:2026.1, t1:2026.9, geo:GEO_FNWL_KISPIOX,
+    client:{en:"First Nations Woodland Licence — timber supply analysis"},
+    text:{en:"Timber supply analysis for a woodland licence, in progress."} },
+
+  { id:"fnwl-mackenzie", name:{en:"Woodland licence — Mackenzie TSA"}, type:"fnwl", t0:2025.75, t1:2026.4, geo:GEO_FNWL_MACKENZIE,
+    client:{en:"First Nations Woodland Licence — timber supply analysis"},
+    text:{en:"Timber supply analysis for a woodland licence, from the data build through the model to report drafts, with caribou, mountain goat, biodiversity and visual quality objectives."} },
+
+  { id:"tfl61", name:{en:"TFL 61"}, type:"tfl", t0:2026.35, t1:2026.5, geo:GEO_TFL61,
+    client:{en:"Tree Farm Licence — biodiversity strategy scenarios"},
+    text:{en:"Scenario analysis of what a draft biodiversity strategy would mean for timber supply, building on an earlier model."} },
+
+  { id:"kamloops-scen", name:{en:"Kamloops TSA"}, type:"tsa", t0:2026.2, t1:2026.55, geo:GEO_KAMLOOPS,
+    client:{en:"Land-base and scenario analysis"},
+    text:{en:"Land-base summaries behind a client memo, then an alternative management scenario built alongside an existing base case."} },
+
+  { id:"williamslake-cclup", name:{en:"Williams Lake TSA"}, type:"tsa", t0:2025.75, t1:2025.95, geo:GEO_WILLIAMSLAKE,
+    client:{en:"Land use plan sensitivities"},
+    text:{en:"Sensitivity analyses on a regional land use plan, each testing one objective at a time. My first project at Forsite."} },
+
+  { id:"fnwl-100mile", name:{en:"Woodland licence — 100 Mile House TSA"}, type:"fnwl", t0:2026.67, t1:2026.9,
+    client:{en:"First Nations Woodland Licence — a rebuilt analysis"},
+    text:{en:"An existing woodland licence analysis being rebuilt on current data, in progress. Not drawn on the map — woodland licence boundaries are not a public layer."} },
+
+  { id:"fnwl-fraser", name:{en:"Woodland licence — Fraser TSA"}, type:"fnwl", t0:2026.35, t1:2026.45,
+    client:{en:"First Nations Woodland Licence — harvest flow scenarios"},
+    text:{en:"Harvest flow scenarios on a heavily constrained land base, with marbled murrelet, spotted owl and ungulate winter range. Not drawn on the map — woodland licence boundaries are not a public layer."} },
+
+  { id:"tfl47", name:"TFL 47", type:"tfl", t0:2024.0, t1:2025.7, geo:GEO_TFL47,
+    client:{en:"Timber supply and road analysis"},
+    text:{en:"Built the model in Patchworks — input datasets, curve libraries, group configurations — ran 10+ sensitivity scenarios and produced the reporting outputs, including TIPSY reruns across differing site indices and operational adjustment factors. Took the file over mid-project from a departing senior analyst. Thirteen blocks up the east side of Vancouver Island, modelled as one licence."} },
+
+  { id:"bonanza", name:{en:"FLP Bonanza"}, type:"private", t0:2024.3, t1:2025.5, geo:GEO_BONANZA,
+    client:{en:"Mosaic Forest Management"},
+    text:{en:"Scripting, yield curve processing, Patchworks configuration and scenario setup for the forest landscape plan. Also wrote the Woodstock code and the reporting for a 2024 public land model. Drawn here: the private managed forest around Bonanza Lake, on the north end of the Island."} },
+
+  { id:"mosaic-priv", name:{en:"Private managed forest — Vancouver Island"}, type:"private", t0:2021.45, t1:2023.0, geo:GEO_PRIVATE_VI,
+    client:{en:"Mosaic Forest Management — in-house"},
+    text:{en:"In-house at the landowner. Built the 2022 private land strategic model and ran 40+ sensitivity analyses in Woodstock and SQL; built that year’s growth and yield curves in R. Held the working relationship with three cruising contractors — checked field cards, verified their invoices against work delivered — then post-processed 450+ plots in GPS Pathfinder into one dataset, with 20+ relocation maps when plots became unsafe so the sample held. Valued 30+ properties and moved the TSA databases and models off retiring servers. Drawn here are the large private forest blocks down the east side of the Island, the old E&amp;N grant lands; the public layer carries ownership class, not one company’s holdings."} },
+
+  { id:"mosaic-consult", name:{en:"Private managed forest — as consultant"}, type:"private", t0:2023.2, t1:2025.5, geo:GEO_PRIVATE_VI,
+    client:{en:"Mosaic Forest Management, as a client of Ecora"},
+    text:{en:"The same land base from the other side of the table. As a consultant the work was scoped to what the client asked for and handed over as a finished product: Woodstock scripts and model runs behind 60+ property valuations, each with its supporting maps — tree height, age class, orthophoto and Sentinel imagery, 180+ in all."} },
+
+  { id:"wfp", name:{en:"Western Forest Products"}, type:"tsa", t0:2025.0, t1:2025.9,
+    client:{en:"Timber supply analysis — area not mapped"},
+    text:{en:"Data preparation for the analysis. Not drawn on the map: which unit it covers is not something I will guess at in public."} },
+
+  { id:"haidagwaii", name:{en:"Haida Gwaii TSA"}, type:"tsa", t0:2024.0, t1:2024.95, geo:GEO_HAIDAGWAII,
+    client:{en:"Haida Gwaii timber supply analysis"},
+    text:{en:"Contributed to the model structure and the data preparation behind the Patchworks build. Drawn here as the islands: the timber supply area’s administrative boundary runs out over the water, which would make it look like the largest unit on this map."} },
+
+  { id:"fnwl-kalum", name:{en:"Woodland tenure — Kalum TSA"}, type:"fnwl", t0:2024.0, t1:2024.95, geo:GEO_FNWL_KALUM,
+    client:{en:"First Nations woodland tenure — Kalum TSA"},
+    text:{en:"Scripting, Patchworks setup and data QA/QC. A Woodland Licence management plan goes to the Province for approval, so the analysis has to satisfy the ministry's expectations, not only the client's — and the client has to be walked through what the ministry will ask."} },
+
+  { id:"dungate", name:{en:"Dungate"}, type:"tsa", t0:2023.2, t1:2024.5, geo:GEO_DUNGATE,
+    client:{en:"Canfor — Morice TSA"},
+    text:{en:"Model database preparation, three sensitivity scenarios, and part of the report writing."} },
+
+  { id:"valemount", name:{en:"Robson Valley &amp; Valemount"}, type:"tsa", t0:2025.0, t1:2025.9, geo:GEO_VALEMOUNT,
+    client:{en:"Robson Valley TSA"},
+    text:{en:"Model input preparation and validation. A long, narrow landbase up the Rocky Mountain Trench, where access drives almost everything."} },
+
+  { id:"mackenzie", name:{en:"Mackenzie"}, type:"field", t0:2020.6, t1:2021.4, geo:GEO_MACKENZIE,
+    client:{en:"Conifex — Mackenzie TSA"},
+    text:{en:"Block layout and access by truck, snowmobile and ATV; timber reconnaissance, ecosystem plots and stream assessment."} },
+
+  { id:"princegeorge", name:{en:"Prince George"}, type:"field", t0:2020.6, t1:2021.4, geo:GEO_PRINCEGEORGE,
+    client:{en:"Canfor — Prince George TSA"},
+    text:{en:"Conventional, tethered and cable block design, deflection line layout and road layout."} },
+
+  { id:"quesnel", name:{en:"Quesnel"}, type:"field", t0:2020.6, t1:2021.4, geo:GEO_QUESNEL,
+    client:{en:"BC Timber Sales — Quesnel TSA"},
+    text:{en:"Site plan preparation and cut block design on interior ground."} },
+
+  { id:"pittlake", name:{en:"Pitt Lake"}, type:"field", t0:2020.6, t1:2021.4, geo:GEO_PITTLAKE,
+    client:{en:"Teal-Jones Group — Fraser TSA"},
+    text:{en:"Coastal layout — cable and tethered ground, deflection lines, road layout."} },
+
+  { id:"landact", name:{en:"South Coast — Land Act files"}, type:"crown", t0:2017.67, t1:2018.0, geo:GEO_SOUTHCOAST,
+    client:{en:"Ministry of Forests, Lands and Natural Resource Operations, Surrey"},
+    text:{en:"Land Authorizations Coordinator, co-op term. 70+ Crown land rental reviews and two Crown land summaries — twice the volume of the previous coordinator — plus two tenure maps and ten client letters written directly to tenure holders. Processed Investigative Use Licence files under the Land Act across the South Coast region: Metro Vancouver, the Fraser Valley, the Sunshine Coast and the Sea to Sky."} },
+
+  { id:"horizon", name:{en:"Surrey street trees"}, type:"community", t0:2017.33, t1:2017.67, geo:GEO_SURREY,
+    client:{en:"Horizon Landscape Contractors, Langley"},
+    text:{en:"Crew Lead, co-op term. Two-person crew: set the daily plan and truck routes, directed and checked the other member's work, held the crew to production targets. Recorded tree health and tracked change over time, identified species and adjusted care, installed Treegator watering bags and probes along the routes — and handled resident requests directly, including moving work off a street to avoid noise at the wrong hour."} }
+];
+
+var ERAS = [
+  {label:{en:"UBC"}, full:{en:"UBC — BSc (Hons) Natural Resource Management, then Master of Forestry"},
+   t0:2013, t1:2020.45, color:"var(--t-school)", range:{en:"2013 – 2020"}},
+  {label:{en:"Coastal NRM"}, full:{en:"Coastal Natural Resource Management — Field Engineer"},
+   t0:2020.6, t1:2021.4, color:"var(--t-field)", range:{en:"Aug 2020 – May 2021"}},
+  {label:{en:"Mosaic"}, full:{en:"Mosaic Forest Management — Resource Systems Specialist"},
+   t0:2021.45, t1:2023.0, color:"var(--t-private)", range:{en:"Jun 2021 – Dec 2022"}},
+  {label:{en:"Ecora"}, full:{en:"Ecora Engineering and Resource Group — Resource Analyst"},
+   t0:2023.2, t1:2025.72, color:"var(--t-tsa)", range:{en:"Mar 2023 – Sep 2025"}},
+  {label:{en:"Forsite"}, full:{en:"Forsite Consultants — Resource Analyst"},
+   t0:2025.72, t1:2026.9, color:"var(--t-tfl)", range:{en:"Sep 2025 – present"}}
+];
+
+
+
+
+/* ============================================================
+   PROJECTION — Web Mercator, so one coordinate space covers
+   a cut block and the whole globe.
+   ============================================================ */
+var S = 40;                                   /* user units per degree of longitude */
+function px(lon){ return (lon + 180) * S; }
+function py(lat){
+  var p = Math.max(-84, Math.min(84, lat));
+  return (180 - (180/Math.PI) * Math.log(Math.tan(Math.PI/4 + p*Math.PI/360))) * S;
+}
+function latOf(y){
+  var m = (180 - y/S) * Math.PI/180;
+  return (2*Math.atan(Math.exp(m)) - Math.PI/2) * 180/Math.PI;
+}
+var AR = 1000/800;
+
+function pathOf(flat){
+  var d = "M" + px(flat[0]).toFixed(1) + " " + py(flat[1]).toFixed(1);
+  for (var i = 2; i < flat.length; i += 2) d += "L" + px(flat[i]).toFixed(1) + " " + py(flat[i+1]).toFixed(1);
+  return d + "Z";
+}
+function el(tag, attrs, inner){
+  var n = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  for (var k in attrs) n.setAttribute(k, attrs[k]);
+  if (inner !== undefined) n.innerHTML = inner;
+  return n;
+}
+function ringsOf(u){ return u.geo || u.hand || []; }
+function centroid(rs){
+  var sx = 0, sy = 0, n = 0;
+  rs.forEach(function(r){ for (var i = 0; i < r.length; i += 2){ sx += r[i]; sy += r[i+1]; n++; } });
+  return n ? [sx/n, sy/n] : [-126, 54];
+}
+function boxOfRings(rs, padFrac, minW){
+  var x0 = 1e12, y0 = 1e12, x1 = -1e12, y1 = -1e12, any = false;
+  rs.forEach(function(r){
+    for (var i = 0; i < r.length; i += 2){
+      var x = px(r[i]), y = py(r[i+1]);
+      if (x < x0) x0 = x; if (x > x1) x1 = x;
+      if (y < y0) y0 = y; if (y > y1) y1 = y;
+      any = true;
+    }
+  });
+  if (!any) return null;
+  var pad = Math.max(x1-x0, y1-y0) * (padFrac === undefined ? 0.14 : padFrac) + 12;
+  x0 -= pad; x1 += pad; y0 -= pad; y1 += pad;
+  var w = x1-x0, h = y1-y0;
+  if (w/h < AR){ var nw = h*AR; x0 -= (nw-w)/2; w = nw; } else { var nh = w/AR; y0 -= (nh-h)/2; h = nh; }
+  if (minW && w < minW){ x0 -= (minW-w)/2; y0 -= (minW/AR-h)/2; w = minW; h = minW/AR; }
+  return {x:x0, y:y0, w:w, h:h};
+}
+function boxOfUnits(units, minW){
+  var rs = [];
+  units.forEach(function(u){
+    var r = ringsOf(u);
+    if (r.length) rs = rs.concat(r);
+    else if (u.pt) rs.push([u.pt[0], u.pt[1]]);
+  });
+  var b = boxOfRings(rs, 0.16, minW || 260);
+  /* work that spans BC, Finland and China is wider than the globe in a flat
+     projection, so never zoom out past the world view */
+  if (b && VIEWS && b.w > VIEWS.world.w) return VIEWS.world;
+  return b;
+}
+
+/* ============================================================
+   DRAW
+   ============================================================ */
+var svg = document.getElementById("bcmap");
+
+var gWorld = el("g", {});
+GEO_WORLD.forEach(function(r){ gWorld.appendChild(el("path", {class:"world", d:pathOf(r)})); });
+svg.appendChild(gWorld);
+
+var gProv = el("g", {});
+GEO_CANADA.forEach(function(r){ gProv.appendChild(el("path", {class:"prov", d:pathOf(r)})); });
+svg.appendChild(gProv);
+
+var gBC = el("g", {});
+GEO_BC.forEach(function(r){ gBC.appendChild(el("path", {class:"bcland", d:pathOf(r)})); });
+svg.appendChild(gBC);
+
+var gDetail = el("g", {});
+function basePath(cls, d, label){
+  var p = el("path", {class:cls, d:d});
+  var t = document.createElementNS("http://www.w3.org/2000/svg", "title");
+  t.textContent = label; p.appendChild(t);
+  return p;
+}
+GEO_ALL_TSA.forEach(function(u){ u.r.forEach(function(r){ gDetail.appendChild(basePath("btsa", pathOf(r), u.n)); }); });
+GEO_ALL_TFL.forEach(function(u){ u.r.forEach(function(r){ gDetail.appendChild(basePath("btfl", pathOf(r), u.n)); }); });
+svg.appendChild(gDetail);
+
+var areaG = el("g", {id:"areas"}), areaNodes = {}, labelNodes = {};
+UNITS.forEach(function(u){
+  var rs = ringsOf(u);
+  if (!rs.length && !u.pt) return;
+  var g = el("g", {class:"area", "data-id":u.id, tabindex:"0", role:"button"});
+  g.style.color = TYPES[u.type].color;
+  rs.forEach(function(r){ g.appendChild(el("path", {class:"fill", d:pathOf(r)})); });
+  var c = rs.length ? centroid(rs) : u.pt;
+  var lg = el("g", {class:"lblg"});
+  lg.setAttribute("data-x", px(c[0]));
+  lg.setAttribute("data-y", py(c[1]));
+  if (!rs.length) lg.appendChild(el("circle", {class:"dot", cx:"0", cy:"0", r:"5"}));
+  var t = el("text", {class:"lbl", x:"0", y: rs.length ? "-4" : "-12", "text-anchor":"middle"}, "");
+  lg.appendChild(t); g.appendChild(lg);
+  areaG.appendChild(g);
+  areaNodes[u.id] = g; labelNodes[u.id] = t;
+  g.addEventListener("click", function(){ pick(u.id, true); });
+  g.addEventListener("keydown", function(e){ if (e.key === "Enter" || e.key === " "){ e.preventDefault(); pick(u.id, true); } });
+});
+svg.appendChild(areaG);
+
+var chrome = el("g", {});
+var sbLine = el("path", {stroke:"var(--ink-3)", "stroke-width":"2", "vector-effect":"non-scaling-stroke", fill:"none"});
+var sbText = el("text", {fill:"var(--ink-3)", "font-family":"IBM Plex Mono, monospace"});
+chrome.appendChild(sbLine); chrome.appendChild(sbText);
+svg.appendChild(chrome);
+
+var VIEWS = null;
+VIEWS = {
+  world:  boxOfRings(GEO_WORLD, 0.01),
+  canada: boxOfRings(GEO_CANADA, 0.04),
+  bc:     boxOfRings(GEO_BC, 0.05)
+};
+var REF = VIEWS.bc.w;
+
+var cam = {x:VIEWS.bc.x, y:VIEWS.bc.y, w:VIEWS.bc.w, h:VIEWS.bc.h};
+var camFrom = null, camTo = null, camT0 = 0, raf = null;
+var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function flyTo(box){
+  if (!box) return;
+  if (Math.abs(box.x-cam.x) < .5 && Math.abs(box.w-cam.w) < .5 && Math.abs(box.y-cam.y) < .5) return;
+  if (reduce){ cam = {x:box.x, y:box.y, w:box.w, h:box.h}; paint(); return; }
+  camFrom = {x:cam.x, y:cam.y, w:cam.w, h:cam.h};
+  camTo = box; camT0 = performance.now();
+  /* always restart: a tab that stops painting leaves rAF pending, and guarding
+     on the handle would freeze the camera for the rest of the session */
+  if (raf) cancelAnimationFrame(raf);
+  raf = requestAnimationFrame(stepCam);
+}
+function stepCam(now){
+  var t = Math.min((now - camT0) / 800, 1);
+  var e = t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2;
+  cam.x = camFrom.x + (camTo.x-camFrom.x)*e;
+  cam.y = camFrom.y + (camTo.y-camFrom.y)*e;
+  cam.w = camFrom.w + (camTo.w-camFrom.w)*e;
+  cam.h = camFrom.h + (camTo.h-camFrom.h)*e;
+  paint();
+  raf = t < 1 ? requestAnimationFrame(stepCam) : null;
+}
+
+function paint(){
+  svg.setAttribute("viewBox", cam.x.toFixed(2)+" "+cam.y.toFixed(2)+" "+cam.w.toFixed(2)+" "+cam.h.toFixed(2));
+  var k = cam.w / REF;
+  Array.prototype.forEach.call(svg.querySelectorAll(".lblg"), function(g){
+    g.setAttribute("transform", "translate("+g.getAttribute("data-x")+","+g.getAttribute("data-y")+") scale("+k.toFixed(4)+")");
+  });
+  /* the BC tenure hairlines are noise once the camera leaves the province */
+  gDetail.style.display = cam.w > VIEWS.bc.w * 2.2 ? "none" : "";
+  gBC.style.display = cam.w > VIEWS.canada.w * 1.4 ? "none" : "";
+
+  /* scale bar, corrected for latitude at the camera centre */
+  var latMid = latOf(cam.y + cam.h/2);
+  var kmPerUnit = 111.32 * Math.cos(latMid * Math.PI/180) / S;
+  var choices = [5,10,25,50,100,250,500,1000,2500,5000];
+  var want = cam.w * 0.16 * kmPerUnit, picked = choices[choices.length-1];
+  for (var i = 0; i < choices.length; i++){ if (choices[i] >= want){ picked = choices[i]; break; } }
+  var len = picked / kmPerUnit;
+  var bx = cam.x + 24*k, by = cam.y + cam.h - 26*k;
+  sbLine.setAttribute("d", "M"+bx+" "+(by-5*k)+" v"+(10*k)+" M"+bx+" "+by+" h"+len+" M"+(bx+len)+" "+(by-5*k)+" v"+(10*k));
+  sbText.setAttribute("x", bx); sbText.setAttribute("y", by + 17*k);
+  sbText.setAttribute("font-size", 11*k);
+  sbText.textContent = picked.toLocaleString() + " km";
+}
+
+function stopCam(){ if (raf){ cancelAnimationFrame(raf); raf = null; } }
+function userAt(clientX, clientY){
+  var r = svg.getBoundingClientRect();
+  return {x: cam.x + (clientX - r.left)/r.width*cam.w, y: cam.y + (clientY - r.top)/r.height*cam.h};
+}
+function zoomAt(p, factor){
+  stopCam();
+  var nw = Math.max(30, Math.min(VIEWS.world.w, cam.w*factor));
+  var f = nw / cam.w;
+  cam.x = p.x - (p.x - cam.x)*f;
+  cam.y = p.y - (p.y - cam.y)*f;
+  cam.w = nw; cam.h = nw/AR;
+  viewMode = null; syncPills(); paint();
+}
+svg.addEventListener("wheel", function(e){
+  e.preventDefault();
+  zoomAt(userAt(e.clientX, e.clientY), Math.pow(1.0016, e.deltaY));
+}, {passive:false});
+var down = null, dragged = false;
+svg.addEventListener("pointerdown", function(e){
+  if (e.button !== 0) return;
+  down = {x:e.clientX, y:e.clientY, id:e.pointerId};
+  dragged = false;
+});
+svg.addEventListener("pointermove", function(e){
+  if (!down) return;
+  var dx = e.clientX - down.x, dy = e.clientY - down.y;
+  if (!dragged){
+    /* under five pixels is still a click; only a real move becomes a pan,
+       and only then is the pointer captured */
+    if (dx*dx + dy*dy < 25) return;
+    dragged = true;
+    svg.classList.add("dragging");
+    try { svg.setPointerCapture(down.id); } catch (err) {}
+  }
+  var r = svg.getBoundingClientRect();
+  cam.x -= dx / r.width * cam.w;
+  cam.y -= dy / r.height * cam.h;
+  down.x = e.clientX; down.y = e.clientY;
+  stopCam(); paint();
+});
+function endPointer(){
+  down = null;
+  svg.classList.remove("dragging");
+  /* let the click that follows a drag see the flag, then clear it */
+  setTimeout(function(){ dragged = false; }, 0);
+}
+["pointerup","pointercancel"].forEach(function(ev){ svg.addEventListener(ev, endPointer); });
+svg.addEventListener("click", function(e){
+  if (dragged){ e.stopPropagation(); e.preventDefault(); }
+}, true);
+document.getElementById("zin").addEventListener("click", function(){
+  zoomAt({x:cam.x + cam.w/2, y:cam.y + cam.h/2}, 0.6);
+});
+document.getElementById("zout").addEventListener("click", function(){
+  zoomAt({x:cam.x + cam.w/2, y:cam.y + cam.h/2}, 1.65);
+});
+
+/* ============================================================
+   LANGUAGE
+   ============================================================ */
+var L = "en";
+function t(v){ return (v && typeof v === "object" && !Array.isArray(v)) ? (v[L] || v.en) : v; }
+function stripTags(s){ return String(s).replace(/&amp;/g, "&").replace(/<[^>]*>/g, ""); }
+
+function applyLang(){
+  document.documentElement.setAttribute("lang", L === "zh" ? "zh-Hans" : "en");
+  var sw = document.getElementById("langToggle");
+  sw.innerHTML = L === "en" ? "" : "";
+  sw.setAttribute("aria-label", L === "en" ? "Switch to Chinese" : "");
+  Array.prototype.forEach.call(document.querySelectorAll("[data-en]"), function(n){
+    var v = n.getAttribute("data-" + L);
+    if (v !== null) n.innerHTML = v;
+  });
+  UNITS.forEach(function(u){ if (labelNodes[u.id]) labelNodes[u.id].textContent = stripTags(t(u.name)); });
+  buildEraRow(); buildViewRow(); buildList(); buildLegend();
+  applyEra(false);
+  if (selected){ var cur = UNITS.filter(function(u){ return u.id === selected; })[0];
+    if (cur){ setSel(selected); showDetail(cur); } }
+}
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".abtab"));
+  var canHover = window.matchMedia && matchMedia("(hover:hover)").matches;
+  function show(t){
+    tabs.forEach(function(x){
+      var on = x === t;
+      x.classList.toggle("on", on);
+      x.setAttribute("aria-selected", on ? "true" : "false");
+      x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute("aria-controls")).classList.toggle("on", on);
+    });
+  }
+  tabs.forEach(function(t, i){
+    if (canHover) t.addEventListener("mouseenter", function(){ show(t); });
+    t.addEventListener("click", function(){ show(t); });
+    t.addEventListener("focus", function(){ show(t); });
+    t.addEventListener("keydown", function(e){
+      var n = null;
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") n = tabs[(i + 1) % tabs.length];
+      if (e.key === "ArrowUp" || e.key === "ArrowLeft") n = tabs[(i - 1 + tabs.length) % tabs.length];
+      if (n){ e.preventDefault(); n.focus(); }
+    });
+  });
+})();
+(function(){
+  if (window.matchMedia && matchMedia("(hover:hover)").matches) return;
+  var caps = Array.prototype.slice.call(document.querySelectorAll(".cap, .more"));
+  caps.forEach(function(c){
+    c.addEventListener("click", function(e){
+      var was = c.classList.contains("open");
+      caps.forEach(function(x){ x.classList.remove("open"); });
+      if (!was) c.classList.add("open");
+      e.stopPropagation();
+    });
+  });
+  document.addEventListener("click", function(){ caps.forEach(function(x){ x.classList.remove("open"); }); });
+})();
+document.getElementById("langToggle").addEventListener("click", function(){
+  L = L === "en" ? "zh" : "en";
+  try { localStorage.setItem("yg-lang", L); } catch (e) {}
+  applyLang();
+});
+
+/* ============================================================
+   ERAS AND VIEWS — the two controls
+   ============================================================ */
+var ERA_OF = {
+  "fibre-two-tsa":["forsite"], "williamslake-tsr":["forsite"], "fnwl-kispiox":["forsite"],
+  "fnwl-mackenzie":["forsite"], "tfl61":["forsite"], "kamloops-scen":["forsite"],
+  "williamslake-cclup":["forsite"], "fnwl-100mile":["forsite"], "fnwl-fraser":["forsite"],
+  "tfl47":["ecora"], "bonanza":["ecora"], "wfp":["ecora"], "haidagwaii":["ecora"],
+  "fnwl-kalum":["ecora"], "dungate":["ecora"], "valemount":["ecora"],
+  "mosaic-priv":["mosaic"], "mosaic-consult":["ecora"],
+  "mackenzie":["coastal"], "mackenzie-2017":["coop-forsite"], "princegeorge":["coastal"],
+  "quesnel":["coastal"], "pittlake":["coastal"],
+  "horizon":["coop-horizon"], "landact":["coop-landact"],
+  "njfu":["res-njfu"], "efi":["res-efi","masters"],
+  "hainan":["coop-app"]
+};
+var ERA_LIST = [
+  {id:"all", row:"work", label:{en:"All work"},
+   full:{en:"Everything on one board"}, years:"2013 – 2026"},
+
+  {id:"coop-app", row:"work", label:{en:"APP China"},
+   full:{en:"APP China Jinhua Forestry — Commissioner, Department of Sustainability, co-op term"},
+   years:"Jun – Aug 2016", t0:2016.42, t1:2016.67, color:"var(--t-app)"},
+  {id:"coop-forsite", row:"work", label:{en:"Forsite"},
+   full:{en:"Forsite Consultants — Field Engineer, co-op term"},
+   years:"Jan – Apr 2017", t0:2016.98, t1:2017.33, color:"var(--t-tfl)"},
+  {id:"coop-horizon", row:"work", label:{en:"Horizon"},
+   full:{en:"Horizon Landscape Contractors — Crew Lead, co-op term"},
+   years:"May – Aug 2017", t0:2017.33, t1:2017.67, color:"var(--t-community)"},
+  {id:"coop-landact", row:"work", label:{en:"FLNRO"},
+   full:{en:"Ministry of Forests, Lands and Natural Resource Operations — Land Authorizations Coordinator, co-op term"},
+   years:"Sep – Dec 2017", t0:2017.67, t1:2018.02, color:"var(--t-crown)"},
+  {id:"res-njfu", row:"work", label:{en:"Nanjing"},
+   full:{en:"Nanjing Forestry University, SLRF Laboratory — Research Assistant"},
+   years:"May – Aug 2018", t0:2018.33, t1:2018.67, color:"var(--t-fnwl)"},
+  {id:"res-efi", row:"work", label:{en:"Joensuu"},
+   full:{en:"European Forest Institute, Joensuu — Research Assistant"},
+   years:"Mar – Aug 2019", t0:2019.17, t1:2019.67, color:"var(--t-fma)"},
+  {id:"coastal", row:"work", label:{en:"Coastal NRM"},
+   full:{en:"Coastal Natural Resource Management — Field Engineer"},
+   years:"Aug 2020 – May 2021", t0:2020.58, t1:2021.42, color:"var(--t-field)"},
+  {id:"mosaic", row:"work", label:{en:"Mosaic"},
+   full:{en:"Mosaic Forest Management — Resource Systems Specialist"},
+   years:"Jun 2021 – Dec 2022", t0:2021.42, t1:2023.05, color:"var(--t-private)"},
+  {id:"ecora", row:"work", label:{en:"Ecora"},
+   full:{en:"Ecora Engineering and Resource Group — Resource Analyst"},
+   years:"Mar 2023 – Sep 2025", t0:2023.17, t1:2025.72, color:"var(--t-tsa)"},
+  {id:"forsite", row:"work", label:{en:"Forsite"},
+   full:{en:"Forsite Consultants — Resource Analyst"},
+   years:"Sep 2025 – present", t0:2025.72, t1:2026.9, color:"var(--t-tfl)"},
+
+  {id:"bsc", row:"study", label:{en:"BSc, UBC<span class=\"lx\"> (dual honours degree with NJFU)</span>"},
+   full:{en:"BSc (Hons) Natural Resource Management, UBC — a dual honours degree with Nanjing Forestry University, with co-op, and a thesis on plantation ecology"},
+   years:"2013 – 2018", t0:2013, t1:2018.4, color:"var(--line-2)"},
+  {id:"masters", row:"study", label:{en:"Master of Forestry"},
+   full:{en:"Master of Forestry, University of British Columbia — including a term as teaching assistant for FRST 100"},
+   years:"2018 – 2020", t0:2018.6, t1:2020.4, color:"var(--line-2)"}
+];
+var VIEW_LIST = [
+  {id:"bc",     label:{en:"British Columbia"}},
+  {id:"canada", label:{en:"Canada"}},
+  {id:"world",  label:{en:"World"}}
+];
+var era = "forsite", viewMode = null;
+
+var groupMode = true;
+function inEra(u){
+  if (groupMode) return era === "all" || (ERA_OF[u.id] || []).indexOf(era) >= 0;
+  var x = curYear();
+  return x >= u.t0 && x <= u.t1;
+}
+
+var mapctl = document.getElementById("mapctl");
+var input = document.getElementById("time");
+var head = document.getElementById("head");
+var axisEl = document.getElementById("axis");
+var bandsEl = document.getElementById("bands");
+var allBtn = document.getElementById("allBtn");
+
+var TA = 2013, TB = 2026.9;
+/* piecewise-linear. 2013-2016 hold no job and share 10% of the width; the
+   2016-2020 run of short terms gets half of it so each short job has room for
+   its label; the full-time years after 2020 take the rest. The breaks are
+   marked on the axis. */
+var SEG = [[2013, 0], [2016.2, 0.10], [2020.5, 0.60], [2026.9, 1]];
+function frac(x){
+  x = Math.max(TA, Math.min(TB, x));
+  for (var i = 0; i < SEG.length - 1; i++){
+    var a = SEG[i], b = SEG[i + 1];
+    if (x <= b[0]) return a[1] + (x - a[0]) / (b[0] - a[0]) * (b[1] - a[1]);
+  }
+  return 1;
+}
+function inv(f){
+  f = Math.max(0, Math.min(1, f));
+  for (var i = 0; i < SEG.length - 1; i++){
+    var a = SEG[i], b = SEG[i + 1];
+    if (f <= b[1]) return a[0] + (f - a[1]) / (b[1] - a[1]) * (b[0] - a[0]);
+  }
+  return TB;
+}
+function curYear(){ return inv(parseFloat(input.value) / 1000); }
+function eraAt(x){
+  var work = ERA_LIST.filter(function(e){ return e.id !== "all" && e.row === "work"; });
+  for (var i = 0; i < work.length; i++){
+    if (x >= (work[i].d0 || work[i].t0) && x <= (work[i].d1 || work[i].t1)) return work[i].id;
+  }
+  /* a year with no job in it belongs to whatever was being studied then, not to
+     the nearest job — otherwise 2014 lights up a 2017 field season */
+  var study = ERA_LIST.filter(function(e){ return e.id !== "all" && e.row === "study"; });
+  for (var k = 0; k < study.length; k++){
+    if (x >= study[k].t0 && x <= study[k].t1) return study[k].id;
+  }
+  var best = work[0], bd = 1e9;
+  for (var j = 0; j < work.length; j++){
+    var d = Math.min(Math.abs(x - work[j].t0), Math.abs(x - work[j].t1));
+    if (d < bd){ bd = d; best = work[j]; }
+  }
+  return best.id;
+}
+
+function buildEraRow(){
+  setTimeout(cullLabels, 0);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(cullLabels);
+  axisEl.innerHTML = ""; bandsEl.innerHTML = "";
+  [2013, 2017, 2018, 2019, 2020, 2022, 2024, 2026].forEach(function(y){
+    var sp = document.createElement("span");
+    sp.textContent = y; sp.style.left = (frac(y)*100) + "%";
+    axisEl.appendChild(sp);
+  });
+
+  var rows = {};
+  ["work","study"].forEach(function(r){
+    var d = document.createElement("div");
+    d.className = "bandrow " + r;
+    bandsEl.appendChild(d); rows[r] = d;
+  });
+  var work = ERA_LIST.filter(function(e){ return e.id !== "all" && e.row === "work"; })
+                     .sort(function(a, b){ return a.t0 - b.t0; });
+  work.forEach(function(e, k){
+    var p = work.length > 1 ? Math.round(k / (work.length - 1) * 100) : 100;
+    e.color = "color-mix(in oklab, var(--ramp-hi) " + p + "%, var(--ramp-lo))";
+    var gl = k > 0 ? e.t0 - work[k - 1].t1 : 0;
+    var gr = k < work.length - 1 ? work[k + 1].t0 - e.t1 : 0;
+    e.d0 = e.t0 - (gl > 0 ? gl * 0.1 : 0);
+    e.d1 = e.t1 + (gr > 0 ? gr * 0.1 : 0);
+  });
+  var studies = ERA_LIST.filter(function(e){ return e.row === "study"; })
+                        .sort(function(a, b){ return a.t0 - b.t0; });
+  studies.forEach(function(e, k){
+    var p = studies.length > 1 ? Math.round(20 + k / (studies.length - 1) * 70) : 50;
+    e.color = "color-mix(in oklab, var(--ramp-hi) " + p + "%, var(--ramp-lo))";
+    e.d0 = e.t0; e.d1 = e.t1;
+  });
+  /* a summer job between two degrees is drawn inside the break, not over either */
+  for (var q = 0; q < studies.length - 1; q++){
+    var g0 = studies[q].t1, g1 = studies[q + 1].t0;
+    work.forEach(function(e){
+      var m = (e.t0 + e.t1) / 2;
+      if (m > g0 && m < g1){ e.d0 = Math.max(e.d0, g0); e.d1 = Math.min(e.d1, g1); }
+    });
+  }
+  ERA_LIST.slice(1).forEach(function(e){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "band"; b.dataset.era = e.id;
+    b.style.left = (frac(e.d0)*100) + "%";
+    b.style.width = ((frac(e.d1) - frac(e.d0))*100) + "%";
+    b.style.color = e.color;
+    b.setAttribute("aria-label", stripTags(t(e.label)) + " " + e.years);
+    b.title = stripTags(t(e.full || e.label)) + " · " + e.years;
+
+    b.addEventListener("click", function(){
+      input.value = Math.round(frac((e.t0 + e.t1) / 2) * 1000);
+      era = e.id; viewMode = null; applyEra(true);
+    });
+    rows[e.row].appendChild(b);
+    var l = document.createElement("div");
+    var narrow = (frac(e.d1) - frac(e.d0)) < 0.05;
+    l.className = "bandlbl" + (e.row === "study" ? " study" : "") + (narrow ? " narrow" : "");
+    l.dataset.era = e.id;
+    l.innerHTML = t(e.label);
+    l.style.left = ((frac(e.d0) + frac(e.d1)) / 2 * 100) + "%";
+    bandsEl.appendChild(l);
+  });
+}
+
+/* hide any label that would overlap the one before it, at whatever width */
+function cullLabels(){
+  var rows = {};
+  Array.prototype.forEach.call(bandsEl.querySelectorAll(".bandlbl"), function(l){
+    l.classList.remove("clash");
+    if (getComputedStyle(l).display === "none") return;
+    var key = l.classList.contains("study") ? "s" : "w";
+    (rows[key] = rows[key] || []).push(l);
+  });
+  Object.keys(rows).forEach(function(k){
+    var list = rows[k].map(function(l){ return {el:l, r:l.getBoundingClientRect()}; })
+                      .sort(function(a, b){ return a.r.left - b.r.left; });
+    var lastRight = -1e9;
+    list.forEach(function(o){
+      if (o.r.left < lastRight + 6){ o.el.classList.add("clash"); }
+      else { lastRight = o.r.right; }
+    });
+  });
+  /* on a narrow screen the year ticks run into each other; keep the ones that fit */
+  var ticks = Array.prototype.slice.call(axisEl.querySelectorAll("span"));
+  ticks.forEach(function(sp){ sp.classList.remove("clash"); });
+  var edge = -1e9;
+  ticks.forEach(function(sp){
+    var r = sp.getBoundingClientRect();
+    if (r.left < edge + 8) sp.classList.add("clash"); else edge = r.right;
+  });
+}
+window.addEventListener("resize", function(){ cullLabels(); });
+
+function buildViewRow(){
+  mapctl.innerHTML = "";
+  VIEW_LIST.forEach(function(v){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = t(v.label);
+    b.dataset.view = v.id;
+    b.setAttribute("aria-pressed", v.id === viewMode ? "true" : "false");
+    b.addEventListener("click", function(){ viewMode = v.id; syncPills(); flyTo(VIEWS[v.id]); });
+    mapctl.appendChild(b);
+  });
+}
+
+allBtn.addEventListener("click", function(){
+  groupMode = !groupMode;
+  era = eraAt(curYear());
+  viewMode = null;
+  applyEra(true);
+});
+input.addEventListener("input", function(){
+  var id = eraAt(curYear());
+  if (!groupMode){ era = id; viewMode = null; applyEra(true); return; }
+  if (era !== id){ era = id; viewMode = null; applyEra(true); }
+  else syncPills();
+});
+
+function syncPills(){
+  head.style.left = "calc(10px + (100% - 20px) * " + (parseFloat(input.value) / 1000).toFixed(4) + ")";
+  Array.prototype.forEach.call(bandsEl.querySelectorAll(".band,.bandlbl"), function(n){
+    if (!n.dataset.era) return;
+    n.classList.toggle("on", groupMode && n.dataset.era === era);
+  });
+  Array.prototype.forEach.call(mapctl.children, function(b){
+    b.setAttribute("aria-pressed", b.dataset.view === viewMode ? "true" : "false");
+  });
+  allBtn.setAttribute("aria-pressed", groupMode ? "true" : "false");
+  var e = ERA_LIST.filter(function(x){ return x.id === era; })[0] || ERA_LIST[0];
+  var n = UNITS.filter(inEra).length;
+  document.getElementById("roEmp").textContent = t(e.full || e.label);
+  document.getElementById("roYrs").textContent = groupMode ? "" : String(Math.floor(curYear()));
+  document.getElementById("roCnt").textContent = n === 0
+    ? (L === "zh" ? "" : "nothing on the board")
+    : (L === "zh" ? n + "" : n + (n === 1 ? " area" : " areas") + " on the board");
+  document.getElementById("modeHint").textContent = L === "zh"
+    ? (groupMode ? "" : "")
+    : (groupMode ? "drag the playhead, a whole period at a time"
+                 : "drag the playhead, each project by its own dates");
+}
+
+function applyEra(fly){
+  areaG.classList.remove("focus");
+  syncPills();
+  var shown = UNITS.filter(inEra);
+  UNITS.forEach(function(u){
+    var on = inEra(u);
+    if (areaNodes[u.id]) areaNodes[u.id].classList.toggle("off", !on);
+    var li = listEl.querySelector('li[data-id="' + u.id + '"]');
+    if (li) li.classList.toggle("off", !on);
+  });
+  if (!selected || !inEra(UNITS.filter(function(u){ return u.id === selected; })[0] || {id:""})){
+    var first = shown.filter(function(u){ return ringsOf(u).length; })[0] || shown[0];
+    if (first){ setSel(first.id); showDetail(first); }
+  }
+  if (fly !== false) flyTo(boxOfUnits(shown));
+}
+
+/* ============================================================
+   RAIL
+   ============================================================ */
+var listEl = document.getElementById("unitlist");
+var legendEl = document.getElementById("legend");
+var detailEl = document.getElementById("detail");
+var selected = null;
+
+function yearText(u){
+  var a = Math.floor(u.t0), b = Math.floor(u.t1);
+  return a === b ? String(a) : a + "–" + b;
+}
+function buildList(){
+  listEl.innerHTML = "";
+  UNITS.slice().sort(function(a,b){ return a.t0 - b.t0; }).forEach(function(u){
+    var li = document.createElement("li");
+    li.dataset.id = u.id;
+    li.innerHTML = '<button type="button">' +
+      '<span class="sw" style="color:' + TYPES[u.type].color + '"></span>' +
+      '<span class="nm">' + t(u.name) + '</span>' +
+      '<span class="yr">' + yearText(u) + '</span></button>';
+    li.querySelector("button").addEventListener("click", function(){ pick(u.id, true); });
+    listEl.appendChild(li);
+  });
+}
+function buildLegend(){
+  legendEl.innerHTML = "";
+  Object.keys(TYPES).forEach(function(k){
+    var s = document.createElement("span");
+    s.style.color = TYPES[k].color;
+    s.innerHTML = '<i></i><span style="color:var(--ink-3)">' + t(TYPES[k]) + '</span>';
+    legendEl.appendChild(s);
+  });
+}
+function showDetail(u){
+  detailEl.style.color = TYPES[u.type].color;
+  detailEl.innerHTML =
+    '<span class="tag"><i></i>' + t(TYPES[u.type]) + '</span>' +
+    '<h3>' + t(u.name) + '</h3>' +
+    '<div class="yrs">' + yearText(u) + '</div>' +
+    '<p>' + t(u.text) + '</p>' +
+    '<div class="by">' + (L === "zh" ? "" : "Context: ") + '<b>' + t(u.client) + '</b></div>' +
+    (u.geo ? '<div class="src">' + (L === "zh" ? "" : "Boundary: BC Data Catalogue") + '</div>'
+           : (ringsOf(u).length ? '<div class="src">' + (L === "zh" ? "" : "Extent: indicative, hand-drawn") + '</div>' : ''));
+}
+function setSel(id){
+  selected = id;
+  Object.keys(areaNodes).forEach(function(k){ areaNodes[k].classList.toggle("sel", k === id); });
+  Array.prototype.forEach.call(listEl.children, function(li){ li.classList.toggle("sel", li.dataset.id === id); });
+}
+function pick(id, zoom){
+  var u = UNITS.filter(function(x){ return x.id === id; })[0];
+  if (!u) return;
+  if (!inEra(u)){
+    var e = (ERA_OF[u.id] || ["all"])[0];
+    era = e; viewMode = null; applyEra(false);
+  }
+  setSel(id); showDetail(u); syncPills();
+  areaG.classList.toggle("focus", !!zoom);
+  if (zoom) flyTo(ringsOf(u).length ? boxOfRings(ringsOf(u), 0.16, 40) : boxOfUnits([u], 900));
+}
+
+/* ---- scroll behaviour ---------------------------------------------------
+   Everything below renders at rest by default. The reveal class only goes on
+   the root when motion is wanted, and anything already on screen at load is
+   marked done without a transition, so the first frame is complete. */
+(function(){
+  var bar = document.getElementById("progress");
+  function progress(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + "%";
+  }
+  window.addEventListener("scroll", progress, {passive:true});
+  window.addEventListener("resize", progress);
+  progress();
+
+  if (reduce || !("IntersectionObserver" in window)) return;
+  document.documentElement.classList.add("reveal-on");
+  var els = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  els.forEach(function(el){
+    if (el.getBoundingClientRect().top < window.innerHeight * 0.92){
+      el.classList.add("in", "instant");
+    }
+  });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, {rootMargin: "0px 0px -8% 0px", threshold: 0.05});
+  els.forEach(function(el){ if (!el.classList.contains("in")) io.observe(el); });
+
+  /* belt and braces: if the observer is throttled (a background tab, a
+     preview pane), anything that is actually on screen still gets shown */
+  function sweep(){
+    var h = window.innerHeight;
+    els.forEach(function(el){
+      if (!el.classList.contains("in") && el.getBoundingClientRect().top < h * 0.95){
+        el.classList.add("in");
+      }
+    });
+  }
+  window.addEventListener("scroll", sweep, {passive:true});
+  setTimeout(sweep, 1200);
+})();
+
+/* ---- boot ---- */
+input.value = Math.round(frac(2026.3) * 1000);
+
+applyLang();
+/* the opening frame is set directly, not animated: a page loaded in a
+   background tab gets no animation frames, and the first still frame is what a
+   thumbnail and a skimming reader both see */
+var boot = boxOfUnits(UNITS.filter(inEra));
+if (boot) cam = {x:boot.x, y:boot.y, w:boot.w, h:boot.h};
+paint();
+window.addEventListener("resize", paint);
+</script>
+</body>
+</html>
