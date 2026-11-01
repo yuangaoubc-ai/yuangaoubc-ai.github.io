@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>乐高收藏清单</title>
+<style>
+:root{
+ --bg:#f6f4ef; --card:#fffdf9; --ink:#23201b; --muted:#6f6a60; --line:#e2ddd2;
+ --owned:#2e7d5b; --owned-bg:#e6f2ec;
+ --buy:#3d7c8a; --buy-bg:#e2f0f2;
+ --urgent:#b3261e; --urgent-bg:#fae7e5;
+ --sell:#b4611b; --sell-bg:#fbeee0;
+ --gone:#6a6f7d; --gone-bg:#eceef2;
+ --accent:#4a63b8;
+}
+@media (prefers-color-scheme:dark){
+ :root{
+  --bg:#16181c; --card:#1e2126; --ink:#e6e3dd; --muted:#9a958c; --line:#31353c;
+  --owned:#68c79b; --owned-bg:#1c2f27;
+  --buy:#71b9c9; --buy-bg:#172b30;
+  --urgent:#f08b83; --urgent-bg:#331e1c;
+  --sell:#e5a05e; --sell-bg:#33261a;
+  --gone:#a2a8b5; --gone-bg:#252932;
+  --accent:#93a7e8;
+ }
+}
+*{box-sizing:border-box}
+body{margin:0;padding:0 16px 72px;background:var(--bg);color:var(--ink);
+ font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;}
+.wrap{max-width:1300px;margin:0 auto}
+.secnote,.narrow,footer{max-width:900px}
+a{color:var(--accent)}
+header{padding:28px 0 6px}
+h1{font-size:25px;margin:0 0 5px;letter-spacing:.5px}
+.sub{color:var(--muted);font-size:13.5px;margin:0}
+.modebar{position:sticky;top:0;z-index:9;background:var(--bg);padding:12px 0;border-bottom:1px solid var(--line);
+ margin-bottom:18px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.mb{font-size:13.5px;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--card);
+ padding:6px 14px;border-radius:999px;cursor:pointer;user-select:none}
+.mb:hover{border-color:var(--muted)}
+.mb.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.mb.back{margin-right:auto}
+.mbl{font-size:12.5px;color:var(--muted);letter-spacing:.3px}
+.lang{margin-left:auto;font-weight:600;letter-spacing:.5px;border-color:var(--accent);color:var(--accent)}
+.lang:hover{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.sortrow{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin:0 0 14px}
+.sortnote{font-size:12.5px;color:var(--muted)}
+.seg{display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:2px}
+.seg .sgl{font-size:11.5px;color:var(--muted);padding:0 7px 0 10px;letter-spacing:.3px;white-space:nowrap}
+.seg .sg{font-size:12.5px;text-decoration:none;color:var(--muted);padding:4px 11px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.seg .sg:hover{color:var(--ink)}
+.seg .sg.on{background:var(--ink);color:var(--bg)}
+h2{font-size:19px;margin:32px 0 3px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+h2 .count{font-size:12px;font-weight:500;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 8px}
+.secnote{color:var(--muted);font-size:13.5px;margin:2px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:10px;align-items:start;margin:10px 0 4px}
+.tile{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:10px;
+ padding:12px 13px;height:100%;cursor:pointer;display:block;text-decoration:none;color:inherit}
+.tile:hover{border-color:var(--muted)}
+.tile.own{border-left-color:var(--owned)}
+.tile.buy{border-left-color:var(--buy)}
+.tile.buy.now{border-left-color:var(--urgent)}
+.tile.sell{border-left-color:var(--sell)}
+.tile.nope{border-left-color:var(--gone)}
+.num{font-size:12px;color:var(--muted);letter-spacing:.6px;font-variant-numeric:tabular-nums}
+.nm{font-size:15.5px;font-weight:600;margin:2px 0 0;line-height:1.35}
+.en{font-size:12.5px;color:var(--muted);margin:1px 0 0}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:9px}
+.tag{font-size:11.5px;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.t-own{background:var(--owned-bg);color:var(--owned)}
+.t-buy{background:var(--buy-bg);color:var(--buy)}
+.t-urgent{background:var(--urgent-bg);color:var(--urgent)}
+.t-sell{background:var(--sell-bg);color:var(--sell)}
+.t-gone{background:var(--gone-bg);color:var(--gone)}
+.price{margin-left:auto;font-size:14px;font-variant-numeric:tabular-nums;color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted);margin:8px 0 0;padding-top:8px;border-top:1px solid var(--line)}
+.bar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);
+ border-radius:0 9px 9px 0;padding:13px 15px;margin:16px 0;max-width:900px;font-size:14px}
+.bar.warn{border-left-color:var(--urgent)}
+.bar b{font-weight:600}
+.bar ul{margin:8px 0 0;padding-left:20px}
+.bar li{margin:3px 0}
+.tot{display:flex;align-items:baseline;gap:10px;margin:14px 0 0;font-size:14px;color:var(--muted);flex-wrap:wrap}
+.tot b{font-size:20px;color:var(--ink);font-variant-numeric:tabular-nums}
+.block{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0;max-width:900px}
+.block h3{margin:0 0 8px;font-size:15px}
+.block .bul{margin:0;padding-left:20px}
+.block .bul li{margin:4px 0;font-size:14px}
+.dtl h1{font-size:22px;margin:6px 0 2px}
+.dtl .dsub{color:var(--muted);font-size:13.5px;margin:0 0 4px}
+.pn{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:26px 0 0;padding-top:14px;
+ border-top:1px solid var(--line);font-size:13.5px}
+.pn a{text-decoration:none}
+.xlinks{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 18px;font-size:13px;color:var(--muted)}
+.xlinks a{display:inline-block;border:1px dashed var(--line);border-radius:999px;padding:4px 12px;
+ text-decoration:none;color:var(--accent)}
+.xlinks a:hover{border-style:solid}
+footer{margin-top:46px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+.empty{color:var(--muted);font-size:14px;margin:12px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1 id="h1"></h1>
+  <p class="sub" id="sub"></p>
+</header>
+
+<div class="modebar" id="modebar"></div>
+<div id="app"></div>
+
+<footer id="foot"></footer>
+
+</div>
+<script>
+/* ---------- 语言 ---------- */
+var LANG = 'zh';
+try { var s = localStorage.getItem('lego-lang'); if (s === 'en' || s === 'zh') LANG = s; } catch (e) {}
+var SORT = 'series';
+try { var s2 = localStorage.getItem('lego-sort'); if (s2 === 'series' || s2 === 'num' || s2 === 'price') SORT = s2; } catch (e) {}
+var FILT = 'all';
+try { var s3 = localStorage.getItem('lego-filt'); if (s3) FILT = s3; } catch (e) {}
+function t(v){ return Object.prototype.toString.call(v) === '[object Array]' ? (LANG === 'en' ? v[1] : v[0]) : v; }
+
+var UI = {
+ title:  ['乐高收藏清单', 'LEGO Collection'],
+ updated: ['更新日期：2026-09-14 · 价格为美元官方定价，加币以 lego.com/en-ca 为准；拼奇一条是非乐高，另计',
+      'Updated 2026-09-14 · Prices are official US$ RRP; confirm CAD on lego.com/en-ca. The one Pantasy entry is not LEGO and is priced separately'],
+ langLbl: ['语言 Language', '语言 Language'],
+ langbtn: ['EN', '中文'],
+ filtLbl: ['只看', 'Show'],
+ allback: ['← 所有套装', '← All sets'],
+ allup:  ['↑ 所有套装', '↑ All sets'],
+ sortLbl: ['排序', 'Sort'],
+ sortSeries:['按系列', 'By series'],
+ sortNum: ['按编号', 'By set number'],
+ sortPrice:['按价格', 'By price'],
+ hintSeries:['按系列分架 —— 一整座城堡的模块排在一起，这是实际拼起来的样子。',
+       'Shelved by series, so the modules that build into one castle sit together — the way they actually assemble.'],
+ hintNum: ['按套装编号排，查号用。','Ordered by set number — for looking a number up.'],
+ hintPrice:['按官方定价从高到低，看钱花在哪。','By official RRP, high to low — where the money goes.'],
+ filtEmpty:['这一档现在是空的 —— 换个筛选看看。','Nothing in this filter right now — try another.'],
+ xlinkLbl:['另外三份清单', 'The other three lists'],
+ xBoard: ['🎲 桌游收藏清单', '🎲 Board Game Collection'],
+ xPoke:  ['🃏 宝可梦 TCG 清单', '🃏 Pokémon TCG list'],
+ xFigs:  ['🧸 手办收藏清单', '🧸 Figure Collection'],
+ bHave:  ['手上有什么', 'What is here'],
+ bNotes: ['备注', 'Notes'],
+ bTodo:  ['要做的事', 'To do'],
+ bLinks: ['相关页面', 'Related pages'],
+ notfound:['找不到这个套装。', 'No such set. '],
+ backlist:['回总览', 'Back to overview'],
+ foot:  ['内容源是同目录的 <b>乐高清单.md</b> —— 改那边，再同步这里；<b>check-sync.ps1</b> 能对账。' +
+      '停产预估、GWP 门槛这类考据在两个 tracker 里，不在这一页。',
+      'Source of truth is <b>乐高清单.md</b> in the same folder — edit there, then sync this file; ' +
+      '<b>check-sync.ps1</b> compares the two. The retirement estimates and GWP threshold research live in the two tracker files, not here.']
+};
+
+var ST = {
+ own: {lbl:['✅ 已有','✅ Owned'],   cls:'t-own'},
+ buy: {lbl:['🛒 还要买','🛒 To buy'],  cls:'t-buy'},
+ now: {lbl:['🔴 现在买','🔴 Buy now'],  cls:'t-urgent'},
+ sell:{lbl:['💰 要出','💰 To sell'],  cls:'t-sell'},
+ nope:{lbl:['🚫 不追了','🚫 Dropped'], cls:'t-gone'}
+};
+
+var SERIES = [
+ {k:'grey', title:['灰顶城堡 · 模块系统','Hogwarts Castle — the modular system'],
+  n:['2024 年至今','2024 onward'],
+  note:['灰顶、人仔比例、能拼成一整座城堡的那一套，和 2018–2020 的绿顶是两回事。' +
+     '<b>难补的六个已经全部到手</b> —— 五个停产的加一个 GWP 专属的。剩下七个全在官网有售，是钱和时机的问题，不用抢。' +
+     '停产时间是玩家社区预估，不是乐高公告。<br><b>2026-09-06 在官网下了两单，买了哪几盒还没填</b> —— 草药课和飞行课先还标着「现在买」。',
+     'The grey-roofed, minifigure-scale Hogwarts that assembles into one castle — a different thing from the ' +
+     '2018–2020 green-roofed version. <b>Every hard-to-get piece is already secured</b>: five retired sets plus one ' +
+     'GWP exclusive. Everything still missing is on LEGO.com, so this is now a budget-and-timing question, not a hunt. ' +
+     'Retirement dates are fan-compiled community estimates, not LEGO announcements.<br><b>Two orders were placed on LEGO.com on 2026-09-06, and which sets they contained is not recorded yet</b> — Herbology and Flying Lessons stay marked “buy now” until it is.']},
+ {k:'collectors', title:['珍藏版系列','Collectors’ Edition line'], n:['已齐','Complete'],
+  note:['古灵阁 · 对角巷 · 陋居 · 霍格沃茨特快 · 霍格莫德村，全部到手。' +
+     '<b>套装编号还没核对</b> —— 哪天对着盒子把号补上，不然以后查价、卖货都要重新翻一遍。',
+     'Gringotts, Diagon Alley, The Burrow, Hogwarts Express and Hogsmeade Village are all here. ' +
+     '<b>The set numbers have not been checked</b> — fill them in off the boxes before using this list to price or sell anything.']},
+ {k:'green', title:['绿顶模块城堡','Green-roof modular Hogwarts'], n:['2018–2020 · 出售中','2018–2020 · selling'],
+  note:['2026-09-03 决定出掉，钱转去补灰顶还差的那部分。',
+     'Decided 2026-09-03 to sell it and put the proceeds toward what the grey-roof system still needs.']},
+ {k:'gwp', title:['Restaurants of the World','Restaurants of the World'], n:['GWP 系列 · 待定','GWP series · undecided'],
+  note:['四个季度 GWP 小套装。9月3号一度决定退出，<b>9月14号改回待定</b>：希腊还没买，二选一 —— 慢慢把希腊收齐，或者不收了、把日本和墨西哥卖掉。',
+     'A quarterly gift-with-purchase series. Dropped on 3 Sep, then <b>reopened on 14 Sep</b>: Greece is still missing, and the choice is either to collect it slowly or to stop and sell Japan and Mexico.']},
+ {k:'pantasy', title:['其他品牌积木','Non-LEGO brick sets'], n:['拼奇 Pantasy','Pantasy'],
+  note:['不是乐高的积木放这里。定价、渠道、二手行情都和乐高不是一套，所以不混进上面的系列。',
+     'Brick sets that are not LEGO. Pricing, retail channels and the secondhand market all work differently, so they are kept out of the LEGO sections above.']},
+ {k:'dropped', title:['看过，不买','Looked at, not buying'], n:['', ''],
+  note:['决定不买的，留着理由，免得过阵子又心动一次。',
+     'Decided against. The reasoning is kept so it does not get reconsidered from scratch in a few months.']}
+];
+
+var SETS = [
+ /* ---- 灰顶 ---- */
+ {id:'76435', num:'76435', series:'grey', st:'own', price:199.99,
+  name:['大礼堂','The Great Hall'],
+  tag:['2026/07 停产','Retired 07/2026'],
+  note:['整个系统的锚点，其余模块围着它拼。官网已买不到。',
+     'The anchor of the whole system — every other module builds around it. No longer available from LEGO.']},
+ {id:'40770', num:'40770', series:'grey', st:'own', price:null,
+  name:['有求必应屋','Room of Requirement'],
+  tag:['GWP 专属','GWP exclusive'],
+  note:['从未零售，只在 2025/09 前作为赠品发放。系统里最难补的一块 —— 现在在手，意味着后面全是钱的问题。',
+     'Never sold at retail; given away as a gift with purchase until 09/2025. The hardest piece in the system to get — ' +
+     'having it means everything left is just money.']},
+ {id:'76426', num:'76426', series:'grey', st:'own', price:37.99,
+  name:['船屋','Boathouse'], tag:['2025/12 停产','Retired 12/2025']},
+ {id:'76430', num:'76430', series:'grey', st:'own', price:44.99,
+  name:['猫头鹰棚屋','Owlery'], tag:['2025/12 停产','Retired 12/2025']},
+ {id:'76431', num:'76431', series:'grey', st:'own', price:39.99,
+  name:['魔药课','Potions Class'], tag:['2025/12 停产','Retired 12/2025'],
+  note:['可替换模块。','A swappable module.']},
+ {id:'76441', num:'76441', series:'grey', st:'own', price:24.99,
+  name:['决斗俱乐部','Dueling Club'], tag:['2025/12 停产','Retired 12/2025'],
+  note:['配景件。','A furnishing piece.']},
+ {id:'76445', num:'76445', series:'grey', st:'now', price:49.99,
+  name:['草药课','Herbology Class'], tag:['预计 2026/12 停产','Expected to retire 12/2026'],
+  note:['和飞行课是剩下七个里<b>唯二有时间压力</b>的，合计 US$129.98。',
+     'This and Flying Lessons are the <b>only two of the seven with a clock on them</b> — US$129.98 together.']},
+ {id:'76447', num:'76447', series:'grey', st:'now', price:79.99,
+  name:['飞行课','Flying Lessons'], tag:['预计 2026/12 停产','Expected to retire 12/2026']},
+ {id:'76454', num:'76454', series:'grey', st:'buy', price:259.99,
+  name:['主塔','The Main Tower'], tag:['等折扣','Wait for a sale'],
+  note:['没有停产迹象。和东翼两件占了剩余预算一多半，值得等一次 15–20% 的活动。',
+     'No retirement signal. This and the East Wing are over half the remaining spend — worth waiting for a 15–20% event.']},
+ {id:'76473', num:'76473', series:'grey', st:'buy', price:269.99,
+  name:['东翼','The East Wing'], tag:['等折扣','Wait for a sale'],
+  note:['2026 新品，好几年不会走。','A 2026 release — it will be around for years.']},
+ {id:'76463', num:'76463', series:'grey', st:'buy', price:99.99,
+  name:['医疗翼','Hospital Wing'], tag:['等折扣','Wait for a sale'],
+  note:['2026 新品。','A 2026 release.']},
+ {id:'76442', num:'76442', series:'grey', st:'buy', price:19.99,
+  name:['魔咒课','Charms Class'], tag:['凑门槛用','Threshold filler'],
+  note:['可替换模块，价格低，适合把订单顶到赠品线上。',
+     'A swappable module, cheap enough to push an order over a gift-with-purchase threshold.']},
+ {id:'76460', num:'76460', series:'grey', st:'buy', price:14.99,
+  name:['分院帽仪式','Sorting Hat Ceremony'], tag:['凑门槛用','Threshold filler'],
+  note:['配景件，同上。','A furnishing piece — same use.']},
+
+ /* ---- 珍藏版 ---- */
+ {id:'gringotts', num:['编号待核','Number TBC'], series:'collectors', st:'own', price:null,
+  name:['古灵阁','Gringotts']},
+ {id:'diagonalley', num:['编号待核','Number TBC'], series:'collectors', st:'own', price:null,
+  name:['对角巷','Diagon Alley']},
+ {id:'burrow', num:['编号待核','Number TBC'], series:'collectors', st:'own', price:null,
+  name:['陋居','The Burrow'],
+  note:['<b>已经有了</b> —— 每次拿它做文章的促销都跟你无关，比如 2026/8/29–9/6 那轮 76437 四倍积分，直接跳过。',
+     '<b>Already owned</b> — so any promotion built around it is of no use, such as the 4× points offer on 76437 that ran 29 Aug – 6 Sept 2026.']},
+ {id:'express', num:['编号待核','Number TBC'], series:'collectors', st:'own', price:null,
+  name:['霍格沃茨特快','Hogwarts Express']},
+ {id:'hogsmeade', num:['编号待核','Number TBC'], series:'collectors', st:'own', price:null,
+  name:['霍格莫德村','Hogsmeade Village']},
+
+ /* ---- 绿顶 ---- */
+ {id:'green', num:['75954 / 75953 / 75948 / 75969','75954 / 75953 / 75948 / 75969'],
+  series:'green', st:'sell', price:null,
+  name:['绿顶模块城堡','Green-roof modular Hogwarts'], tag:['范围待确认','Scope TBC'],
+  note:['核心是 75954 大礼堂 · 75953 打人柳 · 75948 钟楼 · 75969 天文塔，实际范围还没确认。',
+     'The core four are 75954 Great Hall, 75953 Whomping Willow, 75948 Clock Tower and 75969 Astronomy Tower — ' +
+     'whether the collection goes wider is unconfirmed.'],
+  todo:[['定下具体哪几盒 —— 是不是就那四个','Settle exactly which boxes — is it just those four?'],
+     ['确认拆没拆、原盒说明书还在不在 —— 这一项能让价格差两三倍',
+      'Check built vs sealed, and whether boxes and instructions are kept — this moves the price by 2–3×'],
+     ['选渠道：BrickLink 卖价最高最费事 · eBay 折中约 13% 手续费 · 本地面交零手续费但纳奈莫盘子小（大件反而好卖，买家省运费）',
+      'Pick a channel: BrickLink pays most and takes most work; eBay is the middle at ~13% fees; local face-to-face has no fees ' +
+      'and a small Nanaimo market, though large sets actually sell better locally because the buyer pays no shipping']]},
+
+ /* ---- GWP ---- */
+ {id:'40907', num:'40907', series:'gwp', st:'own', price:27.99,
+  name:['墨西哥 · 塔可店','Mexico · taquería'], tag:['卖不卖待定 · 326 pcs','Keep or sell: undecided · 326 pcs'],
+  note:['只发过一轮，存世量小，<b>价挺得住</b>。','Ran once only, so supply is thin and <b>the price holds</b>.']},
+ {id:'40906', num:'40906', series:'gwp', st:'own', price:27.99,
+  name:['日本','Japan'], tag:['卖不卖待定 · 289 pcs','Keep or sell: undecided · 289 pcs'],
+  note:['2026/07 <b>返场过一次</b>，市面上多出一批，大概率落在价格区间下沿。',
+     '<b>Re-run in 07/2026</b>, which put a second batch into circulation — expect the bottom of the range.']},
+ {id:'40908', num:'40908', series:'gwp', st:'buy', price:null,
+  name:['希腊 · 海边小馆','Greece · seaside taverna'], tag:['还没买 · 待定','Not bought · undecided'],
+  note:['窗口 2026/8/11–20 已过，官网买不到了，要收只能走二手（BrickLink / eBay，一般是 ARV 的 2–4 倍）。慢慢收，还是放弃、把日本和墨西哥卖掉 —— 还没定。客服那条路已经试过，不用再打。',
+     'The 11–20 Aug 2026 window closed, so it is no longer on LEGO.com — collecting it means the secondhand market (BrickLink or eBay, usually 2–4× ARV). ' +
+     'Whether to collect it slowly or give up and sell Japan and Mexico is still open. Customer service has already been tried; no more calls.']},
+
+ /* ---- 其他品牌 ---- */
+ {id:'pantasy87003', num:'87003', series:'pantasy', st:'own', price:null,
+  name:['七龙珠：天下第一武道会','Dragon Ball: Tenkaichi Budokai'],
+  tag:['拼奇 Pantasy · 776 pcs','Pantasy · 776 pcs'],
+  note:['<b>非乐高。</b>拼奇（广东拼奇文化科技，2020 年成立）的<b>正版</b>龙珠授权套装，2025/09 发售，成品约 38cm。Dragon Ball&trade; 是集英社注册商标，拼奇有完整龙珠产品线（87002 龟仙屋、87007 雅木茶的车、99119 方头仔龟仙人）。国内在<b>山姆会员店</b>买的 —— 拼奇 2023 年起就进了山姆，所谓“山姆版”不是另一个版本，就是同一个行货。参考价北美 US$95.99 / 欧洲 &euro;59.99，<b>实付、购入日期、盒子在不在都还没填</b>。&#9888; 拼奇官网当时打不开（证书过期），授权那句是从产品线＋渠道＋商标声明推出来的，不是官方页面的直接引用。',
+     '<b>Not LEGO.</b> An <b>officially licensed</b> Dragon Ball set from Pantasy (Guangdong Pinqi, founded 2020), released 09/2025, about 38cm assembled. Dragon Ball&trade; is a Shueisha trademark, and Pantasy runs a full Dragon Ball line (87002 Kame House, 87007 Yamcha&rsquo;s car, 99119 Master Roshi brick figure). Bought at a <b>Sam&rsquo;s Club in China</b> &mdash; Pantasy has been stocked there since 2023, so the &ldquo;Sam&rsquo;s edition&rdquo; is not a separate version, just the normal retail one. Reference price US$95.99 / &euro;59.99. <b>The price actually paid, the purchase date and whether the box was kept are all still blank.</b> &#9888; Pantasy&rsquo;s own site would not load (expired certificate), so the licensing statement is inferred from the product line, the retail channel and the trademark notice rather than quoted from the brand.']},
+
+ /* ---- 不买 ---- */
+ {id:'76476', num:'76476', series:'dropped', st:'nope', price:629.99,
+  name:['魔法部 珍藏版','The Ministry of Magic – Collectors’ Edition'],
+  tag:['3,491 pcs · 14 人仔','3,491 pcs · 14 minifigs'],
+  note:['2026-09-03 决定不买，太贵。跟着一起放弃的是只有买它才送的 <b>5011072 魔法部电话亭</b> —— ' +
+     '那是带透镜图片的金属摆件，不是砖砌套装，本来也不算收藏品。',
+     'Decided against on 2026-09-03 — too expensive. Dropping it also drops <b>5011072, the Ministry Phone Booth</b>, ' +
+     'which comes free only with this set — and that is a metal trinket with a lenticular image, not a brick-built set.']}
+];
+
+var GWP_NOTE = ['<b>如果决定卖：</b>GWP 一般卖到 ARV 的 2–4 倍，但手上这两个不能挂同一个价。未拆封对小赠品的溢价比对大套装更明显。' +
+        '这类小件在 <b>BrickLink</b> 比 eBay 好卖 —— 买家是专门凑 GWP 的人，邮费也低，可以和绿顶分开卖，本来就是两拨人。',
+        '<b>If they are sold:</b> GWPs go for roughly 2–4× ARV, but these two should not carry the same price. Sealed matters more ' +
+        'on small gifts than on large sets. <b>BrickLink</b> suits them better than eBay — the buyers are people completing GWP runs ' +
+        'and postage is trivial. Sell them separately from the green-roof castle; it is a different crowd.'];
+
+/* ---------- 工具 ---------- */
+function byId(id){ for (var i=0;i<SETS.length;i++) if (SETS[i].id===id) return SETS[i]; return null; }
+function numOf(s){ return t(s.num); }
+function bucketOf(s){ return s.st === 'now' ? 'buy' : s.st; }
+function priceStr(s){ return s.price == null ? '' : '$' + s.price.toFixed(2); }
+
+var FILTS = [
+ {k:'all',  lbl:['全部','All']},
+ {k:'own',  lbl:ST.own.lbl},
+ {k:'buy',  lbl:ST.buy.lbl},
+ {k:'sell', lbl:ST.sell.lbl},
+ {k:'nope', lbl:ST.nope.lbl}
+];
+function filtered(){
+ if (FILT === 'all') return SETS.slice();
+ return SETS.filter(function(s){ return bucketOf(s) === FILT; });
+}
+function filtTabs(){
+ return '<span class="mbl">' + t(UI.filtLbl) + '</span>' + FILTS.map(function(f){
+  var n = f.k === 'all' ? SETS.length : SETS.filter(function(s){ return bucketOf(s) === f.k; }).length;
+  return '<a class="mb' + (FILT === f.k ? ' on' : '') + '" data-filt="' + f.k + '">' + t(f.lbl) + ' ' + n + '</a>';
+ }).join('');
+}
+function setFilt(v){
+ FILT = v;
+ try { localStorage.setItem('lego-filt', v); } catch (e) {}
+ route(true);
+}
+
+/* ---------- 渲染 ---------- */
+function tile(s){
+ var cls = 'tile ' + bucketOf(s) + (s.st === 'now' ? ' now' : '');
+ var h = '<a class="' + cls + '" href="#/s/' + s.id + '">'
+   + '<div class="num">' + numOf(s) + '</div>'
+   + '<div class="nm">' + t(s.name) + '</div>'
+   + '<div class="en">' + s.name[1] + '</div>'
+   + '<div class="row"><span class="tag ' + ST[s.st].cls + '">' + t(ST[s.st].lbl) + '</span>';
+ if (s.tag) h += '<span class="tag t-gone">' + t(s.tag) + '</span>';
+ if (s.price != null) h += '<span class="price">' + priceStr(s) + '</span>';
+ h += '</div>';
+ if (s.note) h += '<p class="note">' + t(s.note) + '</p>';
+ return h + '</a>';
+}
+
+function xlinks(){
+ return '<div class="xlinks"><span>' + t(UI.xlinkLbl) + '</span>'
+  + '<a href="../boardgames/">' + t(UI.xBoard) + '</a>'
+  + '<a href="../boardgame/pokemon-tcg/宝可梦清单.html">' + t(UI.xPoke) + '</a>'
+  + '<a href="../figures/手办清单.html">' + t(UI.xFigs) + '</a></div>';
+}
+
+function sortSeg(){
+ var opts = [['series', UI.sortSeries], ['num', UI.sortNum], ['price', UI.sortPrice]];
+ var hint = SORT === 'series' ? UI.hintSeries : (SORT === 'num' ? UI.hintNum : UI.hintPrice);
+ return '<div class="sortrow"><span class="seg"><span class="sgl">' + t(UI.sortLbl) + '</span>'
+  + opts.map(function(o){
+    return '<a class="sg' + (SORT === o[0] ? ' on' : '') + '" data-sort="' + o[0] + '">' + t(o[1]) + '</a>';
+   }).join('')
+  + '</span><span class="sortnote">' + t(hint) + '</span></div>';
+}
+
+function renderAll(){
+ var list = filtered();
+ var h = sortSeg() + xlinks();
+ if (!list.length) return h + '<p class="empty">' + t(UI.filtEmpty) + '</p>';
+
+ if (SORT !== 'series'){
+  var sorted = list.slice().sort(function(a,b){
+   if (SORT === 'num') return String(numOf(a)).localeCompare(String(numOf(b)));
+   return (b.price || 0) - (a.price || 0);
+  });
+  return h + '<div class="grid">' + sorted.map(tile).join('') + '</div>' + totals(list);
+ }
+
+ SERIES.forEach(function(sec){
+  var items = list.filter(function(s){ return s.series === sec.k; });
+  if (!items.length) return;
+  h += '<h2>' + t(sec.title);
+  if (t(sec.n)) h += '<span class="count">' + t(sec.n) + '</span>';
+  h += '</h2><p class="secnote">' + t(sec.note) + '</p>';
+  h += '<div class="grid">' + items.map(tile).join('') + '</div>';
+  if (sec.k === 'gwp') h += '<div class="bar">' + t(GWP_NOTE) + '</div>';
+ });
+ return h + totals(list);
+}
+
+function totals(list){
+ var buy = list.filter(function(s){ return bucketOf(s) === 'buy'; });
+ if (!buy.length) return '';
+ var sum = buy.reduce(function(a,s){ return a + (s.price || 0); }, 0);
+ return '<div class="tot"><span>' + (LANG === 'en' ? 'Still to buy' : '还差')
+  + '</span><b>≈ US$' + sum.toFixed(2) + '</b><span>'
+  + (LANG === 'en' ? 'roughly CAD $1,050–1,100 · the green-roof sale should cover most of it'
+          : '加币大概一千出头 · 绿顶卖掉的钱基本能覆盖') + '</span></div>';
+}
+
+function renderSet(id){
+ var s = byId(id);
+ if (!s) return '<p class="empty">' + t(UI.notfound) + '<a href="#/all">' + t(UI.backlist) + '</a></p>';
+ var sec = null;
+ SERIES.forEach(function(x){ if (x.k === s.series) sec = x; });
+
+ var h = '<div class="dtl"><div class="num">' + numOf(s) + '</div>'
+   + '<h1>' + t(s.name) + '</h1>'
+   + '<p class="dsub">' + s.name[1] + (sec ? ' · ' + t(sec.title) : '') + '</p>'
+   + '<div class="row" style="margin-bottom:14px">'
+   + '<span class="tag ' + ST[s.st].cls + '">' + t(ST[s.st].lbl) + '</span>';
+ if (s.tag) h += '<span class="tag t-gone">' + t(s.tag) + '</span>';
+ if (s.price != null) h += '<span class="price">' + priceStr(s) + '</span>';
+ h += '</div>';
+
+ if (s.note) h += '<div class="block"><h3>' + t(UI.bNotes) + '</h3><p style="margin:0;font-size:14px">' + t(s.note) + '</p></div>';
+ if (s.todo && s.todo.length){
+  h += '<div class="block"><h3>' + t(UI.bTodo) + '</h3><ul class="bul">'
+   + s.todo.map(function(x){ return '<li>' + t(x) + '</li>'; }).join('') + '</ul></div>';
+ }
+ if (s.series === 'gwp') h += '<div class="bar">' + t(GWP_NOTE) + '</div>';
+
+ var i = SETS.indexOf(s);
+ var prev = SETS[(i-1+SETS.length)%SETS.length], next = SETS[(i+1)%SETS.length];
+ h += '<div class="pn"><a href="#/s/' + prev.id + '">← ' + t(prev.name) + '</a>'
+  + '<a href="#/all">' + t(UI.allup) + '</a>'
+  + '<a href="#/s/' + next.id + '">' + t(next.name) + ' →</a></div></div>';
+ return h;
+}
+
+/* ---------- 路由 ---------- */
+function toggleLang(){
+ LANG = (LANG === 'zh') ? 'en' : 'zh';
+ try { localStorage.setItem('lego-lang', LANG); } catch (e) {}
+ route(true);
+}
+function setSort(v){
+ if (SORT === v) return;
+ SORT = v;
+ try { localStorage.setItem('lego-sort', SORT); } catch (e) {}
+ route(true);
+}
+
+function route(keepScroll){
+ var hash = location.hash || '#/all';
+ var app = document.getElementById('app'), bar = document.getElementById('modebar');
+ var langBtn = '<a class="mb lang" id="langbtn" title="' + t(UI.langLbl) + '">🌐 '
+   + t(UI.langLbl) + '：' + t(UI.langbtn) + '</a>';
+ var m = hash.match(/^#\/s\/(.+)$/);
+
+ document.documentElement.lang = (LANG === 'en') ? 'en' : 'zh-CN';
+ document.title = t(UI.title);
+ document.getElementById('h1').innerHTML = t(UI.title);
+ document.getElementById('sub').innerHTML = t(UI.updated);
+ document.getElementById('foot').innerHTML = t(UI.foot);
+
+ if (m){
+  bar.innerHTML = '<a class="mb back" href="#/all">' + t(UI.allback) + '</a>' + langBtn;
+  app.innerHTML = renderSet(m[1]);
+ } else {
+  bar.innerHTML = filtTabs() + langBtn;
+  app.innerHTML = renderAll();
+ }
+ var sgs = app.querySelectorAll('.sg');
+ for (var si = 0; si < sgs.length; si++){
+  sgs[si].addEventListener('click', function(){ setSort(this.getAttribute('data-sort')); });
+ }
+ var fts = bar.querySelectorAll('[data-filt]');
+ for (var fi = 0; fi < fts.length; fi++){
+  fts[fi].addEventListener('click', function(){ setFilt(this.getAttribute('data-filt')); });
+ }
+ document.getElementById('langbtn').addEventListener('click', toggleLang);
+ if (!keepScroll) window.scrollTo(0, 0);
+}
+
+window.addEventListener('hashchange', function(){ route(); });
+route(true);
+</script>
+</body>
+</html>
