@@ -1,0 +1,2200 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>桌游收藏清单</title>
+<style>
+:root{
+ --bg:#f6f4ef; --card:#fffdf9; --ink:#23201b; --muted:#6f6a60; --line:#e2ddd2;
+ --owned:#2e7d5b; --owned-bg:#e6f2ec;
+ --cn:#b4611b; --cn-bg:#fbeee0;
+ --en:#3d7c8a; --en-bg:#e2f0f2;
+ --consider:#8a5fb0; --consider-bg:#f1e9f8;
+ --maybe:#6a6f7d; --maybe-bg:#eceef2;
+ --warn:#b3261e; --accent:#4a63b8;
+}
+@media (prefers-color-scheme:dark){
+ :root{
+  --bg:#16181c; --card:#1e2126; --ink:#e6e3dd; --muted:#9a958c; --line:#31353c;
+  --owned:#68c79b; --owned-bg:#1c2f27;
+  --cn:#e5a05e; --cn-bg:#33261a;
+  --en:#71b9c9; --en-bg:#172b30;
+  --consider:#c3a0e0; --consider-bg:#2b2233;
+  --maybe:#a2a8b5; --maybe-bg:#252932;
+  --warn:#f08b83; --accent:#93a7e8;
+ }
+ .s-mao{background:#1e2f20;color:#8fc79a}
+ .s-mei{background:#33231e;color:#e0a086}
+ .s-de{background:#1e2536;color:#9db4e0}
+ :root{
+ }
+}
+*{box-sizing:border-box}
+body{margin:0;padding:0 16px 72px;background:var(--bg);color:var(--ink);
+ font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;}
+.wrap{max-width:1560px;margin:0 auto}
+/* 正文类内容不跟着变宽，读起来才不费劲 */
+.secnote,.memo,.narrow{max-width:900px}
+a{color:var(--accent)}
+header{padding:28px 0 6px}
+h1{font-size:25px;margin:0 0 5px;letter-spacing:.5px}
+.sub{color:var(--muted);font-size:13.5px;margin:0}
+.modebar{position:sticky;top:0;z-index:9;background:var(--bg);padding:12px 0;border-bottom:1px solid var(--line);margin-bottom:18px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.mb{font-size:13.5px;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--card);padding:6px 14px;border-radius:999px;cursor:pointer}
+.mb:hover{border-color:var(--muted)}
+.mb.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.mb.back{margin-right:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px;align-items:start;margin:10px 0 4px}
+.grid .card{margin:0;height:100%}
+.buyhd{margin:11px 0 3px;font-size:12px;color:var(--muted);letter-spacing:.3px}
+.buys{list-style:none;margin:0;padding:0}
+.buys li{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding-top:7px;margin-top:7px;border-top:1px solid var(--line)}
+.buys li:first-child{border-top:0;margin-top:0;padding-top:0}
+.buys li b{font-size:14px;margin-right:2px}
+.bn{flex-basis:100%;font-size:12.5px;color:var(--muted);margin:1px 0 0}
+.sortrow{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin:0 0 6px}
+.sortnote{font-size:12.5px;color:var(--muted)}
+.seg{display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:2px}
+.seg .sgl{font-size:11.5px;color:var(--muted);padding:0 7px 0 10px;letter-spacing:.3px;white-space:nowrap}
+.seg .sg{font-size:12.5px;text-decoration:none;color:var(--muted);padding:4px 11px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.seg .sg:hover{color:var(--ink)}
+.seg .sg.on{background:var(--ink);color:var(--bg)}
+.xlinks{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px;font-size:13px;color:var(--muted)}
+.xlinks a{display:inline-block;border:1px dashed var(--line);border-radius:999px;padding:4px 12px;text-decoration:none;color:var(--accent)}
+.xlinks a:hover{border-style:solid}
+.lang{margin-left:auto;font-weight:600;letter-spacing:.5px;border-color:var(--accent);color:var(--accent)}
+.lang:hover{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+h2{font-size:19px;margin:32px 0 3px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+h2 .count{font-size:12px;font-weight:500;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 8px}
+.secnote{color:var(--muted);font-size:13.5px;margin:2px 0 14px}
+.card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:10px;padding:12px 15px;margin:9px 0}
+.card.owned{border-left-color:var(--owned)}
+.card.plan{border-left-color:var(--en)}
+.card.consider{border-left-color:var(--consider)}
+.card.maybe{border-left-color:var(--maybe)}
+.name{font-weight:600;font-size:16.5px;margin:0 0 6px}
+.name a{text-decoration:none;color:var(--ink);border-bottom:1.5px dotted var(--muted)}
+.name a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 7px}
+.tag{font-size:12px;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.t-cat{background:transparent;border:1px solid var(--line);color:var(--muted)}
+.t-sty{border:1px solid transparent;font-weight:600}
+.s-mao{background:#eaf4ea;color:#3d7a45}
+.s-mei{background:#f6e8e4;color:#a3502f}
+.s-de{background:#e6ecf7;color:#3f5c96}
+.t-bgg{background:var(--ink);color:var(--bg);font-weight:600;letter-spacing:.3px}
+.card.nope{border-left-color:#9b9b9b;opacity:.72}
+.card.sell{border-left-color:#d99b1c}
+.t-sell,.tag.t-sell{background:#fff0d6;color:#8a5a00;font-weight:600}
+.t-lang{font-weight:600}
+.l-cn{background:#fde8e8;color:#a33}
+.l-en{background:#e5eefb;color:#2f5599}
+.l-tbd{background:transparent;border:1px dashed var(--line);color:var(--muted);font-weight:500}
+.t-nope{background:#ececec;color:#6b6b6b;text-decoration:line-through}
+.t-sell{background:#fff0d6;color:#8a5a00;font-weight:600}
+.idx.nope{border-left-color:#9b9b9b}
+.t-owned{background:var(--owned-bg);color:var(--owned)}
+.t-plan{background:var(--en-bg);color:var(--en)}
+.t-consider{background:var(--consider-bg);color:var(--consider)}
+.t-dislike{background:var(--maybe-bg);color:var(--warn);font-weight:600}
+.t-lcn{background:var(--cn-bg);color:var(--cn)}
+.t-len{background:var(--en-bg);color:var(--en)}
+.t-lboth{background:var(--maybe-bg);color:var(--maybe)}
+.t-maybe{background:var(--maybe-bg);color:var(--maybe)}
+.note{font-size:14px;color:var(--muted);margin:0}
+.note b{color:var(--warn);font-weight:600}
+.from{font-size:13px;color:var(--muted);margin:0 0 5px}
+.from a{text-decoration:none;border-bottom:1px dotted var(--accent)}
+.from b{color:var(--ink);font-weight:600}
+.xlink{display:inline-block;margin-top:8px;font-size:13px;text-decoration:none;color:var(--accent);
+ border:1px solid var(--accent);border-radius:999px;padding:3px 11px}
+.xlink:hover{background:var(--accent);color:var(--bg)}
+.idxgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:9px;margin:10px 0 4px}
+.idx{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:9px;padding:10px 13px}
+.idx:hover{border-color:var(--muted)}
+.idx.owned{border-left-color:var(--owned)}
+.idx.plan{border-left-color:var(--en)}
+.idx.consider{border-left-color:var(--consider)}
+.idx.maybe{border-left-color:var(--maybe)}
+.idx .n{font-weight:600;font-size:14.5px;display:block}
+.idx .c{font-size:12px;color:var(--muted)}
+.gh{margin:4px 0 2px}
+.gh h2{font-size:24px;margin:0 0 8px}
+.block{margin:22px 0 0}
+.block h3{font-size:15px;margin:0 0 8px;color:var(--muted);font-weight:600;letter-spacing:.4px;
+ border-bottom:1px solid var(--line);padding-bottom:5px}
+.have{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 15px;font-size:15px}
+.have .none{color:var(--muted)}
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:460px;font-size:14px;background:var(--card);
+ border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12.5px;color:var(--muted);font-weight:600;background:var(--bg)}
+tr:last-child td{border-bottom:none}
+td b{color:var(--warn)}
+ol.todo,ul.bul{padding-left:20px;margin:0}
+ol.todo li,ul.bul li{margin:7px 0;font-size:14.5px}
+ol.todo b,ul.bul b{color:var(--warn)}
+.bigl{display:block;background:var(--card);border:1px solid var(--accent);border-radius:10px;
+ padding:12px 15px;text-decoration:none;margin:8px 0}
+.bigl:hover{background:var(--accent)}
+.bigl .bl-t{font-weight:600;font-size:15px;color:var(--accent);display:block}
+.bigl:hover .bl-t,.bigl:hover .bl-d{color:var(--bg)}
+.bigl .bl-d{font-size:13px;color:var(--muted);display:block;margin-top:2px}
+.pn{display:flex;gap:9px;flex-wrap:wrap;margin:34px 0 0;padding-top:14px;border-top:1px solid var(--line)}
+.pn a{font-size:13.5px;text-decoration:none;color:var(--ink);border:1px solid var(--line);
+ background:var(--card);padding:6px 13px;border-radius:999px}
+.pn a:hover{border-color:var(--muted)}
+ul.memo{padding-left:18px}
+ul.memo li{font-size:14.5px;margin:6px 0;color:var(--muted)}
+ul.memo b{color:var(--warn)}
+footer{margin-top:44px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+
+/* ---------- 窄屏适配 ---------- */
+@media (max-width:560px){
+ body{padding:0 12px 60px}
+ /* 表格改成自身横向滚动，不再把整页撑宽 */
+ table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;min-width:0;width:auto}
+ /* 卡片单栏 */
+ .grid{grid-template-columns:minmax(0,1fr)}
+ .tag{white-space:normal}
+ .card,.card *{overflow-wrap:anywhere;word-break:break-word}
+ .card{min-width:0}
+ .idxgrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+ h1{font-size:22px}
+ .modebar{gap:6px;padding:10px 0}
+ .mb{padding:5px 11px;font-size:13px}
+}
+
+/* ---------- 限时项目标记 ---------- */
+.urgent{display:inline-block;background:var(--warn);color:#fff;font-size:12.5px;font-weight:700;
+ padding:2px 9px;border-radius:999px;margin:0 6px 3px 0;letter-spacing:.3px}
+.card.urgentcard{border-left-color:var(--warn);box-shadow:0 0 0 1px var(--warn) inset}
+
+/* ---------- 游戏墙 ---------- */
+.wlegend{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:0 0 18px;font-size:12.5px;color:var(--muted)}
+.wlegend .wll{letter-spacing:.3px}
+.wlegend .tag{font-size:11.5px}
+.wlegend .wsep{color:var(--line)}
+/* 图例本身就是筛选器：点一下只看这一类，再点一下取消 */
+.wlegend a{cursor:pointer;text-decoration:none;color:inherit;border:1px solid transparent;
+ border-radius:999px;padding:2px 4px;display:inline-flex;align-items:center;gap:4px}
+.wlegend a:hover{border-color:var(--muted)}
+.wlegend a:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.wlegend a.on{border-color:var(--ink);background:var(--ink)}
+.wlegend a.on,.wlegend a.on .tag{color:var(--bg)}
+.wlegend a.on .tag{background:transparent;border-color:var(--bg)}
+.wlegend .lgn{font-size:11px;opacity:.75;font-variant-numeric:tabular-nums}
+.wclear{margin-left:auto;font-size:12px;color:var(--accent);cursor:pointer;text-decoration:none}
+/* 顶栏「只看」标签与 tab 上的计数 */
+.mbl{font-size:12px;color:var(--muted);letter-spacing:.3px;margin-right:2px}
+.mbn{font-size:11px;opacity:.7;margin-left:6px;font-variant-numeric:tabular-nums}
+.mb.on .mbn{opacity:.85}
+.wsec{margin:0 0 26px}
+.wsec h2{font-size:17px;margin:0 0 4px}
+.wsec .secnote{margin:0 0 10px}
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(176px,1fr));gap:9px;
+ padding-bottom:13px;border-bottom:3px solid var(--line)}
+.wt{position:relative;display:flex;flex-direction:column;text-align:left;min-width:0;
+ min-height:196px;height:100%;border:1px solid var(--line);border-radius:10px;
+ padding:12px 12px 10px;font:inherit;cursor:pointer;overflow:hidden}
+.wt::after{content:"";position:absolute;inset:5px;border:1px solid var(--line);
+ border-radius:6px;opacity:.5;pointer-events:none}
+.wt.s-none{background:var(--card);color:var(--ink)}
+.wt:hover{border-color:var(--muted)}
+.wt:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wt.on{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.wt>*{position:relative;z-index:1}
+.wt .wn{font-weight:600;line-height:1.24;letter-spacing:.2px}
+.wt .ws{font-size:11px;line-height:1.35;margin-top:5px;opacity:.7;
+ overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.wt .wtags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.wt .tag{font-size:10.5px;padding:1px 7px;white-space:nowrap}
+.wt .wf{margin-top:auto;padding-top:9px;display:flex;align-items:center;gap:6px;font-size:11px}
+.wbgg{margin-left:auto;font-weight:600;font-variant-numeric:tabular-nums;opacity:.85;
+ font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.wmk{opacity:.9;letter-spacing:.5px}
+.wt.wsell{opacity:.66}
+.wt.wsell .wn{text-decoration:line-through;text-decoration-thickness:1px}
+.wcount{font-size:12px;font-weight:500;color:var(--muted);border:1px solid var(--line);
+ border-radius:999px;padding:1px 8px}
+
+/* 点开后就地展开的详情 —— 内容就是总览清单那张卡 */
+.wdet{grid-column:1/-1;border:1px solid var(--muted);border-radius:10px;
+ background:var(--bg);padding:4px 12px 12px;margin:1px 0 5px}
+.wdet .card{margin:8px 0 0;background:var(--card)}
+.wdet .xlink{margin-left:2px}
+
+@media (max-width:560px){
+ .wgrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+ .wt{padding:11px 10px 9px;min-height:186px}
+ .wdet{padding:4px 9px 10px}
+}
+@media (prefers-reduced-motion:no-preference){
+ .wt{transition:border-color .13s ease,opacity .13s ease,box-shadow .13s ease}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+ <h1 id="h1"></h1>
+ <p class="sub" id="sub"></p>
+</header>
+
+<div class="modebar" id="modebar"></div>
+<div id="app"></div>
+
+<footer id="foot"></footer>
+
+</div>
+
+<script>
+/* ---------- 语言 ---------- */
+var LANG = 'zh';
+try { var s = localStorage.getItem('bg-lang'); if (s === 'en' || s === 'zh') LANG = s; } catch (e) {}
+var SORT = 'group';
+try { var s2 = localStorage.getItem('bg-sort'); if (s2 === 'py' || s2 === 'group' || s2 === 'bgg' || s2 === 'cat') SORT = s2; } catch (e) {}
+/* 只看某一档：all / owned / plan / consider / maybe / nope / sell */
+var FILT = 'all';
+try { var s3 = localStorage.getItem('bg-filt'); if (s3) FILT = s3; } catch (e) {}
+/* 风格筛选 '' | 毛 | 美 | 德；标记筛选 '' | sell | need | dislike */
+var FSTY = '', FMK = '';
+try { FSTY = localStorage.getItem('bg-sty') || ''; FMK = localStorage.getItem('bg-mk') || ''; } catch (e) {}
+function t(v){ return Object.prototype.toString.call(v) === '[object Array]' ? (LANG === 'en' ? v[1] : v[0]) : v; }
+
+var UI = {
+ title:  ['桌游收藏清单', 'Board Game Collection'],
+ updated: ['更新日期：2026-09-21', 'Updated 2026-09-21'],
+ overview:['📋 总览清单', '📋 Overview'],
+ bygame: ['📖 逐个桌游', '📖 By Game'],
+ allback: ['← 所有桌游', '← All games'],
+ allup:  ['↑ 所有桌游', '↑ All games'],
+ langbtn: ['EN', '中文'],
+ wallHint: ['一盒一格，<b>底色是玩法风格</b>，右下角是 BGG 评分。<b>点任意一盒就地展开</b> —— 手上有什么、还要买什么、在哪买、品相，全在里面。',
+      'One tile per box; <b>the tile colour is the play style</b> and the figure at bottom right is the BGG rating. <b>Click any box to open it in place</b> — what is in hand, what is still to buy, where from, and condition.'],
+ xlinkLbl:['另外三份清单', 'The other three lists'],
+ xLego:  ['🧱 乐高收藏清单', '🧱 LEGO Collection'],
+ xPoke:  ['🃏 宝可梦 TCG 清单', '🃏 Pokémon TCG list'],
+ xFigs:  ['🧸 手办收藏清单', '🧸 Figure Collection'],
+ wallLeg: ['颜色', 'Colour'],
+ wallMk: ['标记', 'Marks'],
+ wallNeed: ['还要补', 'more to add'],
+ wallNoStyle:['未归类', 'unclassified'],
+ wallOthers: ['一类一款', 'One of a kind'],
+ wallOthNote:['同类只留一个最想要的 —— 这一架就是那条规矩的样子。',
+      'Only the most-wanted game in each niche gets bought — this shelf is what that rule looks like.'],
+ sortCat: ['按分类', 'By category'],
+ catHint: ['按玩法分类分架，同类的排在一起 —— 只有一款的并到最后那一架。',
+      'Shelved by category, so like sits with like — the categories holding a single game are pooled on the last shelf.'],
+ wallFull: ['查看完整页面', 'Open the full page'],
+ filtLbl: ['只看', 'Show'],
+ filtEmpty: ['这一档现在是空的 —— 换个筛选看看。', 'Nothing in this filter right now — try another.'],
+ langLbl: ['语言 Language', '语言 Language'],
+ mkDislike: ['不喜欢', 'not for me'],
+ clearFilt: ['清除筛选', 'Clear filters'],
+ introL: ['三档：已买 → 考虑买 → 观望。考虑买的每项都标了要中文版还是英文版。点任意游戏名跳到它自己那页。',
+      'Three buckets: Owned → Considering → Watching. Everything in the buy list is tagged with the edition wanted. Click any game name to open its own page.'],
+ introI: ['每款桌游一张卡：手上有什么、还要买什么、在哪买。点游戏名进它自己那页看备注、待办和考据。',
+      'One card per game — what is in hand, what is still to buy, and where from. Click a name for its own page with the notes, to-dos and research.'],
+ hintOwn: ['本体在手。要补的扩展和配件按采购意愿分在下面三档里 —— 同一款游戏出现在两档不矛盾。',
+      'Base games in hand. Anything still to add appears in the sections below.'],
+ hintNope:['看过、想过，决定<b>不买</b>了。留着理由，免得过阵子又心动一次。',
+      'Looked at, considered, and <b>decided against</b>. The reason is kept so it does not get reconsidered from scratch in a few months.'],
+ secSell:['💰 要出','💰 To sell'],
+ hintSell:['打算出掉的。写清楚版本和品相，问价时能直接复制。',
+      'Things to move on. Edition and condition spelled out, so it can be pasted straight into a listing.'],
+ sellEmpty:['（暂无）','(nothing yet)'],
+ sortBgg:['按综合评分','By overall rating'],
+ rateLbl:['综合','Overall'],
+ bggHint:['综合分 = <b>BGG、集石、新物集</b> 三家里<b>查得到的那几家取平均</b>，缺的不算，一家都查不到就空着。鼠标停在分数上能看到各家原始分。<br><b>都是搜索所得、未与官方直接核对</b>（BGG 官网与 API 都拒绝抓取），BGG 那项是「平均分」不是 Geek 加权分 —— 当参考，别当准数。没分的排在最后。',
+      'The overall score averages <b>whichever of BGG, JiShi and Xinwuji could be found</b> — missing sources are skipped, and a game with none stays blank. Hover a score to see the individual ratings.<br><b>All were gathered by search rather than checked against the sources directly</b> (BGG blocks both its site and its API), and the BGG figure is the plain average, not the Geek weighted score — treat them as indicative. Unrated games sort last.'],
+ styleMao:['毛线','Light'],
+ styleMei:['美式','Ameritrash'],
+ styleDe:['德式','Eurogame'],
+ bggLbl:['BGG','BGG'],
+ thCond:['版本／品相','Edition / condition'],
+ thBelong:['属于','Part of'],
+ thWhyNot:['为什么不要','Why not'],
+ thAsk:['要价','Asking price'],
+ askTbd:['待定','TBD'],
+ bDropped:['不要的','Dropped'],
+ hlCn:['中文版','Chinese'],
+ hlEn:['英文版','English'],
+ hlTbd:['语言待确认','Language TBC'],
+ bSellInfo:['出售信息','For sale'],
+ sellTag:['💰 要出','💰 For sale'],
+ secRefill:['🧩 考虑买 · 补完','🧩 Considering · completing what I own'],
+ secNewGame:['🤔 考虑买 · 新游戏','🤔 Considering · new games'],
+ hintRefill:['给<b>已经有本体</b>的游戏补扩展和配件 —— 不是新游戏。',
+       'Expansions and accessories for games whose <b>base box is already here</b> — not new games.'],
+ hintNewGame:['整盒新游戏，家里还没有的。','Whole games not yet in the collection.'],
+ hintPlan:['中文版走淘宝／集石等国内渠道；英文版走北美官方、二手、众筹，或温哥华朋友。每项后面标了要买哪个版本。',
+      'Chinese editions come from Taobao, JiShi and other China-based sellers; English ones from North American retail, secondhand, crowdfunding, or a friend in Vancouver. Each entry is tagged with the edition wanted.'],
+ hintCons:['想买，但还没定下来 —— 比观望近一步。',
+      'A step past watching and looser than planning: wanted, but not settled.'],
+ hintMay: ['想要，但还没到要买的地步 —— 或者卡在真伪／货源／价格上。',
+      'Wanted, but not to the point of buying — or blocked on authenticity, stock or price.'],
+ stillneed:['还要补：', 'Still needed: '],
+ havelbl: ['手上有：', 'Have: '],
+ dislike: ['👎 不喜欢', '👎 Not for me'],
+ belongs: ['属于 ', 'Part of '],
+ buywhat: ['要买：', 'To buy: '],
+ sortLbl: ['排序', 'Sort'],
+ sortGrp: ['状态分组', 'By status'],
+ sortPy: ['首字母 A→Z', 'A→Z'],
+ sortHint:['按中文名拼音首字母 A→Z —— 英文模式下按英文名首字母。',
+      'A→Z by the first letter of the English title — in Chinese mode, by the pinyin initial of the Chinese name.'],
+ groupHint:['先已买，再按采购分档排 —— 想按名字找就切到 A→Z。',
+       'Owned first, then by buying bucket — switch to A→Z to look one up by name.'],
+ none:  ['暂无', 'nothing'],
+ notowned:['无 —— 还没买', 'Not owned yet'],
+ bHave:  ['手上有什么', 'What is already here'],
+ bLinks: ['相关页面', 'Related pages'],
+ bBuy:  ['还要买什么', 'Still to buy'],
+ bTodo:  ['要做的事', 'To do'],
+ bNotes: ['备注', 'Notes'],
+ bMemo:  ['备忘', 'General notes'],
+ thItem: ['项目', 'Item'],
+ thKind: ['类型', 'Type'],
+ thLang: ['语言', 'Language'],
+ thWhere: ['在哪买', 'Where to buy'],
+ thStat: ['状态', 'Status'],
+ notfound:['找不到这款桌游。', 'No such game. '],
+ backlist:['回总览', 'Back to overview'],
+ foot:  ['两种模式内容同源，都从同一份数据渲染 · 内容源是 桌游清单.md，改那边再重新生成本文件',
+      'Both modes render from the same data · Source of truth is 桌游清单.md — edit there, then regenerate this file']
+};
+
+var BUCKETS = {
+ owned: {label:['✅ 已买','✅ Owned'],       full:['✅ 已买（本体在手）','✅ Owned (base game in hand)']},
+ plan: {label:['🤔 考虑买','🤔 Considering'], full:['🤔 考虑买','🤔 Considering']},
+ consider:{label:['🤔 考虑买','🤔 Considering'], full:['🤔 考虑买','🤔 Considering']},
+ maybe: {label:['💭 观望','💭 Watching'],    full:['💭 观望','💭 Watching']},
+ nope: {label:['🚫 不买了','🚫 Dropped'],   full:['🚫 不买了','🚫 Dropped']},
+ sell: {label:['💰 要出','💰 For sale'],   full:['💰 要出','💰 To sell']}
+};
+
+/* 反复用到的短词 */
+var K_NEW = ['新游戏','New game'], K_EXP = ['扩展','Expansion'], K_ACC = ['配件','Accessory'];
+var L_CN = ['中文','Chinese'], L_EN = ['英文','English'], L_TBC = ['待确认','TBC'];
+var W_NA = ['北美官方渠道','North American retail'];
+var N_WHICH = ['<b>哪几盒未定</b>','<b>Which boxes still undecided</b>'];
+var HAVE_TBC = ['本体 —— 版本／语言<b>待确认</b>','Base game — edition / language <b>TBC</b>'];
+
+var GAMES = [
+{
+ id:'avalon', py:'D', hl:'英', style:'毛', bgg:null, name:['抵抗组织：阿瓦隆 Avalon','The Resistance: Avalon'], cat:['身份推理','Social deduction'], owned:true,
+ have:['<b>经典正版</b>基础盒（Indie Boards &amp; Cards 原版）','The <b>genuine original</b> base box (Indie Boards &amp; Cards)'],
+ buy:[
+  {item:['一代 Kickstarter 促销卡（兰斯洛特 + 王者之剑）','The original Kickstarter promo cards (Lancelot + Excalibur)'], kind:K_ACC, lang:L_EN,
+   where:['BGG Marketplace / eBay 二手','BGG Marketplace / eBay, secondhand'], bucket:'plan',
+   note:['<b>只要英文版</b> —— 一代画风的兰斯洛特／王者之剑只此一处；从未零售，慢慢蹲','<b>The one that matters</b> — the only Lancelot and Excalibur in the original art style; never sold at retail, so it is a waiting game']},
+  {item:['Avalon Big Box','Avalon Big Box'], kind:['扩充大盒','Reprint big box'], lang:['只有英文','English only'],
+   where:['北美官方（Miniature Market / Game Nerdz / 401 Games）','North American retail (Miniature Market / Game Nerdz / 401 Games)'],
+   bucket:'nope', note:['<b>不买</b>—— 美术是重绘的，不是一代画风','<b>Not buying</b> — the art is a full redraw, not the original style']}
+ ],
+ blocks:[
+  {h:['为什么不买 Big Box','Why the Big Box is a pass'],
+   sub:['你喜欢的是<b>一代的画风</b>，而 <b>Avalon Big Box 是全新美术</b> —— 由巴西画师 Weberson Santiago（画 Coup 那版的就是他）加 Luis Francisco 重绘，风格和原版完全不同。<br>问题在于：<b>兰斯洛特／王者之剑这两个模块，官方只在 Big Box 里出</b>。所以「要这两个模块 + 要一代画风」这个组合，<b>官方渠道拿不到</b>。<br>结论：<b>Big Box 不买</b> —— 因为一代画风的兰斯洛特／王者之剑<b>另有来源</b>：当年的 Kickstarter 促销卡。目标改成二手蹲那套促销卡。',
+     'The appeal is the <b>original art style</b>, and the <b>Avalon Big Box is a complete redraw</b> — by Brazilian artist Weberson Santiago (who did the well-liked Coup edition) with Luis Francisco, in a quite different style.<br>The catch: <b>Lancelot and Excalibur are only published in the Big Box</b>. So wanting those modules <em>and</em> the original art is a combination <b>no official product offers</b>.<br>Conclusion: <b>the Big Box is a pass</b> — because Lancelot and Excalibur in the original art do exist elsewhere: the old Kickstarter promo cards. The goal becomes hunting that promo set secondhand.']},
+  {h:['中文版与「兰斯洛特扩」真伪','Chinese editions and the "Lancelot expansion" — what is real'],
+   sub:['2026-08-24 查证。起因：淘宝／京东有「中文版阿瓦隆，带扩展」的货。',
+     'Checked 2026-08-24, prompted by Taobao / JD listings for "Chinese Avalon, with expansion".'],
+   bul:[
+   ['<b>「兰尼斯特扩」不存在</b> —— 阿瓦隆里没有叫兰尼斯特的角色，那是权游的姓氏。指的是<b>兰斯洛特 Lancelot</b>（圆桌骑士），通常和<b>王者之剑 Excalibur</b> 一起出现。',
+    '<b>There is no "Lannister expansion"</b> — Avalon has no such character; Lannister is a Game of Thrones surname. People mean <b>Lancelot</b>, a Knight of the Round Table, which normally travels with <b>Excalibur</b>.'],
+   ['<b>原版基础盒不含兰斯洛特</b> —— 2012 年原版盒内 14 张角色卡：梅林、刺客、派西维尔、莫德雷德、莫甘娜、奥伯伦、5 忠臣、3 爪牙，外加湖中仙女标记。',
+    '<b>The original base box has no Lancelot</b> — the 2012 printing holds 14 role cards: Merlin, Assassin, Percival, Mordred, Morgana, Oberon, 5 loyal servants, 3 minions, plus the Lady of the Lake token.'],
+   ['<b>不是只有 Big Box</b> —— 一代 <b>Kickstarter 促销卡</b>（The Resistance: Avalon Promo Cards，BGG #132195）就含兰斯洛特和王者之剑，共 10 张，<b>是一代画风</b>：兰斯洛特 2 张角色卡 + 7 张辅助卡，可按三种方式玩；王者之剑是每轮任务由队长指定一人获得强力能力。<b>只发给当年众筹支持者，从未零售</b>，现在只能二手收。另有 10 张 2012 动漫风促销卡，约 1,500 套。Big Box（23 个角色，整合兰斯洛特、王者之剑、Plot 卡、Sorcerers、Rogues）是<b>另一条路，但美术是重绘的</b>。',
+    '<b>The Big Box is not the only route</b> — the original <b>Kickstarter promo cards</b> (The Resistance: Avalon Promo Cards, BGG #132195) already contained Lancelot and Excalibur across ten cards, <b>in the original art style</b>: Lancelot adds two character cards plus seven supporting cards playable three different ways, and Excalibur gives a leader-nominated player a strong ability each Quest. <b>They went only to Kickstarter backers and were never sold at retail</b>, so secondhand is the only route now. A set of ten 2012 anime-art promos (about 1,500 sets) also exists. The Big Box (23 characters, folding in Lancelot, Excalibur, Plot cards, Sorcerers and Rogues) is <b>a separate route, but with redrawn art</b>.'],
+   ['<b>没查到官方简体中文版</b> —— 台湾新天鹅堡（Swan Panasia）目录里没有阿瓦隆（只翻到第 1/24 页，未穷尽，不算铁证）。结合大陆盗版泛滥，淘宝「中文版 + 兰斯洛特扩」基本可判定无授权。',
+    '<b>No official Simplified Chinese edition found</b> — Swan Panasia (Taiwan), the main licensed Chinese-language publisher, does not list Avalon (caveat: only page 1 of 24 of the catalogue was checked, so not conclusive). Given how widespread Avalon bootlegs are in mainland China, Taobao listings for "Chinese edition + Lancelot expansion" are almost certainly unlicensed.']
+   ],
+   table:{head:[['看什么','What to check'],['正版应该是','A genuine copy'],['盗版的样子','Bootleg tells']], rows:[
+   [['出版社标识','Publisher mark'],['盒上有 Indie Boards &amp; Cards logo','Indie Boards &amp; Cards logo on the box'],['没 logo，或不认识的作坊名','No logo, or an unknown workshop name']],
+   [['角色数量','Character count'],['原版 14 张；Big Box 23 个','14 cards in the original; 23 characters in the Big Box'],['号称 20／30／40 个角色的「豪华中文版」','"Deluxe Chinese editions" claiming 20 / 30 / 40 characters']],
+   [['美术','Artwork'],['官方亚瑟王传说插画','Official Arthurian illustrations'],['权游、漫威、动漫等他家 IP','Game of Thrones, Marvel, anime — borrowed IP']],
+   [['价格','Price'],['Big Box 北美约 USD 40–50','The Big Box runs about USD 40–50 in North America'],['几十块人民币包邮','A few dozen RMB, shipping included']]
+   ]},
+   after:['<b>结论：本体已经有了，不需要再买中文版。</b>','<b>Bottom line: the base box is already here — no reason to buy a Chinese copy.</b>']}
+ ]
+},
+{
+ id:'saboteur', py:'A', hl:'英', style:'毛', bgg:null, name:['矮人矿工 Saboteur','Saboteur'], cat:['身份推理','Social deduction'], owned:true,
+ have:['<b>20 周年纪念版</b>（2024 年发行，盒内已含 Saboteur 2 二代扩）','<b>20th Anniversary Edition</b> (2024 — the box already contains the Saboteur 2 expansion)'],
+ buy:[{item:['游戏桌垫 playmat','Playmat'], kind:K_ACC, lang:['无语言差异','Language-independent'],
+    where:['—','—'], bucket:'nope', note:['<b>质量差，不值这个钱</b>','<b>Poor quality, not worth the money</b> (dropped 2026-09-02)']}],
+ notes:[['20 周年版为纯卡片，不带图板。',
+     'The 20th-anniversary edition is cards only, with no board.'],
+     ['<b>幽谷秘库不是扩展</b> —— 全名《矮人掘金：幽谷秘库 Saboteur: The Lost Mines》，是<b>独立游戏</b>：自带图板和棋子，两个矮人氏族分队进矿，有沉睡的龙和宝藏卡。所以它不算这盒的补完项。',
+     '<b>幽谷秘库 is not an expansion</b> — Saboteur: The Lost Mines is <b>its own game</b>, with a board and pawns of its own: two dwarf clans descend into the mine, with a sleeping dragon and treasure cards. It does not count as a completion for this box.']]
+},
+{
+ id:'villainous', py:'D', hl:'英', style:'美', bgg:null, name:['迪士尼反派大乱斗 Disney Villainous','Disney Villainous'], cat:['不对称阵营','Asymmetric factions'], owned:true,
+ have:['本体 + 部分扩','Base game plus some expansions'],
+ buy:[{item:['<b>Evil Comes Prepared</b>（优先）','<b>Evil Comes Prepared</b> (first choice)'], kind:K_EXP, lang:L_EN, where:W_NA, bucket:'plan',
+    note:['<b>最值得补的一盒</b> —— 刀疤和伊兹玛评价最高。','<b>The pick of the boxes to add</b> — Scar and Yzma are among the best-rated villains.']},
+   {item:['其余 6 个扩展','The other six boxes'], kind:K_EXP, lang:L_EN, where:W_NA, bucket:'plan',
+    note:['Despicable Plots、Filled with Fright（单人）、Sugar and Spite、Treacherous Tides、Success at Any Cost、Come We Fly（单人）—— 都要买。<b>Sugar and Spite</b> 在 Boutique Awesome 现价 CA$18.99（原价 $28.99，2026-10-06 核实）。比价先查 Board Game Oracle。','Despicable Plots, Filled with Fright (solo), Sugar and Spite, Treacherous Tides, Success at Any Cost and Come, We Fly (solo) — all on the list. <b>Sugar and Spite</b> is CA$18.99 at Boutique Awesome (was $28.99, checked 2026-10-06). Compare prices on Board Game Oracle first.']}]
+},
+{
+ id:'root', py:'M', hl:'英', style:'美', bgg:8.1, name:['茂林源记 Root','Root'], cat:['不对称阵营','Asymmetric factions'], owned:true,
+ have:['<b>英文版</b>本体 + <b>发条 Clockwork</b> + <b>河民 Riverfolk</b> + <b>地下世界 Underworld</b>（✅ 照片确认）。⚠ <b>可能还有别的扩，待确认</b> —— 小盒扩已拆封并入大盒，光看盒子认不出来，要开盒按内容物核对。','<b>English</b> base game plus <b>Clockwork</b>, <b>Riverfolk</b> and <b>Underworld</b> (confirmed). ⚠ <b>More expansions may be present, unconfirmed</b>: the small packs have been opened and merged into the big boxes, so they cannot be identified from the outside and the contents must be checked.'],
+ buy:[{item:['扩展（一盒盒挑，无大盒）','Expansions (bought box by box — there is no big box)'],
+    kind:K_EXP, lang:L_EN, where:W_NA, bucket:'plan',
+    note:['<b>缺 3 盒，官网都有货、都不急</b>：<b>Homeland 家园</b>（$60，3 阵营 + 2 张地图，单价最划算）、<b>Marauder 劫掠者</b>（$50）、<b>Clockwork 2</b>（$40）。<br>⚠ <b>Exiles &amp; Partisans 卡组</b>（$10）官网已售罄，但它很可能<b>已拆入大盒</b> —— 先开盒找有没有第二副 54 张共享牌堆，别重复买。','<b>Three boxes missing, all in stock and none urgent</b>: <b>Homeland</b> ($60, three factions and two maps — the best value per box), <b>Marauder</b> ($50) and <b>Clockwork 2</b> ($40).<br>⚠ The <b>Exiles &amp; Partisans</b> deck ($10) is sold out at the publisher, but it may already have been decanted into the big box — check for a second 54-card shared deck before buying a replacement.']}],
+ blocks:[
+  {h:['⚠ 没有大盒版','⚠ There is no big box'],
+   sub:['逐项核对 Leder Games 官网：Root <b>只能一盒盒买</b>，没有 Big Box／Collector&rsquo;s Edition／All-In 合盒。众筹的 all-in 包也只是把几个独立盒子打包发货。想收进一个盒子只能上第三方内衬（TowerRex、Folded Space、Broken Token）或自己 3D 打印。<br>另一个坑：搜到的 <b>Root Collector&rsquo;s Edition 是 Steam 上的数字版捆绑包</b>，不是实体桌游。',
+     'Checked item by item against the Leder Games store: Root is <b>sold box by box</b> — there is no Big Box, Collector&rsquo;s Edition or All-In bundle. Even the crowdfunding all-in pledge just ships the separate boxes together. To get everything into one box you need a third-party insert (TowerRex, Folded Space, Broken Token) or a 3D print.<br>One more trap: the <b>Root Collector&rsquo;s Edition you find in search results is the Steam digital bundle</b>, not a physical game.'],
+   table:{head:[['扩展','Expansion'],['价格','Price'],['官网库存','Stock'],['内容','Contents']], rows:[
+   [['Homeland 家园','Homeland'],['$60','$60'],['有货','In stock'],['最新一盒。3 阵营（Lilypad Diaspora / Twilight Council / Knaves of the Deepwood）+ 2 张地图（可扩展的 Marsh、Gorge）','The newest box. Three factions (Lilypad Diaspora / Twilight Council / Knaves of the Deepwood) plus two maps (the expandable Marsh, and Gorge)']],
+   [['Marauder 劫掠者','Marauder'],['$50','$50'],['有货','In stock'],['','']],
+   [['Clockwork 2 机械二代','Clockwork 2'],['$40','$40'],['有货','In stock'],['自动化对手','Automated opponents']],
+   [['Riverfolk 河岸','Riverfolk'],['—','—'],['<b>✅ 已有</b>','<b>✅ Owned</b>'],['官网售罄，但你手上已有','Sold out at the publisher, but already owned']],
+   [['Underworld 地下世界（零售版）','Underworld (retail edition)'],['—','—'],['<b>✅ 已有</b>','<b>✅ Owned</b>'],['同上','Same']],
+   [['Clockwork 机械一代','Clockwork (first)'],['—','—'],['<b>✅ 已有</b>','<b>✅ Owned</b>'],['同上','Same']],
+   [['Exiles and Partisans 卡组','Exiles and Partisans deck'],['$10','$10'],['<b>售罄</b>','<b>Sold out</b>'],['⚠ 唯一售罄且可能仍缺的 —— 先开盒确认','⚠ The only sold-out item that may still be missing — check the box first']],
+   [['Vagabond Pack / Landmarks Pack','Vagabond Pack / Landmarks Pack'],['各 $10','$10 each'],['有货','In stock'],['小卡包','Small card packs']],
+   [['Hirelings Packs（Homeland／Marauder／Underworld／Riverfolk）','Hirelings Packs (Homeland / Marauder / Underworld / Riverfolk)'],['$20–30','$20–30'],['有货','In stock'],['雇佣兵','Hirelings']],
+   [['配件（据点标记、卡套、两款桌垫）','Accessories (clearing markers, sleeves, two playmats)'],['$10–30','$10–30'],['有货','In stock'],['','']]
+   ]}}
+ ],
+ todo:[['<b>开盒清点小卡包</b> —— 小盒扩已拆并入大盒，从外面认不出来。找这四样：<b>4 个地标块</b>（高塔／渡口／传奇锻炉／黑市）＝ Landmarks；<b>第二副 54 张共享牌堆</b>＝ Exiles &amp; Partisans；<b>多出来的流浪者棋子</b>＝ Vagabond Pack；<b>印 Hireling 的卡</b>＝雇佣兵包。清完再决定补哪盒，避免重复买。','<b>Open the box and inventory the small packs</b> — they were decanted into the big boxes and cannot be identified from the outside. Look for four landmark pieces (Tower, Ferry, Legendary Forge, Black Market) for Landmarks; a second 54-card shared deck for Exiles &amp; Partisans; spare vagabond pawns for the Vagabond Pack; and cards marked Hireling. Finish that before buying anything, to avoid duplicates.']],
+ notes:[['Homeland 是 2024 年众筹（27,549 名支持者 / $2,448,986），late pledge 已于 2025-06-09 关闭，现在只能走零售。',
+     'Homeland was crowdfunded in 2024 (27,549 backers / $2,448,986); the late pledge closed 2025-06-09, so it is retail-only now.']]
+},
+{
+ id:'arkham', py:'G', hl:'中', style:'美', bgg:null, name:['诡镇奇谈：卡牌版','Arkham Horror: The Card Game'], cat:['合作／战役','Co-op &amp; campaign'], owned:true,  have:['<b>小 all-in</b>','<b>A small all-in</b>'],  buy:[{item:['小盒扩','Small-box expansions'], kind:K_EXP, lang:['简中','Simplified Chinese'],     where:['<b>基本买不到</b>','<b>Effectively unobtainable</b>'], bucket:'maybe', note:['<b>简中正版小盒扩基本买不到</b>','<b>Genuine Simplified Chinese small-box expansions are essentially unavailable</b>']},    {item:['归来系列','Return to… series'], kind:K_EXP, lang:['简中','Simplified Chinese'],     where:['<b>没出简中正版</b>','<b>No genuine Simplified Chinese release</b>'], bucket:'maybe', note:['<b>正版归来系列没出简中</b>','<b>The Return-to series was never released in Simplified Chinese</b>']}],  blocks:[   {h:['简中扩展的现实：基本买不到','Simplified Chinese expansions: effectively unavailable'],   sub:['<b>简中正版的小盒扩基本买不到，正版归来（重返）系列压根没出简中。</b>所以这两项虽然列着，实际上不是「找个卖家就能下单」的状态，已归到观望。若哪天官方复刻或出简中，再考虑。',      '<b>Genuine Simplified Chinese small-box expansions are essentially impossible to find, and the Return-to series never had a Simplified Chinese release at all.</b> So although both are listed, neither is a matter of finding a seller — they sit on the watch list. If an official reprint or Simplified Chinese edition ever appears, it would be worth reconsidering.']}  ],
+},
+{
+ id:'oathsworn', py:'S', hl:'英', style:'美', bgg:9.3, name:['誓约者：深入密林 Oathsworn','Oathsworn: Into the Deepwood'], cat:['合作／战役','Co-op &amp; campaign'], owned:true,
+ have:['二手<b>立牌版</b>，<b>二版</b>','Secondhand English <b>standee edition</b>, <b>second printing</b>'],
+ buy:[{item:['Mystery Chest 1 &amp; 2','Mystery Chest 1 &amp; 2'], kind:K_EXP, lang:L_EN,
+    where:['—','—'], bucket:'nope', note:['<b>不买</b> —— 太贵，没必要','<b>Not buying</b> — too expensive, not needed (dropped 2026-09-16)']}],
+ blocks:[
+  {h:['版本排查：立牌版 vs 模型版','Edition sweep: standee versus miniatures'],
+   sub:['你手上是<b>立牌版</b>，这里是它和全模型版的实际差距 —— 数字比想象中大：',
+     'This copy is the <b>standee edition</b>; here is how it actually compares with the full miniatures pledge — the gap is bigger than it sounds:'],
+   table:{head:[['','',''],['立牌版（你有的）','Standee (owned)'],['模型全套 Core Pledge','Miniatures all-in']], rows:[
+   [['大型模型','Giant miniatures'],['<b>27 个</b>（21 种独立雕件）','<b>27</b> (21 unique sculpts)'],['<b>102 个</b>（57 种独立雕件）','<b>102</b> (57 unique sculpts)']],
+   [['敌人藏法','How enemies are hidden'],['密封信封','Sealed envelopes'],['神秘盒 mystery box','Mystery boxes']],
+   [['占地 / 价格','Space and price'],['<b>省地方、便宜</b>','<b>Compact and cheaper</b>'],['占地大得多，也贵得多','Far bulkier and pricier']]
+   ]},
+   after:['<b>不建议换模型版。</b>换成模型版等于整套重买，而且立牌版在「性价比 + 占地」上普遍被认为是更划算的选择 —— 模型版卖点是视觉体验（游戏约三分之二时间在推模型）。',
+      '<b>Not worth switching.</b> Moving to miniatures means rebuying the whole thing, and the standee edition is widely held to be the better value for money and shelf space — the miniatures sell on spectacle, since roughly two-thirds of play is moving models.']},
+  {h:['版本确认（2026-09-16 自检）','Printing check (self-checked 2026-09-16)'],
+   sub:['官方 1st → 2nd Edition 升级包说明里，二版新加了四张能力卡：The Blade 的 Flurry、Piercing Fang、Unbalance，Huntress 的 Hunter&rsquo;s Mark。盒里这四张都有，是正式印刷的卡。遭遇书（Encounter Book）里也没有升级包贴纸，所以不是一版加升级包，是<b>原生二版</b>。',
+     'The official 1st-to-2nd Edition upgrade pack instructions list four ability cards that were added in the second printing: Flurry, Piercing Fang and Unbalance for The Blade, and Hunter&rsquo;s Mark for the Huntress. All four are in the box as properly printed cards, and the Encounter Book carries no upgrade-pack stickers — so this is a <b>native second printing</b>, not an upgraded first printing.']}
+ ]
+},
+{
+ id:'wingspan', py:'Z', hl:'英', style:'德', bgg:8.1, js:7.8, name:['展翅翱翔 Wingspan','Wingspan'], cat:['引擎构筑','Engine building'], owned:true,
+ have:['<b>英文版</b>本体 <b>+ 除大盒 Nesting Box 和粉丝版 Fan Art Pack 以外的全部扩展</b>（✅ 照片确认到大洋洲扩、亚洲扩）','<b>English</b> base game <b>plus every expansion except the Nesting Box and Fan Art Pack</b> (Oceania and Asia confirmed by photo)'],
+ buy:[
+  {item:['大盒 Nesting Box + 签名卡','Nesting Box + signed cards'], kind:K_ACC, lang:L_EN,
+   where:['<b>温哥华朋友</b>（备选：Stonemaier Canada，缺货）','<b>A friend in Vancouver</b> (fallback: Stonemaier Canada, out of stock)'],
+   bucket:'plan', note:['待问价','Need to ask the price']},
+  {item:['粉丝版 Fan Art Pack','Fan Art Pack'], kind:K_EXP, lang:L_EN,
+   where:['<b>温哥华朋友</b>','<b>A friend in Vancouver</b>'], bucket:'plan',
+   note:['待问价，一起问','Ask about both together']}
+ ],
+ todo:[['问温哥华朋友这两件的价格与品相。谈不成再回 Stonemaier Canada 登记补货通知。',
+     'Ask the Vancouver friend the price and condition of both. If that falls through, sign up for a Stonemaier Canada restock alert.']],
+ notes:[
+  ['<b>亚洲扩是双重身份</b>：盒面标 <b>1–2 人</b>，因为它<b>本身能独立当双人游戏玩</b>；接上本体则是扩展，人数还能往上加。大洋洲扩标的是 1–5 人，是纯扩展。','<b>Asia has a dual role</b>: the box says <b>1-2 players</b> because it <b>works as a standalone two-player game</b>; combined with the base game it acts as an expansion and raises the player count. Oceania, marked 1-5, is a pure expansion.'],
+  ['Nesting Box 只有收纳功能，零玩法追加。','The Nesting Box is storage only — it adds nothing to gameplay.'],
+  ['Fan Art Pack 是 255 张粉丝绘制鸟卡，机制与本体及欧洲／大洋洲／亚洲扩完全相同，卡盒可放进 Nesting Box 底层。',
+   'The Fan Art Pack is 255 fan-drawn bird cards, mechanically identical to the base game and the European / Oceania / Asia expansions; its card box fits the bottom layer of the Nesting Box.'],
+  ['Nesting Box 在 BC 省的零售途径只有 Stonemaier Canada（其他加拿大零售商限门店自提），且目前缺货 —— 所以朋友这条线优先。',
+   'The only BC retail route for the Nesting Box is Stonemaier Canada (other Canadian retailers are in-store pickup only), and it is out of stock — hence the friend route first.']
+ ]
+},
+{
+ id:'dominion', py:'L', hl:'英', style:'德', bgg:null, name:['领土 Dominion','Dominion'], cat:['引擎构筑','Engine building'], owned:true,
+ have:['大盒版 + 阴谋','The Big Box plus Intrigue'],
+ buy:[{item:['扩展','Expansions'], kind:K_EXP, lang:L_EN, where:W_NA, bucket:'plan', note:N_WHICH}]
+},
+{
+ id:'splendor', py:'C', hl:'中', style:'德', bgg:7.4, name:['璀璨宝石·宝可梦','Splendor: Pokémon'], cat:['轻策／家庭','Light &amp; family'], owned:true,
+ have:['基础盒（本身已含 4 个训练家板块）','base box (which already includes 4 Trainer tiles)'],
+ buy:[{item:['训练家扩','Trainer expansion'], kind:K_EXP, lang:L_TBC,
+    where:['—','—'], bucket:'nope',
+    note:['<b>不要了</b> —— 不需要；本来也真伪存疑','<b>Dropped</b> — not wanted ; its authenticity was doubtful anyway']}],
+ todo:[['要求卖家提供牌背与卡纸厚度实拍再决定。',
+     'Ask the seller for real photos of the card backs and card stock thickness before deciding.']],
+ notes:[['训练家扩<b>大概率为玩家自制</b> —— 基础盒本身就含 4 个训练家板块。',
+     'The Trainer expansion is <b>most likely fan-made</b> — the base box already contains 4 Trainer tiles.']]
+},
+{
+ id:'darkcities', py:'D', hl:'英', style:'毛', bgg:null, name:['Dark Cities 系列（Facade Games）','Dark Cities series (Facade Games)'],
+ cat:['身份推理','Social deduction'], owned:true,
+ have:['前四作：猎巫镇 1692 / 海盗岛 1667 / 死木镇 1876 / 黑死城 1350，英文（<b>无官方简中版</b>，中文名为繁中／民间译名）',
+    'First four titles: Salem 1692 / Tortuga 1667 / Deadwood 1876 / Bristol 1350, English (<b>no official Simplified Chinese edition</b>)'],
+ buy:[
+  {item:['Hollywood 1947（第五作）','Hollywood 1947 (fifth title)'], kind:K_NEW, lang:L_EN,
+   where:['Amazon 第三方 / 401 Games / Board Room / eBay 二手','Amazon third-party / 401 Games / Board Room / eBay secondhand'],
+   bucket:'plan', note:['<b>官网三版全部售罄</b>','<b>All three versions sold out on the publisher site</b>']},
+  {item:['Roma XLI（第六作）','Roma XLI (sixth title)'], kind:K_NEW, lang:L_EN,
+   where:['Kickstarter late pledge','Kickstarter late pledge'], bucket:'plan',
+   note:['<span class="urgent">⏳ 限时 · 窗口随时会关</span><b>窗口随时可能关</b>','<b>The window could close at any time</b>']}
+ ],
+ todo:[
+  ['<b>Roma XLI late pledge 抢窗口</b> —— 主活动 2026-03-26 已结束，late pledge 据官方推特仍开放但随时可能关。补票则众筹版 2026-11 发货；等零售版要到 2026 秋以后。',
+   '<b>Catch the Roma XLI late pledge</b> — the main campaign closed 2026-03-26; per the publisher on X the late pledge is still open, but it could close at any time. Backing now means the crowdfunding copy ships 2026-11; waiting for retail means late 2026 at the earliest.'],
+  ['<b>Hollywood 1947 货源确认</b> —— Facade 官网 Deluxe / Standard / Upgrade Kit 三版全部售罄（US$19.99–44.99），只剩到货通知。查 Amazon 第三方 / 401 Games / Board Room 库存。',
+   '<b>Find a source for Hollywood 1947</b> — Facade is sold out of Deluxe / Standard / Upgrade Kit (US$19.99–44.99), leaving only restock alerts. Check Amazon third-party, 401 Games and Board Room stock.']
+ ],
+ notes:[
+  ['系列定位是「带推理成分的主题游戏」，<b>不是阿瓦隆那一路</b> —— 信息来自翻牌与场面而非玩家行为，有骰子和淘汰。适合人多、气氛闹的场子。',
+   'The series is themed games with a deduction element, <b>not the Avalon lane</b> — information comes from flipped cards and the board state rather than from reading people, and there are dice and player elimination. Best for loud, larger groups.'],
+  ['<b>Roma XLI 是例外</b>：1–9 人 / 20–40 分钟，凯撒遇刺后九位继承人投票互相流放，最后一个没被流放的人赢；被流放者可设法回归或投靠强者当跟班。<b>纯投票驱动、无骰子</b>，六作里唯一接近阿瓦隆那条线的。Kickstarter 2026-02-24 至 03-26，4,059 支持者 / $261,085。',
+   '<b>Roma XLI is the exception</b>: 1–9 players / 20–40 min. After Caesar is killed, nine heirs vote to exile one another; the last one not exiled wins, and the exiled can work their way back or attach themselves to someone stronger. <b>Pure voting, no dice</b> — the only one of the six close to Avalon. Kickstarter 2026-02-24 to 03-26, 4,059 backers / $261,085.'],
+  ['Hollywood 1947 数据：2023 秋零售发行，Kickstarter 2023 春，$772,784 / 11,462 支持者。',
+   'Hollywood 1947: retail release autumn 2023; Kickstarter spring 2023, $772,784 / 11,462 backers.']
+ ]
+},
+{
+ id:'boss', py:'W', hl:'中', style:'毛', bgg:null, name:['我是大老板 I&rsquo;m the Boss!','I&rsquo;m the Boss!'], cat:['谈判','Negotiation'], owned:true,
+ have:['本体','base game'],
+ buy:[],
+ notes:[
+  ['Sid Sackson 设计的谈判游戏，3–6 人 / 约 60 分钟 / 12+。靠谈判从别人的生意里抽成，手上没钱也能靠人脉分利。',
+   'A Sid Sackson negotiation game, 3–6 players / about 60 minutes / 12+. You talk your way into a cut of other people&rsquo;s deals — with no money of your own, connections still pay.'],
+  ['1994 德国年度游戏奖提名，2004 美国 Games 杂志最佳家庭游戏。',
+   'Spiel des Jahres nominee 1994; Games magazine Best Family Game 2004.'],
+  ['和<a href="#/g/millions">百万美金</a>同属谈判／嘴炮一挂，适合排在同一晚。',
+   'Same negotiation-and-table-talk lane as <a href="#/g/millions">Millions of Dollars</a> — they pair well in one evening.']
+ ]
+},
+{
+ id:'evoclimate', py:'J', hl:'英', style:'德', bgg:null, name:['进化：气候 Evolution: Climate','Evolution: Climate'], cat:['卡牌策略','Card strategy'], owned:true,
+ have:['本体 —— <b>独立成盒</b>，不需要 Evolution 基础版，且已含气候（Climate）扩展内容','English base box — <b>standalone</b>: it does not need the original Evolution, and already contains the Climate expansion content'],
+ buy:[],
+ notes:[
+  ['North Star Games 出品，2–6 人 / 12+。给自己的物种加特性（食性、体型、防御），同时应付气温变化带来的食物短缺。',
+   'From North Star Games, 2–6 players / 12+. You give your species traits (diet, body size, defences) while coping with food shortages driven by swings in temperature.'],
+  ['简中通行名《进化：气候》，繁中作《新演化論：氣候》。手上这盒是英文版。',
+   'Known in Simplified Chinese as 进化：气候 and in Traditional Chinese as 新演化論：氣候. The copy here is the English one.'],
+  ['同系列另有独立成盒的 Evolution: Oceans（海洋）。',
+   'The same line also has a standalone Evolution: Oceans.']
+ ]
+},
+{
+ id:'ninja', py:'R', hl:'英', style:'毛', bgg:null, name:['忍者之夜 Night of the Ninja','Night of the Ninja'], cat:['身份推理','Social deduction'], owned:true,
+ have:['本体','English edition, base game'],
+ blocks:[
+  {h:['版本排查：没有扩展','Edition sweep: no expansions exist, corrected 2026-09-02'],
+   sub:['查 <b>Brotherwise Games 官方页面</b>确认：<b>只有本体，没有任何扩展</b>。官网上除本体外只有规则书、FAQ 和一份「2P Rules」双人规则，都是补充文件不是产品。',
+     'The <b>Brotherwise Games official page</b> confirms: <b>the base game only, with no expansions</b>. Besides the game itself the site offers a rulebook, an FAQ and a separate two-player ruleset — supplementary documents, not products.'],
+   after:['✅ <b>所以这盒是齐全的，没东西可补。</b><br>官方标注：<b>4–11 人 / 15–30 分钟 / 12+</b>，角色有间谍 Spy、灵能者 Mystic、刺客 Assassin、盲刺客 Blind Assassin，每张卡都是剪纸风美术。设计师 Justin Gary（Ascension、Shards of Infinity）。',
+      '✅ <b>So this box is complete — nothing to add.</b><br>Officially: <b>4-11 players / 15-30 minutes / 12+</b>, with the Spy, Mystic, Assassin and Blind Assassin among the roles, and papercraft art on every card. Designed by Justin Gary of Ascension and Shards of Infinity.']}
+ ],
+ notes:[['<b>Brotherwise Games</b> 出品。快节奏隐藏阵营游戏 —— 一局 15–30 分钟，规则很轻。',
+     'From <b>Brotherwise Games</b>. A fast hidden-team game — 15 to 30 minutes a round, and the rules take five minutes to teach.'],
+     ['每轮靠传牌选到两张角色卡：情报员能看队友身份但杀不了人；刺客能直接击杀，却要在情报不全时下注 —— 早出手可能误杀队友，晚出手队友先被砍。',
+     'Each round you pass and pick two role cards. The informant learns who your allies are but can kill no one; the assassin can kill outright but has to bet on incomplete information — strike early and you may cut down a teammate, wait too long and yours are cut down first.'],
+     ['人数 <b>4–11 人</b>（官方数据，已核实）。',
+     '<b>4-11 players</b> per the publisher.'],
+     ['和<a href="#/g/avalon">抵抗组织：阿瓦隆</a>、<a href="#/g/saboteur">矮人矿工</a> 同一挂，开局快，适合暖场。',
+     'Same family as <a href="#/g/avalon">Avalon</a> and <a href="#/g/saboteur">Saboteur</a> — quick to start, good as an opener.']]
+},
+{
+ id:'sheriff', py:'N', hl:'中', style:'毛', bgg:null, name:['诺丁汉警长 第二版 Sheriff of Nottingham','Sheriff of Nottingham: 2nd Edition'], cat:['谈判','Negotiation'], owned:true,
+ have:['第二版本体','second edition, base game'],
+ blocks:[
+  {h:['版本排查：二版已经含了大部分扩','Edition sweep: the 2nd edition already bundles most expansions'],
+   sub:['<b>你这个二版本身就是合集版</b>，已经收录了 <b>第 6 名商人、黑市 Black Market、警长副手 Sheriff&rsquo;s Deputies</b> 这几个原本单独发行的扩展。',
+     '<b>The second edition is itself the compilation</b>, already carrying the <b>6th Merchant, Black Market and Sheriff&rsquo;s Deputies</b> content that was previously sold separately.'],
+   after:['⚠ <b>所以「欢乐义贼 Merry Men」扩基本不用买。</b>Merry Men 是个模块合集，含 Laws、Special Orders、Black Market、Merry Men、第 6 人 —— <b>二版已经包含了其中大部分，唯一没有的是 Special Orders（特殊订单）</b>。<br>换句话说：为了一个模块买一整盒扩，划不划算你自己判断。',
+      '⚠ <b>So the Merry Men expansion is largely redundant.</b> Merry Men bundles Laws, Special Orders, Black Market, Merry Men and the 6th player — and <b>the second edition already has most of that; the one thing missing is Special Orders</b>.<br>In other words: buying a whole expansion box for a single module is the call to weigh.']}
+ ], notes:[['CMON 出品。轮流当警长查货，其他人往袋子里塞违禁品再睁眼说瞎话；警长可以收贿赂放行。',
+     'From CMON. Players take turns as the sheriff inspecting goods while everyone else stuffs contraband into their bags and lies about it — and the sheriff can take a bribe to look away.'],
+     ['繁中名《諾丁漢警長》。','Known in Traditional Chinese as 諾丁漢警長.'],
+     ['和<a href="#/g/boss">我是大老板</a> 是同一类嘴炮谈判游戏，可以连着开。',
+     'Same talk-and-haggle genre as <a href="#/g/boss">I&rsquo;m the Boss!</a> — the two play well back to back.']]
+},
+{
+ id:'pandemiclegacy', py:'W', hl:'英', style:'德', bgg:null, name:['瘟疫危机：传承 Pandemic Legacy（第 0／1／2 季）','Pandemic Legacy (Seasons 0, 1 and 2)'], cat:['合作／战役','Co-op &amp; campaign'], owned:true,
+ have:['<b>三季齐全</b> —— Season 0、Season 1、Season 2','English editions, <b>all three seasons</b> — Season 0, Season 1 and Season 2'],
+ blocks:[
+  {h:['版本排查：三季齐了就是齐了','Edition sweep: all three seasons is the whole thing'],
+   sub:['<b>没有更大的版本，也没有盒装扩展。</b>三季就是全部：第一季 2015（疫情失控）、第二季 2017（末日之后，维持补给线）、第零季 2020（前传，冷战时期查苏联生化武器）。你三季齐全。',
+     '<b>There is no larger edition and no boxed expansion.</b> The three seasons are the whole line: Season 1 (2015, the outbreak spiralling), Season 2 (2017, after the end, keeping supply lines alive) and Season 0 (2020, a Cold War prequel investigating a Soviet bioweapon). All three are here.'],
+   after:['ℹ️ <b>唯一的额外内容</b>：第零季有一个 <b>Continuation Expansion 续章扩展</b>，是<b>官方 Print &amp; Play 的 PDF</b> —— 自己打印就行，不用买。<br>ℹ️ 另外第一季有红蓝两色、第二季有黑黄两色封面，<b>玩法完全一样，只是封面不同</b>，不必为凑色再买。',
+      'ℹ️ <b>The one extra</b>: Season 0 has a <b>Continuation Expansion</b> released as an <b>official print-and-play PDF</b> — printable at home, nothing to buy.<br>ℹ️ Season 1 comes in red and blue covers and Season 2 in black and yellow, with <b>no gameplay difference at all</b> — no reason to collect the alternates.']}
+ ], notes:[['Z-Man Games 出品，Matt Leacock + Rob Daviau 设计。战役制：盒子会被永久改动（贴纸、撕卡、拆封新组件），一条线大约 12–24 局。',
+     'From Z-Man Games, designed by Matt Leacock and Rob Daviau. A legacy campaign — the box is permanently altered as you play (stickers, torn cards, sealed components opened), and one season runs roughly 12 to 24 sessions.'],
+     ['三季各自独立成盒，不必按顺序玩。剧情上 Season 0 是前传（1962 冷战），Season 1 是正传，Season 2 接在 Season 1 之后。',
+     'Each season is a standalone box and they need not be played in order. Story-wise Season 0 is the prequel (the Cold War, 1962), Season 1 is the main line, and Season 2 follows Season 1.'],
+     ['同一个设计师 Matt Leacock 的<a href="#/g/lotr">魔戒：命运同盟</a> 用的就是这套合作系统 —— 那款在考虑买里。',
+     '<a href="#/g/lotr">The Lord of the Rings: Fate of the Fellowship</a>, by the same designer, runs on this co-op system — that one sits in the considering-to-buy list.']]
+},
+{
+ id:'sanguosha', py:'S', hl:'中', style:'毛', bgg:null, name:['三国杀 精装豪华版','Sanguosha (Legends of the Three Kingdoms), Deluxe Hardback Edition'], cat:['身份推理','Social deduction'], owned:true,
+ have:['<b>精装豪华版</b>，封面画着<b>戏志才</b>；淘宝买的，<b>约 2024 年购入</b>，内容很全（✅ 照片确认）','The <b>deluxe hardback edition</b>, with 戏志才 on the cover; bought on Taobao <b>around 2024</b>, and fairly complete'],
+ notes:[['游卡桌游出品。身份推理 + 卡牌对战：主公、忠臣、反贼、内奸各有胜利条件，主公身份公开，其余藏牌。',
+     'Published by Yoka Games. Hidden roles plus card combat: the lord, loyalists, rebels and the spy each have their own win condition, and only the lord&rsquo;s role is face up.'],
+     ['国内桌游里最普及的一款，人多好开，和<a href="#/g/avalon">抵抗组织：阿瓦隆</a>、<a href="#/g/werewolf">狼人杀</a> 同属身份推理。',
+     'The most widely played board game in China — easy to fill seats for, and the same hidden-role family as <a href="#/g/avalon">Avalon</a> and <a href="#/g/werewolf">Werewolf</a>.']]
+},
+{
+ id:'werewolf', py:'L', hl:'中', style:'毛', bgg:null, name:['狼人杀 五周年纪念版','Werewolf, 5th Anniversary Edition'], cat:['身份推理','Social deduction'], owned:true,
+ have:['五周年纪念版','the 5th Anniversary Edition'],
+ notes:[['经典夜晚杀人／白天投票的身份推理，法官主持。出版方待确认（同名版本很多）。',
+     'The classic kill-by-night, vote-by-day hidden-role game, run by a moderator. The publisher is still to be confirmed — many editions share the name.'],
+     ['和<a href="#/g/botc">染·钟楼谜团</a> 是同一条线上的东西 —— 钟楼谜团是它的重策进化版，死了也能继续玩。',
+     'Directly upstream of <a href="#/g/botc">Blood on the Clocktower</a>, which is the heavier evolution of it — there, dying does not put you out of the game.']]
+},
+{
+ id:'dicethrone', py:'W', hl:'中', style:'美', bgg:null, name:['王权骰注 漫威版 Dice Throne','Marvel Dice Throne'], cat:['骰子对战','Dice combat'], owned:true,
+ have:['两盒，每盒 4 个角色，共 8 个 —— ⚠ <b>有一个纽扣（计数转盘）有问题</b>，卖家似乎已补发一批，<b>待观察</b>','edition — two boxes of four characters each, eight in all — ⚠ <b>one of the dials is faulty</b>; the seller appears to have shipped replacements, <b>pending</b>'],
+ notes:[['骰子对战游戏：每个角色有自己的骰子、面板和牌库，靠掷骰组合触发技能互相打。',
+     'A dice combat game — each character has their own dice, board and deck, and you roll for combinations that trigger abilities against each other.'],
+     ['漫威版 8 个英雄：绯红女巫、雷神、洛基、蜘蛛侠（迈尔斯）、惊奇队长、黑豹、黑寡妇、奇异博士。',
+     'The eight Marvel heroes: Scarlet Witch, Thor, Loki, Miles Morales Spider-Man, Captain Marvel, Black Panther, Black Widow and Doctor Strange.'],
+     ['<b>中文版的分盒方式和英文版不一样</b> —— 中文版一盒 4 个角色，两盒凑齐 8 个；英文零售版是「一个 4 英雄盒 + 两个 2 英雄盒」。以后找扩展或补货，按中文版的盒型找，别照英文 SKU 对。',
+     '<b>The Chinese edition splits the heroes differently from the English one</b> — four characters per box, two boxes for all eight, where English retail uses one four-hero box plus two two-hero boxes. When hunting expansions or replacements, match the Chinese boxes rather than the English SKUs.']]
+},
+{
+ id:'terrorscape1', py:'E', hl:'英', style:'美', bgg:null, name:['恶夜杀机 Terrorscape（一代）','Terrorscape'], cat:['不对称阵营','Asymmetric factions'], owned:true,
+ have:['<b>众筹豪华版</b>（Kickstarter Deluxe） —— ⚠ <b>地图盒有一个角残缺</b>','English edition, the <b>Kickstarter deluxe</b> — ⚠ <b>one corner of the map box is damaged</b>'],
+ notes:[['Ice Makes 出品，1v多的恐怖追逃：一个杀手追，其余人合力逃。',
+     'From Ice Makes — one-vs-many horror: a single killer hunts while everyone else works together to get out.'],
+     ['<a href="#/g/terrorscape">恶夜杀机 2</a> 是独立续作，不需要一代也能玩 —— 那盒还卡在 late pledge。',
+     '<a href="#/g/terrorscape">Terrorscape 2</a> is a standalone sequel and does not need this box — it is still stuck on the late pledge.']]
+},
+{
+ id:'betrayal', py:'X', hl:'英', style:'美', bgg:null, name:['小黑屋 Betrayal at House on the Hill（第三版）','Betrayal at House on the Hill (3rd edition)'], cat:['半合作／背叛','Semi-co-op with a traitor'], owned:true,
+ have:['<b>第三版</b>本体 + <b>三个盒装扩全齐</b>：冬夜 Wynter&rsquo;s Pale、小丑回魂 Neibolt House、狼人 Blood on the Moon','<b>Third edition</b> base game plus <b>all three boxed expansions</b>: Wynter&rsquo;s Pale, Neibolt House and Blood on the Moon'],
+ todo:[['把三个扩展的名字记下来 —— 三版的扩展不多，写清楚了以后才知道缺没缺。',
+     'Write down which three expansions these are — the third edition has few, so naming them is what tells you later whether any are missing.']],
+ notes:[['Avalon Hill 出品。前半局所有人一起探索鬼屋、翻房间抽事件；触发「预兆」后有人变成叛徒，游戏切成一对多，五十多个剧本各有各的胜负条件。',
+     'From Avalon Hill. For the first half everyone explores the house together, laying rooms and drawing events; once the haunt triggers, one player turns traitor and the game splits one-vs-many, with fifty-odd scenarios that each set their own win conditions.'],
+     ['和<a href="#/g/terrorscape1">恶夜杀机</a> 是同一种「中途翻脸」的体验，但小黑屋的叛徒是打到一半才产生的。',
+     'Same mid-game turn as <a href="#/g/terrorscape1">Terrorscape</a>, except here the traitor is only created partway through.']]
+},
+{
+ id:'monopolyaot', py:'D', hl:'英', style:'毛', bgg:null, name:['大富翁 进击的巨人版 Monopoly: Attack on Titan','Monopoly: Attack on Titan'], cat:['轻策／家庭','Light &amp; family'], owned:true,
+ have:['本体','English edition'],
+ notes:[['大富翁的 IP 联名版，规则是标准大富翁，换成进击的巨人的地名与角色。',
+     'A licensed Monopoly reskin — standard Monopoly rules with Attack on Titan locations and characters.'],
+     ['家里唯一一款纯掷骰走格子的游戏，人多、规则零门槛的场合能用。',
+     'The only pure roll-and-move in the collection — the one to reach for when the group is large and the rules have to be nil.']]
+},
+{
+ id:'legochess', py:'G', hl:'-', style:'毛', bgg:null, name:['国际象棋 乐高巫师棋版','Chess — the LEGO Wizard&rsquo;s Chess set'], cat:['抽象策略','Abstract strategy'], owned:true,
+ have:['乐高哈利波特「巫师棋」套装 <b>76392 Hogwarts Wizard&rsquo;s Chess</b> —— 拼出来就是一副能下的国际象棋',
+    'The LEGO Harry Potter <b>76392 Hogwarts Wizard&rsquo;s Chess</b> set — built, it is a playable chess set'],
+ notes:[['<b>编号 76392</b>。876 片，32 个可拼棋子。2021-04-18 发售，原价 USD 60。',
+     '<b>Set 76392</b> . 876 pieces, 32 buildable chess pieces. Released 2021-04-18 at USD 60.'],
+     ['<b>人仔数对不上，值得核一下</b>：你数是 3 个；乐高官网写 4 个 —— 哈利、赫敏、罗恩，外加一个<b>金色斯内普</b>。多半是金色斯内普没被算进去（2021 年是哈利波特系列 20 周年，那批套装都附一个金色人仔），但也可能是盒里缺件。',
+     '<b>The minifigure count does not match — worth checking</b>: you count three; LEGO lists four — Harry, Hermione, Ron, plus a <b>golden Severus Snape</b>. Most likely the golden Snape simply was not counted (2021 was the range&rsquo;s 20th anniversary and those sets each came with a gold figure), but a missing piece is also possible.'],
+     ['既是乐高套装也是棋盘：棋子是电影里霍格沃茨巫师棋的造型，规则就是标准国际象棋。',
+     'A LEGO set and a chess set at once: the pieces are modelled on the Hogwarts wizard chess from the films, and the rules are ordinary chess.'],
+     ['收藏属性大于开局属性 —— 乐高那边的记录另有归档，这里只登记它作为棋类的一面。',
+     'More display piece than game night regular — the LEGO side of it is filed elsewhere; this entry covers it only as a chess set.']]
+},
+{
+ id:'unonaruto', py:'U', hl:'英', style:'毛', bgg:null, name:['UNO 麦当劳 × 火影忍者','UNO — the McDonald&rsquo;s x Naruto tie-in'], cat:['轻策／家庭','Light &amp; family'], owned:true, dislike:true,
+ have:['<b>两盒，都是火影忍者主题</b>，2025 年麦当劳开心乐园餐联名','<b>Two boxes, both Naruto</b> — from the 2025 McDonald&rsquo;s Happy Meal tie-in'],
+ blocks:[
+  {h:['这套联名的全貌','The full promotion'],
+   sub:['2025 年麦当劳的 <b>UNO × 动漫</b> 开心乐园餐联名，<b>加拿大独占</b> —— 正好赶上了。这条线一共四个动漫主题：<b>火影忍者、博人传、间谍过家家、我的英雄学院</b>。手上有火影和博人传两盒，<b>另外两盒没有</b>。<br>另外还分<b>普通 UNO</b> 和 <b>UNO Flip!</b> 两种规则版本（BGG 上博人传就同时收录了这两个条目）—— 手上那两盒是哪种没记录，想收全的话得先确认。<br>促销早已结束，现在只能走 eBay 二手。',
+     'The 2025 McDonald&rsquo;s <b>UNO × Anime</b> Happy Meal tie-in, which was <b>Canada-exclusive</b> — good timing. The line covered four anime: <b>Naruto, Boruto, Spy x Family and My Hero Academia</b>. Two are here, Naruto and Boruto; <b>the other two are not</b>.<br>The promotion also split into <b>standard UNO</b> and <b>UNO Flip!</b> versions (BGG lists both for Boruto) — which of the two these boxes are is not recorded, and would matter for completing the set.<br>The promotion is long over, so eBay is the only route now.']}
+ ],
+ notes:[['<b>不喜欢 UNO</b>，基本不会主动开 —— 但<b>也没必要出</b>，占地方小，留着当垫场牌。',
+     '<b>Not a fan of UNO</b> and unlikely to pull it out — but <b>no reason to sell it either</b>: it takes almost no space and works as filler.'],
+     ['标准 UNO 规则，动漫美术的联名版；两盒图案不一样，可以分着收也可以混着打。',
+     'Standard UNO rules with Naruto artwork; the two boxes differ, so they can be kept as a pair or shuffled together.'],
+     ['和<a href="#/g/monopolyaot">大富翁 进击的巨人版</a> 一样属于零门槛那一档，人多时垫场用。',
+     'In the same no-rules-needed tier as <a href="#/g/monopolyaot">Monopoly: Attack on Titan</a> — filler for a big group.']]
+},
+{
+ id:'kotdark', py:'D', hl:'中', style:'毛', bgg:null, name:['东京之王 暗黑版 King of Tokyo: Dark Edition','King of Tokyo: Dark Edition'], cat:['骰子对战','Dice combat'], owned:true,
+ have:['本体','Simplified Chinese edition'],
+ blocks:[
+  {h:['版本排查：你这盒已经是最好的','Edition sweep: this is already the best one'],
+   sub:['<b>暗黑版就是第三版，也是收藏版</b>（2020 年出）—— 在二版基础上升级了美术和配件，并加入「邪恶值 wickedness」机制：靠凑 1 和 2 的组合累积邪恶点，在 4／6／10 点各有奖励，让原本鸡肋的小点数有了价值。<b>没有比它更好的版本可换。</b>',
+     '<b>The Dark Edition is the third edition and the collector one</b> (2020) — upgraded art and components over the second edition, plus the <b>wickedness</b> track, which rewards collecting 1s and 2s with bonuses at 4, 6 and 10 and finally gives the low faces a purpose. <b>There is no better edition to move to.</b>'],
+   after:['✅ <b>但扩展可以补</b>：Power Up! 那些扩展<b>跨版本通用</b>，暗黑版也能用。目前清单里没列，想补随时说。',
+      '✅ <b>Expansions remain an option</b>: Power Up! and the others are <b>compatible across editions</b>, Dark included. None are listed yet — say the word if any are wanted.']}
+ ], notes:[['Iello 出品，2–6 人 / 约 30 分钟。掷骰子打怪兽抢占东京，抢到就持续得分但也持续挨打，什么时候跳出来是全部的博弈。',
+     'From Iello, 2–6 players / about 30 minutes. Roll dice, brawl as monsters and seize Tokyo — holding it scores every turn but takes hits from everyone, and knowing when to jump out is the whole game.'],
+     ['暗黑版是黑红配色的限定美术版，除美术外还多一条 Wickedness（恶行）轨道和自己的怪兽。',
+     'The Dark Edition is a limited black-and-red art treatment that also adds a Wickedness track and its own monsters.'],
+     ['和<a href="#/g/dicethrone">王权骰注</a> 是同一类掷骰对战，但这个更轻更闹。',
+     'Same roll-and-fight genre as <a href="#/g/dicethrone">Dice Throne</a>, but lighter and louder.']]
+},
+{
+ id:'bingleng', py:'B', hl:'中', style:'毛', bgg:null, name:['冰冷的她醒来之前','Before the Cold Girl Wakes (冰冷的她醒来之前)'], cat:['身份推理','Social deduction'], owned:true,
+ have:['本体','Simplified Chinese edition'],
+ notes:[['21 张卡的小盒身份推理，日式恐怖题材：病毒爆发，学生被困教学楼，一夜之间死了人，活着的人要一边保存尸体一边找出凶手 —— 凶手可能就在其中。',
+     'A 21-card small-box deduction game with a Japanese horror premise: a viral outbreak traps students in the school building, someone dies overnight, and the survivors have to preserve the body while working out which of them did it.'],
+     ['每人扮演班长，手牌代表班上的同学，最后一张牌是班长自己。<b>4–5 人最佳</b>。',
+     'Each player is a class leader whose hand represents their classmates, with the last card standing for the leader themselves. <b>Best at 4–5 players.</b>'],
+     ['常被拿来和《犯人在跳舞》比较，机制更复杂一点。原版／英文名<b>待确认</b>。',
+     'Often compared to 犯人在跳舞, with somewhat more going on. The original and English titles are <b>still to be confirmed</b>.']]
+},
+{
+ id:'azul', py:'H', hl:'英', style:'德', bgg:null, sell:['<b>全新</b>','<b>Brand new</b>'], name:['花砖物语 Azul','Azul'], cat:['图块拼贴','Tile laying'], owned:true, dislike:true,
+ have:['本体','Base game'],
+ notes:[['<b>不喜欢，基本不会开</b> —— 收着，但排游戏之夜的时候不用考虑它。',
+     '<b>Not a favourite and rarely comes out</b> — it stays in the collection, but there is no need to consider it when planning a game night.'],
+     ['Next Move Games 出品，Michael Kiesling 设计，2–4 人 / 30–45 分钟。轮流从圆盘上拿同色瓷砖铺自己的墙，拿多了放不下就倒扣扣分。',
+     'From Next Move Games, designed by Michael Kiesling, 2–4 players / 30–45 minutes. You draft same-coloured tiles from factory displays to fill your wall, and anything you cannot place counts against you.'],
+     ['2018 年德国年度游戏奖（Spiel des Jahres）。繁中名《花磚物語》；简中版名称<b>待确认</b>。',
+     'Spiel des Jahres 2018. Known in Traditional Chinese as 花磚物語; the Simplified Chinese title is <b>to be confirmed</b>.']]
+},
+{
+ id:'smallworld', py:'X', hl:'英', style:'美', bgg:null, name:['小小世界 魔兽版 Small World of Warcraft','Small World of Warcraft'], cat:['区域控制','Area control'], owned:true,
+ have:['本体','Base game'],
+ blocks:[
+  {h:['版本排查：没有更全的','Edition sweep: nothing fuller exists'],
+   sub:['<b>没有大盒合集版，也没有专属扩展。</b>更要紧的一点：<b>魔兽版和原版《小小世界》的扩展互不兼容</b>（Team World、River World、Sky Islands 那些是给原版的，装不进魔兽版）。<br>所以这盒<b>本身就是完整的</b>，没有东西可补，也没有更好的版本可换。',
+     '<b>There is no big-box compilation and no expansions of its own.</b> More importantly, <b>the Warcraft version is not cross-compatible with original Small World expansions</b> — Team World, River World and Sky Islands are for the original game.<br>So this box <b>is complete as it stands</b>: nothing to add, and no better edition to move to.']}
+ ],
+ notes:[['Days of Wonder × 暴雪，2–5 人 / 40–80 分钟。地图塞不下所有人，所以扩张、然后在被打垮之前主动让种族「衰落」，换下一个种族继续抢地盘。',
+     'Days of Wonder with Blizzard, 2–5 players / 40–80 minutes. The map is deliberately too small, so you expand, then put your race into decline before it collapses and pick up a fresh one to keep taking ground.'],
+     ['种族 + 特殊能力是随机配对的，每局的组合都不一样；本作用的是魔兽的阵营与地图。',
+     'Races pair up randomly with special powers, so no two games offer the same combinations; this edition uses Warcraft factions and maps.'],
+     ['中文名是民间译法，<b>没查到官方简中版</b>。','The Chinese title here is a community translation — <b>no official Simplified Chinese edition was found</b>.']]
+},
+{
+ id:'battleship', py:'H', hl:'英', style:'毛', bgg:null, sell:['英文版，很老的一盒','English edition, an old copy'], name:['海战棋 Battleship','Battleship'], cat:['双人对战','Two-player duel'], owned:true, dislike:true,
+ have:['很老的一盒','an old copy'],
+ notes:[['<b>不喜欢，基本不会开</b> —— 和<a href="#/g/azul">花砖物语</a> 一样，收着但不排进游戏之夜。',
+     '<b>Not a favourite and rarely comes out</b> — like <a href="#/g/azul">Azul</a>, kept but not scheduled.'],
+     ['孩之宝的经典双人游戏：各自摆船，轮流报坐标猜对方的船在哪，先击沉对方全部舰队的人赢。',
+     'The classic Hasbro two-player game: hide your fleet, call coordinates in turn, and the first to sink the other side&rsquo;s ships wins.']]
+},
+
+{
+ id:'catangot', py:'K', hl:'英', style:'德', bgg:null, name:['卡坦岛 权力的游戏版','A Game of Thrones Catan: Brotherhood of the Watch'],
+ 
+cat:['资源经营','Resource management'], owned:true,
+ 
+have:['<b>英文版</b>本体 <b>+ 5–6 人扩展</b>（✅ 照片确认，盒上印 A Mammoth Extension by Klaus &amp; Benjamin Teuber）—— ⚠ 少一张羊毛资源牌（送朋友做纪念），不影响开局','<b>English</b> base game <b>plus the 5-6 Player Extension</b> — ⚠ one wool card was given away as a keepsake, which does not affect play'],
+ 
+buy:[],
+ 
+notes:[
+ 
+ ['<b>确认：官方只出过这一个扩</b>—— 就是 5–6 人扩展，<b>已经在手上</b>。所以这款是齐的，没有别的官方扩可补。5 人局 25 块地板、6 人局 29 块（分别 4 个和 5 个野人部族），新增猛犸和长矛妇，以及伊蒙·坦格利安、琼恩·雪诺、吉莉、欧莎四张英雄卡。',
+ 
+  '<b>Confirmed: there is only one official expansion</b> — the 5-6 Player Extension, <b>already owned</b>. So this one is complete; there is nothing else official to add. It brings 25 tiles for five players and 29 for six (four and five wildling clans), mammoths and spearwives, and four hero cards: Aemon Targaryen, Jon Snow, Gilly and Osha.'],
+ 
+ ['Catan Studio × Fantasy Flight，2017 年出。守夜人主题：除了正常开拓，还得往长城上派人挡野人入侵。',
+ 
+  'Catan Studio with Fantasy Flight, 2017. A Night&rsquo;s Watch theme: alongside the usual settling you have to man the Wall against wildling raids.'],
+ 
+ ['中文名待确认 —— 未查到官方简中版。','Chinese title unconfirmed — no official Simplified Chinese edition found.']
+ 
+]
+},
+{
+ id:'riskgot', py:'R', hl:'英', style:'美', bgg:null, name:['Risk 权力的游戏版','Risk: Game of Thrones'],
+ cat:['区域控制','Area control'], owned:true,
+ have:['✅ <b>确认是豪华版 Deluxe</b>（两张图板）—— <b>决定收藏，不出</b>','✅ <b>Confirmed as the Deluxe edition</b> (two boards) — <b>keeping it as a collection piece</b>'],
+ buy:[],
+ blocks:[
+  {h:['两版对照 —— 怎么确认的','Side by side: how it was confirmed'],
+   sub:['<b>判断依据：你说盒里有两张图板。</b>两个版本的配件清单差得非常远，图板数只是最好数的那一项 —— 下面每一行都可以拿来复核。<br>⚠ 说清楚：<b>我没看到你的盒子</b>，这是拿你的观察去比对官方配件清单得出的结论。',
+     '<b>The basis: two boards in the box.</b> The two editions differ enormously in contents, and the board count is simply the easiest thing to count — every row below works as a cross-check.<br>⚠ To be clear: <b>the box was not inspected here</b>; this matches your observation against the published component lists.'],
+   table:{head:[['配件','Component'],['精简版 Skirmish','Skirmish edition'],['豪华版 Deluxe（你的）','Deluxe (yours)']], rows:[
+   [['<b>图板</b>','<b>Boards</b>'],['<b>1 张</b>（只有维斯特洛）','<b>One</b> (Westeros only)'],['<b>2 张</b>（维斯特洛 + 厄索斯）','<b>Two</b> (Westeros and Essos)']],
+   [['<b>骰子</b>','<b>Dice</b>'],['<b>1 颗</b>','<b>One</b>'],['<b>9 颗</b>','<b>Nine</b>']],
+   [['兵','Army pieces'],['一包（未细分）','A single sprue, uncounted'],['<b>315 个</b>，分七大家族','<b>315</b>, across seven houses']],
+   [['卡牌','Cards'],['一副','One pack'],['<b>187 张</b>（角色／学士／目标等）','<b>187</b> (character, maester, objective and so on)']],
+   [['玩家板','Player boards'],['无','None'],['<b>7 块</b>','<b>Seven</b>']],
+   [['权力宝座','Seats of power'],['无','None'],['<b>7 个</b>','<b>Seven</b>']],
+   [['特殊单位标记','Special unit tokens'],['无','None'],['<b>63 个</b>','<b>63</b>']],
+   [['金龙币','Gold dragon coins'],['无','None'],['<b>75 枚</b>','<b>75</b>']],
+   [['计分标记','Score trackers'],['无','None'],['<b>20 个</b>','<b>20</b>']],
+   [['出版商','Publisher'],['⚠ <b>不能用来分辨版本</b>','⚠ <b>Not a reliable tell</b>'],['两家都出豪华版，差别是地区','Both houses publish the Deluxe; the split is regional']]
+   ]},
+   after:['<b>还想再确认的话，最快的三个复核点</b>：① 骰子是 <b>9 颗</b>还是 1 颗；② 有没有 <b>7 块玩家板</b>；③ 有没有<b>金龙币</b>。这三样精简版<b>一样都没有</b>。<br>⚠ <b>不能靠出版商分辨版本</b>：USAopoly 管北美、Winning Moves（英／法／德）管欧洲，<b>两家都出豪华版</b> —— 出版商只说明货是哪个地区的，说明不了版本。<b>只能数配件。</b><br>ℹ️ 顺带解释一个容易混的点：<b>「Skirmish」既是一个精简版产品名，也是豪华版里的一种游戏模式名</b>。豪华版内含 Skirmish／Dominion／World at War 三种模式 —— 所以看到「Skirmish」字样不等于你买的是精简版。',
+      '<b>Three quick cross-checks</b>: whether there are <b>nine dice</b> or one; whether there are <b>seven player boards</b>; and whether the <b>gold dragon coins</b> are present. The Skirmish edition has <b>none of the three</b>.<br>⚠ <b>The publisher does not identify the edition</b>: USAopoly covers North America and Winning Moves (UK, France, Germany) covers Europe, and <b>both publish the Deluxe</b> — the imprint tells you the region, not the edition. <b>Counting components is the only reliable test.</b><br>ℹ️ One further source of confusion: <b>Skirmish is both a stripped-down product and the name of a game mode inside the Deluxe</b>, which carries Skirmish, Dominion and World at War — so the word on a box does not mean the Skirmish edition.']},  {h:['✅ 版本已确认：豪华版','✅ Edition confirmed: Deluxe'],
+   sub:['两张图板 = <b>豪华版 Deluxe</b>，没跑了。官方配件清单核对一致：<b>2 张图板、315 个兵、7 个权力宝座、7 块玩家板、187 张卡、63 个特殊单位标记、75 枚金龙币、20 个计分标记、9 颗骰子、1 本规则书</b>，总计 650+ 个组件。<br>兵种代表七大家族：史塔克、拜拉席恩、兰尼斯特、马泰尔、提利尔、坦格利安、吉斯卡利。',
+     'Two boards means the <b>Deluxe edition</b>, without question. The official component list matches: <b>two boards, 315 army pieces, 7 seats of power, 7 player boards, 187 cards, 63 special unit tokens, 75 gold dragon coins, 20 score trackers, 9 dice and a rulebook</b> — over 650 pieces in all.<br>The armies represent the seven houses: Stark, Baratheon, Lannister, Martell, Tyrell, Targaryen and Ghiscari.'],
+   after:['<b>所以三种模式都能玩全</b>：Skirmish（基础）、Dominion（进阶，目标卡／角色卡／学士卡）、World at War（两张图板一起用，最多 7 人）—— 这些正是精简版玩不了的。<br>✅ <b>已决定收藏，不出售。</b>',
+      '<b>So all three modes are playable</b>: Skirmish, Dominion (with objective, character and maester cards) and World at War (both boards, up to seven players) — exactly what the Skirmish edition cannot do.<br>✅ <b>Decided: kept as a collection piece, not for sale.</b>']}
+ ],
+ todo:[['（已确认，无待办）',
+     'Count the boards in the box — <b>two</b> (Westeros + Essos) means the Deluxe edition; <b>one</b> (Westeros only) means Skirmish. The difference is substantial, so it is worth checking.']],
+ notes:[
+  ['<b>豪华版 Deluxe</b>：2 张图板、315 个兵、7 个权力宝座、7 块玩家板、187 张卡、63 个特殊单位标记、75 枚金龙币、20 个计分标记、9 颗骰子。<b>维斯特洛图板是 3–5 人局，厄索斯图板是 2 人局</b>；两张一起用就是 World at War，最多 7 人。',
+   '<b>Deluxe</b>: two boards, 315 army pieces, 7 seats of power, 7 player boards, 187 cards, 63 special unit tokens, 75 gold dragon coins, 20 score trackers and 9 dice. The Essos board is the two-player game; Westeros is 3–5.'],
+  ['<b>精简版 Skirmish</b>：只有维斯特洛图板，2–5 人，规则是比较直接的 Risk 换皮。',
+   '<b>Skirmish</b>: the Westeros board only, 2–5 players — essentially a Risk reskin.'],
+  ['三种模式：Skirmish（基础）、Dominion（进阶，加目标卡／角色卡／学士卡）、World at War（两张图板一起用，最多 7 人）—— 后两种要豪华版才玩得全。',
+   'Three modes: Skirmish (basic), Dominion (advanced, adding objective, character and maester cards) and World at War (both boards, up to seven players) — the latter two need the Deluxe edition to play in full.'],
+  ['中文名待确认。','Chinese title unconfirmed.']
+ ]
+},
+{
+ id:'everdell', py:'E', hl:'英', style:'德', bgg:8.0, name:['仙境幽谷 大盒版 Everdell','Everdell: The Complete Collection'],
+ cat:['工人放置','Worker placement'], owned:true,
+ have:['大盒版 The Complete Collection','The Complete Collection big box'],
+ buy:[],
+ notes:[
+  ['大盒含本体 + <b>五个扩展</b>：Bellfaire、Pearlbrook、Spirecrest、Newleaf、Mistwood。',
+   'The big box holds the base game plus <b>five expansions</b>: Bellfaire, Pearlbrook, Spirecrest, Newleaf and Mistwood.'],
+  ['另含 Freshwater / Glimmergold / Trailblazers 三个升级包，和那棵立体木树。这一盒基本把 Everdell 收全了，不用再单买扩展。',
+   'It also includes the Freshwater, Glimmergold and Trailblazers upgrade packs and the standing wooden tree. This one box is effectively the whole of Everdell — nothing else needs buying.'],
+  ['中文名待确认 —— 未查到官方简中版。','Chinese title unconfirmed — no official Simplified Chinese edition found.']
+ ]
+},
+{
+ id:'carcassonne', py:'K', hl:'英', style:'德', bgg:7.4, name:['卡卡颂 大盒版 Carcassonne Big Box','Carcassonne Big Box'],
+ cat:['图块拼贴','Tile laying'], owned:true,
+ have:['<b>2022 edition 大盒版</b>（即 3.0 大盒）','The <b>2022 edition</b> Big Box (the 3.0 Big Box)'],
+ buy:[{item:['大盒之外的编号大扩（公主与巨龙、高塔、修道院与市长等）','The numbered major expansions outside the Big Box (Princess &amp; Dragon, The Tower, Abbey &amp; Mayor and so on)'],
+    kind:K_EXP, lang:L_TBC, where:['—','—'], bucket:'nope',
+    note:['<b>不要了</b> —— 大盒里那 11 个够玩','<b>Dropped</b> — the 11 in the Big Box are enough ']}],
+ blocks:[
+  {h:['版本核对','Edition check'],
+   sub:['手上是 <b>2022 edition</b>，也就是 3.0 大盒。<b>但它不是最新的</b> —— 2025 年出了 <b>Big Box V3.1（2025 Edition）</b>，收录的还是同样 11 个扩，差别主要在美术刷新，<b>不是内容升级，没必要为此换代</b>。<br>⚠ 顺带澄清一个容易混的地方：<b>Big Box 2 / 3 / 4…</b> 指历次合集版（2008、2010、2012…收录的扩各不同）；<b>2.0 / 3.0 / 3.1</b> 指本体美术改版（2.0＝2014，3.0＝2021-2022，3.1＝2025）。两套编号不是一回事。',
+     'This is the <b>2022 edition</b>, i.e. the 3.0 Big Box. <b>It is not the newest</b> — a <b>Big Box V3.1 (2025 Edition)</b> arrived in 2025 with the same 11 expansions; the difference is an art refresh, <b>not new content, so it is not worth replacing for</b>.<br>⚠ A clarification worth keeping: <b>Big Box 2 / 3 / 4…</b> are successive compilation editions (2008, 2010, 2012 — each with different expansions), while <b>2.0 / 3.0 / 3.1</b> are art revisions of the base game (2.0 = 2014, 3.0 = 2021-22, 3.1 = 2025). The two numbering systems are unrelated.']}
+ ],
+ notes:[
+  ['大盒＝本体 + <b>11 个扩展</b>：河流、修道院院长、大教堂与旅店、猪与建筑师、飞艇、法令、渡船夫、金矿、魔法师与女巫、盗贼、麦田怪圈。',
+   'The Big Box is the base game plus <b>11 expansions</b>: The River, The Abbot, Cathedrals &amp; Inns, Pig &amp; Builder, Airships, The Decree, The Ferryman, The Gold Mine, Mage &amp; Witch, The Robbers and Crop Circles.'],
+  ['2–6 人 / 7+ / 约 35 分钟。2001 年德国年度游戏奖。','2–6 players / 7+ / about 35 minutes. Spiel des Jahres 2001.'],
+  ['新天鹅堡出繁中版（《卡卡頌3.0大盒版》）；简中版情况待确认。',
+   'Swan Panasia publishes the Traditional Chinese edition (卡卡頌3.0大盒版); the Simplified Chinese situation is unconfirmed.']
+ ]
+},
+{
+ id:'deepsea', py:'S', hl:'英', style:'毛', bgg:null, sell:['不收集 Oink 小盒','Not collecting the Oink small-box line'], name:['深海探险 Deep Sea Adventure','Deep Sea Adventure'],
+ cat:['推运气','Push your luck'], owned:true,
+ have:['Oink Games 小盒','Oink Games small box'],
+ buy:[],
+ notes:[
+  ['Oink Games，2014 年出，2–6 人 / 约 30 分钟。潜水员共用一罐氧气去海底捞宝，谁潜得越深氧气掉得越快 —— 典型的「再贪一口还是现在收手」。',
+   'Oink Games, 2014, 2–6 players / about 30 minutes. Divers share one oxygen tank while hauling treasure off the sea floor, and the deeper anyone goes the faster it drains — a pure one-more-turn-or-quit game.'],
+  ['得过 Game Market 大奖、Family Gaming Award、Major Fun Award，累计印量 30 万盒以上。',
+   'Winner of the Game Market Prize, a Family Gaming Award and a Major Fun Award; over 300,000 copies printed.']]
+},
+{
+ id:'cheesethief', py:'N', hl:'中', style:'毛', bgg:null, name:['奶酪大盗 Cheese Thief','Cheese Thief'],
+ cat:['身份推理','Social deduction'], owned:true,
+ have:['本体','Base game'],
+ buy:[],
+ notes:[
+  ['4–8 人 / 约 10 分钟。天黑闭眼，有人偷走桌上的奶酪，然后全体讨论投票抓贼 —— 狼人杀的极简版，一局十分钟。',
+   '4–8 players / about 10 minutes. Eyes close, someone steals the cheese from the table, then everyone argues and votes on who took it — a stripped-down Werewolf that fits in ten minutes.'],
+  ['和<a href="#/g/werewolf">狼人杀</a>、<a href="#/g/bingleng">冰冷的她醒来之前</a> 同一挂，但轻得多，适合暖场或人到齐之前先开一局。',
+   'Same lane as <a href="#/g/werewolf">Werewolf</a> and <a href="#/g/bingleng">冰冷的她醒来之前</a>, but far lighter — good as a warm-up or while waiting for everyone to arrive.']
+ ]
+},
+{
+ id:'kittens', py:'B', hl:'英', style:'毛', bgg:null, name:['爆炸猫：灾难菜谱','Exploding Kittens: Recipes for Disaster'],
+ cat:['轻策／派对','Light / party'], owned:true,
+ have:['本体','Base game'],
+ buy:[],
+ notes:[['✅ <b>内容已查清</b>：<b>完全独立成盒</b>，不需要爆炸猫本体。收录 <b>121 张精选卡</b> —— 从爆炸猫本体、各个扩展、Imploding Kittens 以及手机版里挑出来的，另加 <b>13 本食谱手册</b>（13 种玩法变体）和一个 Cone of Shame。',
+     '✅ <b>Contents confirmed </b>: <b>fully standalone</b> — the base Exploding Kittens is not needed. It holds <b>121 curated cards</b> drawn from the base game, its expansions, Imploding Kittens and the app, plus <b>13 recipe booklets</b> offering 13 game modes, and a Cone of Shame.'],
+     ['所以<b>没有扩展需要补</b> —— 它本身就是精选合集。',
+     'So <b>there is nothing to add</b> — it is already the curated collection.']]
+},
+{
+ id:'catpuzzle', py:'J', hl:'-', style:null, bgg:null, name:['教堂猫拼图','Cathedral cat jigsaw puzzle'],
+ cat:['拼图','Jigsaw'], owned:true,
+ have:['<b>待拼</b> —— 还没开封动手','<b>Not yet built</b> — still unopened'],
+ buy:[],
+ todo:[['有空补一下：品牌、片数、成品尺寸 —— 拼图这些信息决定要多大桌面，值得记。',
+     'Worth filling in when convenient: brand, piece count and finished size — those decide how much table it needs.']],
+ notes:[['不是桌游，和<a href="#/g/cards">扑克牌</a>一样登记在册。',
+     'Not a board game; inventoried here the same way as the <a href="#/g/cards">playing cards</a>.']]
+},
+{
+ id:'dicecups', py:'S', hl:'-', style:null, bgg:null, sell:['二十个骰子 + 两个骰盅','Twenty dice and two dice cups'],
+ name:['骰子 ×20 + 骰盅 ×2','Dice ×20 and dice cups ×2'],
+ cat:['配件','Accessories'], owned:true,
+ have:['二十个骰子、两个骰盅','Twenty dice and two dice cups'],
+ buy:[]
+},
+{
+ id:'rocket', py:'B', hl:'中', style:'毛', bgg:null, name:['宝可梦：谁是火箭队？','Pok&eacute;mon: Who is Team Rocket?'],
+ cat:['身份推理','Social deduction'], owned:true,
+ have:['<b>中文版</b>','The <b>Chinese</b> edition'],
+ buy:[],
+ todo:[['补一下人数、时长和玩法梗概 —— 这条目前只记了名字和语言。',
+     'Fill in player count, playing time and a sketch of how it plays — only the title and language are recorded so far.']],
+ notes:[['宝可梦主题的身份推理，和<a href="#/g/pkmadv">宝可梦奇遇</a>不是一款。',
+     'A Pok&eacute;mon-themed social deduction game, not the same as <a href="#/g/pkmadv">宝可梦奇遇</a>.']]
+},
+{
+ id:'heretoslay', py:'H', hl:'-', style:'毛', bgg:null, name:['Here to Slay','Here to Slay'],
+ cat:['轻策／派对','Light / party'], owned:false,
+ buy:[{item:['<b>大盒版</b>（要买就买这个）','<b>The big box</b> — nothing smaller'],
+    kind:K_NEW, lang:L_EN, where:['等零售版 / 众筹代订商','Retail when it lands, or a crowdfunding reseller'], bucket:'maybe',
+    note:['<b>不急</b> —— 要买就买大盒；众筹已错过，慢慢等','<b>No hurry</b> — the big box or nothing; the campaign is missed, so waiting is fine']}],
+ blocks:[
+  {h:['⚠ 众筹窗口已关','⚠ The crowdfunding window has closed'],
+   sub:['<b>确认：Dungeons 那场已经赶不上了。</b>Gamefound 的 pledge manager 兼 late pledge 是 <b>5 月 4 日开、6 月 26 日关</b>，官方评论区在 9 月也说了「pledge manager 几周前就关了，要确认订单数量」。现在没法补票。',
+     '<b>Confirmed: the Dungeons campaign is out of reach.</b> The Gamefound pledge manager and late pledge ran from <b>4 May to 26 June</b>, and comments in September confirm it closed weeks ago so they could lock order quantities. There is no way back in.'],
+   table:{head:[['还剩的路','Remaining route'],['说明','Notes']], rows:[
+   [['<b>等零售版</b>','<b>Wait for retail</b>'],['众筹游戏发完货之后通常会出零售版，一般<b>不含众筹独占内容</b>。Unstable Games 这条线零售铺得挺广，等得到','Crowdfunded games usually reach retail after fulfilment, typically <b>without the campaign exclusives</b>. Unstable Games distributes this line widely, so retail is a realistic wait']],
+   [['<b>众筹代订商</b>','<b>Crowdfunding resellers</b>'],['The Game Steward 这类商家专门囤众筹版转卖，包括独占内容 —— 他们已经在卖 Here to Slay 的 Kickstarter 套装。<b>价格会加价</b>','Shops like The Game Steward stock campaign editions with the exclusives — they already list Here to Slay Kickstarter bundles. <b>Expect a markup</b>']],
+   [['<b>二手</b>','<b>Secondhand</b>'],['等支持者收到货之后出，eBay / BGG Marketplace','Once backers receive their copies, eBay and the BGG Marketplace']]
+   ]},
+   after:['✅ <b>已定：观望，不急，要买就买大盒版。</b>你家里还没有 Here to Slay 任何一盒，这是从零进一个新系列 —— 而且 Dungeons 是<b>纯合作地牢探险</b>，和你已有的<a href="#/g/pandemiclegacy">瘟疫危机传承</a>、<a href="#/g/oathsworn">誓约者</a>、<a href="#/g/arkham">诡镇奇谈</a>在「合作战役」这一格是重叠的。按你「同类只留一个」的原则，值得先想清楚它比这几个强在哪。<br>如果想要，最省心是等零售版。',
+      '✅ <b>Decided: watching, no hurry, and only the big box.</b> Nothing from Here to Slay is owned yet, so this means starting a new line from scratch — and Dungeons is a <b>purely co-operative dungeon crawl</b>, overlapping the co-op campaign slot already filled by <a href="#/g/pandemiclegacy">Pandemic Legacy</a>, <a href="#/g/oathsworn">Oathsworn</a> and <a href="#/g/arkham">Arkham Horror</a>. Under the one-per-niche rule, it is worth deciding what it does better than those first.<br>If it is still wanted, waiting for retail is the simplest path.']},  {h:['众筹情况','The crowdfunding picture'],
+   sub:['Unstable Games 这两年开得很密，<b>不止一场</b>，得先弄清你说的是哪个：',
+     'Unstable Games has run these back to back, and there is <b>more than one</b>, so it is worth pinning down which is meant:'],
+   table:{head:[['场次','Campaign'],['时间','When'],['规模','Scale'],['是什么','What it is']], rows:[
+   [['<b>Here to Slay Dungeons</b>','<b>Here to Slay Dungeons</b>'],['2026 春','Spring 2026'],['$2.1M，10 万目标 2 分钟内达成','$2.1M; the $100k goal was met in under two minutes'],['<b>纯合作的地下城探险</b>，2–4 人。三个独立核心盒，每盒 4 英雄 / 6 个技能学派 / 2 张模块化地牢 / 4 个 boss，多盒可混玩','A <b>purely co-operative dungeon crawl</b> for 2-4. Three standalone core boxes, each with four heroes, six ability schools, two modular dungeons and four bosses; boxes mix freely']],
+   [['第十场众筹','The tenth campaign'],['2026 年 3 月','March 2026'],['<b>$6,684,949</b>，1 分 40 秒达标','<b>$6,684,949</b>, funded in one minute forty'],['本线的大型众筹','A major campaign on the main line']],
+   [['第九场众筹','The ninth campaign'],['2025 年 10 月','October 2025'],['$1,781,134，9,847 支持者，4 分钟达标','$1,781,134 from 9,847 backers, funded in four minutes'],['同上','Same line']]
+   ]},
+   after:['⚠ <b>两点要注意</b>：① <b>Dungeons 是独立游戏，不是扩展</b> —— 它是纯合作地牢探险，和本线的对抗玩法是两回事，按「独立游戏不算补完」的规则，它得当新游戏看。② 家里<b>还没有 Here to Slay 任何一盒</b>，所以这是从零开始进一个新系列。<br><b>先告诉我你说的是哪一场</b>，我再去查那一场的 late pledge 还开不开、内容和价格。',
+      '⚠ <b>Two things to note</b>: first, <b>Dungeons is a standalone game, not an expansion</b> — a co-operative dungeon crawl rather than the competitive main line, so under the standalone rule it counts as a new game. Second, <b>nothing from Here to Slay is owned yet</b>, so this means entering a new line from scratch.<br><b>Say which campaign is meant</b> and the late-pledge status, contents and price for that one can be checked.']}
+ ]
+},{
+ id:'lifeboat', py:'H', hl:'英', style:'毛', bgg:null, name:['骇浪求生 Lifeboat','Lifeboat'],
+ cat:['身份推理','Social deduction'], owned:true,
+ have:['<b>25 周年豪华纪念版</b> Deluxe 25th Anniversary（含三个官方扩）。<b>盒上有设计师 Jeff Siadek 亲笔签名</b>，题词 "Ahoy!"','The <b>Deluxe 25th Anniversary Edition</b>, with all three official expansions. <b>Signed on the box by the designer, Jeff Siadek</b>, inscribed "Ahoy!"'],
+ buy:[],
+ notes:[['<b>别名</b>：中文圈两个名字都在用 —— 新天鹅堡的中文版叫《駭浪求生》，旧名《怒海求生》，是同一个游戏。没有官方简体中文版，手上这盒是英文的。',
+   '<b>Also known as</b>: both Chinese names are in circulation — Swan Panasia&rsquo;s edition is 駭浪求生, previously 怒海求生, the same game. There is no official Simplified Chinese edition; this copy is the English one.']],
+ blocks:[
+  {h:['两个版本哪个更全','Which edition is more complete'],
+   sub:['<b>结论：25 周年豪华版更全，而且差得不少。</b>Lifeboat 官方一共三个扩，两个版本都收齐了这三个 —— 差别在于豪华版还额外加了东西。',
+     '<b>Verdict: the 25th Anniversary Deluxe is the fuller one, by a clear margin.</b> Lifeboat has three official expansions and both editions include all three — the difference is everything the Deluxe adds on top.'],
+   table:{head:[['内容','Content'],['新天鹅堡 大盒版','Swan Panasia Big Box'],['25 周年豪华版','25th Anniversary Deluxe']], rows:[
+   [['本体','Base game'],['✅','✅'],['✅','✅']],
+   [['扩一 人吃人 Cannibalism（第 7 角色 Dr. Harter）','Expansion 1: Cannibalism (7th character, Dr. Harter)'],['✅','✅'],['✅','✅']],
+   [['扩二 藉酒壮胆 Liquid Courage（第 8 角色 Madame Wong）','Expansion 2: Liquid Courage (8th character, Madame Wong)'],['✅','✅'],['✅','✅']],
+   [['扩三 天气牌库 Weather Deck','Expansion 3: Weather Deck'],['✅','✅'],['✅ 升级为 Harter Weather Deck','✅ upgraded to the Harter Weather Deck']],
+   [['<b>新角色 Amelia（领航员）</b>','<b>New character: Amelia the Navigator</b>'],['❌','❌'],['<b>✅</b>','<b>✅</b>']],
+   [['<b>新补给</b>：鱼子酱、救生衣、鱼钩、信天翁、小提琴','<b>New provisions</b>: caviar, life jacket, fish hook, albatross, violin'],['❌','❌'],['<b>✅</b>','<b>✅</b>']],
+   [['<b>图板</b>','<b>Game board</b>'],['❌','❌'],['<b>✅</b>','<b>✅</b>']],
+   [['<b>模切标记</b>','<b>Die-cut tokens</b>'],['❌','❌'],['<b>✅</b>','<b>✅</b>']],
+   [['规则','Rules'],['原版规则','The original rules'],['<b>修订版，彩色图示带范例</b>','<b>Revised, in colour with worked examples</b>']],
+   [['语言','Language'],['<b>中文</b>','<b>Chinese</b>'],['英文','English']],
+   [['盒型','Packaging'],['大盒','Big box'],['8×5 雪茄盒造型，银色烫边','8×5 cigar-box format with silver-inked borders']]
+   ]},
+   after:['✅ <b>所以选了 25 周年豪华版</b>—— 中文大盒版没考虑。<br>取舍很清楚：要内容最全就是 25 周年豪华版（多一个角色、五样新补给、一块图板、模切标记、修订规则）；要中文就是新天鹅堡大盒版。两者的三个扩是一样的，差的是豪华版那些额外内容。',
+      '✅ <b>Hence the 25th Anniversary Deluxe</b> — the Chinese Big Box was never in the running.<br>The trade-off was clean: for maximum content it is the 25th Anniversary Deluxe (an extra character, five new provisions, a board, die-cut tokens, revised rules); for Chinese text it is the Swan Panasia Big Box. The three expansions are the same in both — everything else is what the Deluxe adds.']},
+  {h:['这一版是什么来头','Where this edition came from'],
+   sub:['<b>25 周年豪华纪念版</b>由 Gorilla Board Games 众筹后转零售，2025 年 9 月起发货。<b>把所有扩展都做进了本体</b>，另加彩色图示规则、图板、模切标记、新角色和新补给。<br>另外中文这边有<b>新天鹅堡《駭浪求生大盒版》</b>（原名《怒海求生》），含本体 + 食人族 + 荷兰式勇气 + 天气卡三扩 —— 但那是<b>另一条线</b>，不是 25 周年版。',
+     'The <b>Deluxe 25th Anniversary Edition</b> came from a Gorilla Board Games campaign and moved to retail, shipping from September 2025. <b>Every expansion is folded into the base game</b>, alongside colour rules with examples, a board, die-cut tokens, new characters and new provisions.<br>Separately, Swan Panasia publishes a Chinese <b>Lifeboat Big Box</b> (originally 怒海求生) with the base game plus Cannibalism, Dutch Courage and the weather cards — but that is <b>a different line</b>, not the 25th anniversary edition.']}
+ ]
+},
+{
+ id:'citadels', py:'R', hl:'英', style:'德', bgg:7.2, name:['荣耀之城 Citadels（旧名 富饶之城）','Citadels'],
+ cat:['身份角色／建造','Role selection &amp; building'], owned:true,
+ have:['<b>2016 版</b>（盒背印 2016）—— 这是<b>最全的一版</b>','The <b>2016 edition</b> (dated on the box back) — <b>the comprehensive one</b>'],
+ buy:[],
+ blocks:[
+  {h:['2016 版 vs 2021 Revised —— 你的更好','2016 vs the 2021 Revised — the older one is better, corrected 2026-09-02'],
+   sub:['Z-Man 出过英文的 <b>Citadels (2021 Revised Edition)</b>（SKU ZC01，2–8 人 / 30–60 分钟 / 10+，约 CAD$29.95）。<br><b>但好消息是：你手上 2016 那盒反而是更好的一版。</b>',
+     'Z-Man published an English <b>Citadels (2021 Revised Edition)</b> (SKU ZC01, 2-8 players / 30-60 minutes / 10+, around CAD$29.95).<br><b>The good news: the 2016 copy on the shelf is the better one.</b>'],
+   table:{head:[['','',''],['2016 版（你有的）','2016 edition (owned)'],['2021 Revised','2021 Revised']], rows:[
+   [['游戏内容','Game content'],['27 角色 / 30 建筑','27 characters, 30 districts'],['<b>完全相同</b>，没有新内容','<b>Identical</b> — nothing new']],
+   [['卡牌尺寸','Card size'],['<b>大卡</b>','<b>Larger cards</b>'],['缩到标准扑克尺寸，为了塞进小盒','Reduced to standard playing-card size to fit a compact box']],
+   [['模切配件','Die-cut components'],['<b>有模切件</b>','<b>Die-cut pieces</b>'],['<b>改成迷你卡片</b>','<b>Replaced with mini cards</b>']],
+   [['塑料金币 / 王冠','Plastic coins and crown'],['有','Yes'],['保留','Retained']],
+   [['盒型 / 定价','Box and price'],['大盒，US$34.99','Larger box, US$34.99'],['小盒，US$29.99','Compact box, US$29.99']]
+   ]},
+   after:['✅ <b>结论：不要换。</b>2021 版名字叫「Revised」，实际是<b>更便携、更便宜、配件缩水</b>的版本 —— 卡变小、模切件变卡片。玩法一模一样，所以升级过去只有降级没有增益。<br>这恰好是「优先大盒／新版」那条原则的<b>反例</b>：<b>新≠更好，得看新版到底改了什么</b>。<br>⚠ 顺带：中文的「荣耀之城：修订版」（2021）多半就是基于这个紧凑版，如果哪天想收中文版，得知道卡是小的。',
+      '✅ <b>Verdict: do not switch.</b> Despite the name, the 2021 Revised is the <b>more portable, cheaper, component-reduced</b> version — smaller cards, die-cuts turned into cards. The game plays identically, so moving to it would be a downgrade with no gain.<br>This is the counter-example to the prefer-the-newest instinct: <b>newer is not automatically better — it depends what changed</b>.<br>⚠ Also worth knowing: the Chinese 荣耀之城：修订版 (2021) is most likely built on this compact version, so a Chinese copy would come with the smaller cards.']},
+   {h:['和 Oriflamme（富饶之城2）到底差在哪 + 网上评价','How it differs from Oriflamme, and what people say'],
+   sub:['两者<b>机制完全不同</b>，Oriflamme 也<b>不是 Citadels 的续作</b> —— 中文取名叫「富饶之城2」纯粹是营销。',
+     'The two play <b>nothing alike</b>, and Oriflamme is <b>not a sequel</b> — the Chinese name 富饶之城2 is purely a marketing choice.'],
+   table:{head:[['','',''],['荣耀之城 Citadels','Citadels'],['富饶之城2 Oriflamme','Oriflamme']], rows:[
+   [['人数 / 时长','Players / length'],['2–7（扩至 8），<b>最佳 5 人</b>；20–60 分钟','2-7 (8 with expansions), <b>best at five</b>; 20-60 minutes'],['2–5；15–30 分钟','2-5; 15-30 minutes']],
+   [['核心机制','Core mechanic'],['<b>角色选择</b> + 建造城区','<b>Role selection</b> plus city building'],['<b>行动排队 programming</b> + 隐藏身份','<b>Action queue programming</b> with hidden roles']],
+   [['怎么玩','How a turn goes'],['每轮秘密选一个角色，按角色顺序结算，用能力赚钱造楼；先建满 8 区（多人 7 区）触发终局','Each round you secretly draft a character; they resolve in fixed order, earning gold and building districts. Finishing eight districts (seven at higher counts) triggers the end'],['影响力卡<b>背面朝下</b>插进桌面那一排的最左或最右，然后从左到右依次揭示结算；6 轮后影响力最高者胜','You slot an influence card <b>face down</b> at either end of a shared row, then the row resolves left to right; after six rounds the most influence wins']],
+   [['手感','Feel'],['猜身份、心理战、慢热','Reading people, psychological, slow-burning'],['<b>快、狠、互动强</b>，单张卡就能翻盘','<b>Fast, sharp and confrontational</b> — one card can swing it']],
+   [['BGG','BGG'],['<b>7.2</b>，排名 #573','<b>7.2</b>, ranked #573'],['<b>7.10</b>，排名 #1205','<b>7.10</b>, ranked #1205']]
+   ]},
+   after:['<b>网上评价</b><br>• <b>Citadels</b>：公认经典常青，深度来自角色互动，「常常玩到最后变成心理战」。批评集中在<b>回合等待久、玩家互动少、节奏偏慢</b>；2016 版换美术也有人不买账（认为毁了原版画风、卡牌管理变繁琐），但新角色普遍算加分。<br>• <b>Oriflamme</b>：定位是<b>优质小品（filler）</b>，规则简单但张力足，take-that 味重，适合垫场。<br>🚫 <b>已决定：Oriflamme 不要</b>—— 隐藏身份／推理这一格已经很满（阿瓦隆、狼人杀、一夜狼人、奶酪大盗、冰冷的她、忍者之夜、Dark Cities、小黑屋，观望里还有政变和弑血盟约）。',
+      '<b>What people say</b><br>• <b>Citadels</b>: widely held as an enduring classic whose depth comes from the character interplay, and which tends to turn psychological by the end. The complaints are consistent: <b>long waits between turns, limited interaction, slow pacing</b>. The 2016 art change also split opinion — some feel it lost the original look and made card handling fussier — though the new characters are generally welcomed.<br>• <b>Oriflamme</b>: regarded as a <b>strong filler</b> — simple rules, real tension, plenty of take-that, good for opening or closing a night.<br>🚫 <b>Decided: Oriflamme is out</b> — the hidden-role slot is already full (Avalon, Werewolf, One Night, Cheese Thief, 冰冷的她, Night of the Ninja, Dark Cities, Betrayal, plus Coup and Blood Bound on the watch list).']},  {h:['⚠ 中文名的坑：三个名字，两款游戏','⚠ A naming trap: three names, two different games'],
+   sub:['<b>「富饶之城」已经改名叫「荣耀之城」</b> —— 因为代理商换成了 GoKids。<b>荣耀之城：修订版</b>（2021 秋上市）的玩法和内容物，和旧名的<b>富饶之城：加强版一模一样</b>，只是换了名字。<br>但市面上还有一款叫 <b>「富饶之城2」的，玩法完全不同</b>，不是这一款的续作。',
+     '<b>富饶之城 has been renamed 荣耀之城</b> after the distributor changed to GoKids. The <b>荣耀之城 revised edition</b> (autumn 2021) is identical in rules and components to what used to be sold as 富饶之城：加强版 — only the name changed.<br>Meanwhile a game called <b>富饶之城2 exists and plays completely differently</b> — it is not a sequel to this one.'],
+   table:{head:[['中文名','Chinese name'],['英文名','English name'],['是不是这一款','Is it this game?']], rows:[
+   [['荣耀之城（现名）','荣耀之城 (current)'],['<b>Citadels</b>','<b>Citadels</b>'],['✅ 是','✅ Yes']],
+   [['富饶之城（旧名）','富饶之城 (former)'],['<b>Citadels</b>','<b>Citadels</b>'],['✅ 是，同一款','✅ Yes, the same game']],
+   [['富饶之城2','富饶之城2'],['<b>Oriflamme</b>','<b>Oriflamme</b>'],['❌ <b>完全不同的游戏</b>','❌ <b>a completely different game</b>']]
+   ]},
+   after:['<b>判断方法：看英文名。</b>写 Citadels 的就是这一款（不管中文标的是荣耀之城还是富饶之城）；写 <b>Oriflamme</b> 的是另一款游戏。<br>买配件、找规则、上淘宝搜的时候按这个认。',
+      '<b>The test: read the English title.</b> Anything labelled Citadels is this game, whichever Chinese name is printed; anything labelled <b>Oriflamme</b> is a different game entirely.<br>Use that when hunting for accessories, rules or listings.']},  {h:['2016 版＝已经是最全的','The 2016 edition is already the complete one'],
+   sub:['盒背那个 2016 是个好消息 —— <b>这一版把原版和黑暗之城扩合并了，还加了全新内容</b>，所以<b>没有扩展需要补</b>。',
+     'That 2016 on the box is good news — <b>this edition merges the original game with the Dark City expansion and adds new material on top</b>, so <b>there is nothing left to add</b>.'],
+   table:{head:[['内容','Content'],['数量','Count'],['来源','Where from']], rows:[
+   [['角色卡','Characters'],['<b>27 个</b>','<b>27</b>'],['原版 8 个 + 黑暗之城扩 10 个 + <b>全新 9 个</b>','8 from the original, 10 from Dark City, and <b>9 brand new</b>']],
+   [['建筑区块','Building districts'],['<b>30 种</b>','<b>30</b>'],['含 12 个新增','including 12 new ones']],
+   [['美术','Artwork'],['全部重绘','Entirely new'],['','']],
+   [['预设阵容','Preset line-ups'],['6 套','Six'],['规则书里给了 6 组角色／建筑搭配，各自玩感不同','The rulebook offers six character-and-district line-ups, each with a different feel']]
+   ]},
+   after:['✅ <b>结论：齐全，不用补任何扩。</b>这正好符合「优先大盒／新版」那条 —— 你手上已经是合并版了。<br>⚠ 名字上留意：零售商有时把这一版叫 <b>Revised Edition</b> 或 <b>Deluxe Revised Edition</b>，指的都是这同一版，别被名字绕进去重复买。',
+      '✅ <b>Verdict: complete — no expansion to chase.</b> This is exactly the fullest-edition preference already satisfied.<br>⚠ A naming note: retailers sometimes list this as the <b>Revised Edition</b> or <b>Deluxe Revised Edition</b>; those refer to the same edition, so do not buy it twice under a different name.']}
+ ],
+ notes:[['2–7 人（扩至 8），<b>最佳 5 人</b>；20–60 分钟。选角色、抽建筑、抢先建满城区，核心是每轮猜别人选了谁。经典角色选择类。',
+     '2-7 players (8 with expansions), <b>best at five</b>; 20-60 minutes. Draft a character, take districts and race to finish your city — the heart of it is guessing which role everyone else took. A role-selection classic.']]
+},{
+ id:'cards', py:'P', hl:'-', bgg:null, name:['扑克牌 ×8','Playing cards ×8'],
+ cat:['纸牌','Card decks'], owned:true,
+ have:['八盒扑克','Eight decks'],
+ buy:[],
+ notes:[
+  ['不是桌游，但登记在册：八盒够开德州，也够给别的桌游当替代计数物。',
+   'Not a board game, but inventoried anyway: eight decks covers poker night and doubles as replacement counters for other games.'],
+  ['牌背／品牌没记录，需要的话再补。','Backs and brands are not recorded — can be filled in if it ever matters.']
+ ]
+},
+{
+ id:'dasong', py:'D', hl:'中', style:'德', bgg:null, name:['大宋百商图：过年好','A Dream of Splendor in Song Dynasty: Happy New Year'],
+ cat:['模拟经营','Economic'], owned:true,
+ have:['<b>过年好版</b>（鳐鳐鱼 yaofish 出品）—— <b>含少东家扩</b>','The <b>Happy New Year edition</b> from 鳐鳐鱼 yaofish — <b>includes the 少东家 expansion</b>'],
+ buy:[],
+ notes:[
+  ['国产原创。玩家是宋代一条商业街的新任少东家，开店、经营家族生意，目标是还清 50 两银子的欠债，把街市盘活。',
+   'An original Chinese design. You play the new young master of a Song-dynasty shopping street, opening shops and running the family business to clear a 50-tael debt and bring the street back to life.'],
+  ['<b>过年好版＝新春豪华版</b>，在常规版基础上加了拓展包：多一个<b>竞拍阶段</b>，还给玩家安上「高门大户」身份。参考价 269 元包邮。',
+   '<b>The Happy New Year edition is the deluxe New Year printing</b>: it adds an expansion over the standard version, bringing an <b>auction phase</b> and giving each player a noble-house identity. Around ¥269 shipped.'],
+  ['同系列另有 <b>《大宋百商图：扩展版》</b>，是<b>另一个产品</b>，不是这盒的扩展包。',
+   'The line also has <b>A Dream of Splendor in Song Dynasty: Expanded</b>, which is a <b>separate product</b>, not an expansion for this box.'],
+  ['出版社官网 yaofishgames.com。<a href="#/g/modernart">现代艺术 华夏豪华版</a> 也是从鳐鳐鱼这边买的 —— 同一家，可以合并下单问运费。',
+   'Publisher site: yaofishgames.com. <a href="#/g/modernart">Modern Art (Huaxia deluxe)</a> comes from the same shop — worth combining an order to save on shipping.']
+ ]
+},
+{
+ id:'lorcana', py:'D', hl:'英', bgg:null,
+ sell:['<b>Costco 限定套装</b>，含红框米奇 promo —— <b>是否已拆、品相待补</b>',
+    '<b>The Costco exclusive bundle</b> with the red-bordered Mickey promo — <b>sealed-or-opened and condition still to record</b>'],
+ name:['Disney Lorcana（Costco 红米奇限定套装）','Disney Lorcana — Costco exclusive bundle'],
+ cat:['集换式卡牌','Trading card game'], owned:true,
+ have:['Costco 限定套装','The Costco exclusive bundle'],
+ buy:[],
+ todo:[['<b>确认是哪一个 Costco 套装</b> —— 带红框米奇的是 <b>Into the Inklands</b> 那个（2025-01 上市）；Costco 另有一个 The First Chapter 收藏套装，promo 不一样。挂出去之前先对一下盒子。',
+     '<b>Confirm which Costco bundle this is</b> — the red-bordered Mickey comes with the <b>Into the Inklands</b> bundle (on sale from January 2025); Costco also carried a First Chapter Collector Set with a different promo. Check the box before listing it.']],
+ notes:[
+  ['Into the Inklands 的 Costco 限定套装内容：<b>4 包补充包 + 2 副单人起始牌组</b>（每副再附 1 包）<b>+ 红框米奇 promo</b>（Mickey Mouse – Pirate Captain，与 Azurite Sea 同图同文，红边框 + glimmer 闪工艺）。',
+   'The Into the Inklands Costco bundle holds <b>four booster packs and two single-player starter decks</b> (each with a booster of its own) <b>plus the red-bordered Mickey promo</b> — Mickey Mouse – Pirate Captain, the Azurite Sea artwork and text in a red frame with glimmer foiling.'],
+  ['<b>没有官方简体中文版</b> —— Lorcana 未出简中，中文名都是民间叫法，挂二手时按英文名写更好找。',
+   '<b>No official Simplified Chinese edition</b> — Lorcana has never had one, so any Chinese name is a community rendering; list it under the English name.']
+ ]
+},
+{
+ id:'ptcg', py:'B', hl:'英', bgg:null, name:['宝可梦集换式卡牌 Pokémon TCG','Pokémon TCG'],
+ cat:['集换式卡牌','Trading card game'], owned:true,
+ have:['详见 <a href="pokemon-tcg/宝可梦清单.html">🃏 宝可梦 TCG 清单</a>','See the <a href="pokemon-tcg/宝可梦清单.html">🃏 Pokémon TCG list</a>'],
+ buy:[]
+},
+{
+ id:'onenight', py:'Y', hl:'英', style:'毛', bgg:null, name:['一夜终极狼人 One Night Ultimate Werewolf','One Night Ultimate Werewolf'],
+ cat:['身份推理','Social deduction'], owned:true,
+ have:['本体','Base game'],
+ buy:[],
+ notes:[
+  ['狼人杀的十分钟版：<b>没有出局、没有法官轮流点名</b>，一整局只有一个夜晚，天亮直接投票。3–10 人。',
+   'Werewolf compressed to ten minutes: <b>no elimination and no moderator calling round after round</b> — a single night, then straight to the vote. 3–10 players.'],
+  ['和<a href="#/g/werewolf">狼人杀</a>、<a href="#/g/cheesethief">奶酪大盗</a> 同属一挂，但节奏最快，适合垫场或收尾。',
+   'Same family as <a href="#/g/werewolf">Werewolf</a> and <a href="#/g/cheesethief">Cheese Thief</a>, but the quickest of them — good for filling a gap or closing the night.']
+ ]
+},
+{
+ id:'munchkin', py:'M', hl:'英', style:'毛', bgg:null, name:['芒奇金 大盒版 Munchkin（中文作《小白世纪》）','Munchkin Big Box'],
+ cat:['轻策／派对','Light / party'], owned:true,
+ have:['<b>25 周年 Collector&rsquo;s Edition 众筹版</b>（含加购件）—— 本体 + 六个扩，另含两块图板、木质 meeple、六颗骰子、收纳盘','The <b>Big Box</b> (25th-anniversary Collector&rsquo;s Edition) — base game plus six expansions, with two boards, wooden meeples, six dice and a storage tray'],
+ buy:[],
+ blocks:[
+  {h:['大盒里有什么','What is in the Big Box'],
+   sub:['<b>已凭封面确认</b>：红盒，喷火龙 + 举剑小人，盒面印 <b>Collector&rsquo;s Edition</b>、Killing Monsters &amp; Stealing Treasure since 2001、Steve Jackson Games、John Kovalic 绘 —— 就是这一款。<br><b>25 周年 Collector&rsquo;s Edition</b>，全部由原画师 John Kovalic 重绘。除了 650+ 张卡，还含 <b>两块图板、木质 meeple、六颗骰子、收纳盘</b>。盒子本身能装 2000+ 张卡加配件。<br>✅ <b>已确认是众筹版，含加购件</b>（当年有巨型等级骰、红色 neoprene 桌垫、名人堂白板卡等）—— 所以内容比零售大盒更多。',
+     'The <b>25th-anniversary Collector&rsquo;s Edition</b>, confirmed from the box art : a red box with a fire-breathing dragon and a sword-wielding adventurer, marked Collector&rsquo;s Edition, Killing Monsters &amp; Stealing Treasure since 2001, Steve Jackson Games, illustrated by John Kovalic. Wholly redrawn by Kovalic; beyond the 650+ cards it carries <b>two game boards, wooden meeples, six dice and a storage tray</b>, and the box holds 2,000+ cards plus accessories.<br>✅ <b>Confirmed as the crowdfunding edition, add-ons included</b> (the colossal level die, red neoprene playmat, Hall of Fame dry-erase card and so on) — so it holds more than the retail Big Box.'],
+   table:{head:[['收录内容','Included'],['说明','Note']], rows:[
+   [['Munchkin 本体','Munchkin, the base game'],['','']],
+   [['Munchkin 2 – Unnatural Axe','Munchkin 2 – Unnatural Axe'],['','']],
+   [['Munchkin 3 – Clerical Errors','Munchkin 3 – Clerical Errors'],['','']],
+   [['Munchkin 6 – Double Dungeons','Munchkin 6 – Double Dungeons'],['','']],
+   [['Munchkin Bosses','Munchkin Bosses'],['','']],
+   [['Munchkin Side Quests','Munchkin Side Quests'],['','']],
+   [['Munchkin Side Quests 2','Munchkin Side Quests 2'],['','']],
+   [['新图板、新立牌','New boards and standees'],['大盒独有','Exclusive to the Big Box']]
+   ]},
+   after:['⚠ <b>中文名别搞混</b>：这款是 <b>《小白世纪》</b>（Steve Jackson 的卡牌游戏）。<b>《小白地下城》是另一款游戏</b> —— CMON 出品、Eric M. Lang 设计的<b>带模型的版图游戏</b>，众筹 70 万美元，和这盒没关系。已确认你这盒<b>只有卡片、没有模型</b>，所以是小白世纪这条线。<br>⚠ <b>很可能是 BackerKit 众筹版，加了加购项</b>（当年有巨型等级骰、红色 neoprene 桌垫、名人堂白板卡等）。<b>上面那张收录表是零售大盒的固定内容，你的盒子可能更多</b>，翻到加购件记得补上来。<br>⚠ <b>Munchkin 4、5、7 不在盒里</b> —— 想补的话是这几个。别的编号扩和主题版（星际芒奇金、克苏鲁芒奇金等）都是独立线，不算这盒的补完。',
+      '⚠ <b>Do not confuse the Chinese names</b>: this is <b>小白世纪</b>, the Steve Jackson card game. <b>小白地下城 is a different game</b> — Munchkin Dungeon, a CMON <b>miniatures board game</b> designed by Eric M. Lang that raised \. Confirmed this box holds <b>cards only, no miniatures</b>, so it is the card-game line.<br>⚠ <b>Most likely the BackerKit edition with add-ons</b> (there were a colossal level die, a red neoprene playmat, a Hall of Fame dry-erase card and more). <b>The table above lists the fixed retail contents; this copy may hold more</b>, so add anything extra when it turns up.<br>⚠ <b>Munchkin 4, 5 and 7 are not included</b> — those are the ones to add if you want more. Other numbered sets and the themed lines (Star Munchkin, Munchkin Cthulhu and so on) are separate products, not completions of this box.']}
+ ],
+ notes:[['Steve Jackson Games 的经典吐槽向地城游戏：打怪升级、互相拆台，规则轻但局时可以拖很久。',
+     'The Steve Jackson Games dungeon-parody staple: level up by killing monsters while sabotaging everyone else. Light rules, but games can run long.']]
+},
+{
+ id:'monopolywood', py:'M', hl:'英', style:'毛', bgg:null, sell:['七合一<b>木制</b>游戏柜，重，本地自提','A 7-in-1 <b>wooden</b> game cabinet — heavy, local pickup only'],
+ name:['大富翁 豪华木制版','Monopoly — deluxe wooden edition'],
+ cat:['轻策／家庭','Light &amp; family'], owned:true,
+ have:['<b>七合一木制游戏柜</b> —— 大富翁、Clue、国际象棋、跳棋、多米诺、Cribbage、一副扑克。木框带抽屉，Clue 棋盘做在顶面。','<b>A 7-in-1 wooden game cabinet</b> — Monopoly, Clue, chess, checkers, dominoes, cribbage and a deck of cards, in a wooden frame with a drawer and the Clue board built into the top.'],
+ buy:[],
+
+},
+{
+ id:'monopolyacnh', py:'M', hl:'英', style:'毛', bgg:null, sell:['动物森友会联名版','The Animal Crossing tie-in edition'],
+ name:['大富翁 动物森友会版','Monopoly: Animal Crossing New Horizons'],
+ cat:['轻策／家庭','Light &amp; family'], owned:true,
+ have:['动物森友会联名版','The Animal Crossing: New Horizons tie-in edition'],
+ buy:[],
+ notes:[['和<a href="#/g/monopolyaot">进击的巨人版</a>、<a href="#/g/monopolywood">木制豪华版</a> 一样是大富翁的联名／特装线；这盒决定出掉。',
+     'Another of the Monopoly tie-in and special-edition line alongside <a href="#/g/monopolyaot">Attack on Titan</a> and the <a href="#/g/monopolywood">wooden deluxe</a> — this one is going.']]
+},
+{
+ id:'tajmahal', py:'T', hl:'英', style:'德', bgg:null, sell:['小盒装','Small box'],
+ name:['泰姬陵 Taj Mahal','Taj Mahal'],
+ cat:['竞标','Bidding'], owned:true,
+ have:['本体 —— 版本／语言<b>待确认</b>','Base game — edition / language <b>TBC</b>'],
+ buy:[],
+ notes:[['Reiner Knizia 设计的竞标游戏：出牌争夺印度各邦的影响力，关键在于<b>退出的时机</b> —— 打出去的牌拿不回来，硬拼到底往往是亏的。',
+     'A Reiner Knizia bidding game: play cards to contest influence over Indian provinces, where the real skill is <b>knowing when to drop out</b> — cards played are gone, and fighting every contest to the end usually loses.'],
+     ['和<a href="#/g/modernart">现代艺术</a> 同为 Knizia 的竞拍／竞标一路。',
+     'Same Knizia auction-and-bidding lane as <a href="#/g/modernart">Modern Art</a>.']]
+},
+{
+ id:'sultan', py:'S', hl:'中', style:'美', bgg:null, name:['苏丹的游戏 桌游版','Sultan&rsquo;s Game: the board game'],
+ cat:['卡牌叙事','Narrative card game'], owned:true,
+ have:['<b>豪华版</b>（新物集 × 游卡桌游）—— 2026-09-02 下单，等发货','The <b>deluxe edition</b> from 新物集 with Yoka Games — ordered 2026-09-02, awaiting delivery'],
+ buy:[],
+ todo:[['到货后补：人数、时长、盒内配件、豪华版比常规版多了什么。',
+     'Once it arrives, fill in player count, playing time, components, and what the deluxe edition adds over the standard one.']],
+ notes:[
+  ['改编自双头龙工作室的同名卡牌叙事<b>电子游戏</b>（2P Games 发行，2025-03-30 上 Steam，销量百万级，后来出了手游）。桌游版是游卡桌游 × 双头龙的官方联名。',
+   'Adapted from the narrative card <b>video game</b> of the same name by Double Cross Studio (published by 2P Games, on Steam 2025-03-30, over a million copies, later a mobile release). The board game is an official Yoka Games collaboration with the studio.'],
+  ['原作设定：一千零一夜风格的王国里，你是苏丹的近臣，被迫玩一个致命的抽卡游戏 —— 每周抽「纵欲／奢靡／征服／杀戮」四类苏丹卡之一，七天内完成上面的任务，否则掉脑袋。',
+   'The premise: in an Arabian-Nights kingdom you are a confidant of the Sultan, forced into a lethal card game — each week you draw one of four Sultan cards (Carnality, Extravagance, Conquest, Bloodshed) and have seven days to carry out what it demands, or lose your head.'],
+  ['桌游版评价说还原度高，还加了<b>全新故事</b>（不是照搬电子版剧情）。',
+   'The board game is reported to be a faithful adaptation that also adds <b>an original story</b> rather than replaying the video game plot.']
+ ]
+},
+{
+ id:'millions', py:'B', style:'毛', bgg:null, name:['百万美金 Millions of Dollars','Millions of Dollars'], cat:['身份／谈判','Deduction &amp; negotiation'], owned:false,
+ buy:[{item:['本体','Base game'], kind:K_NEW, lang:L_CN,
+    where:['<b>淘宝 卡卡</b>','<b>Taobao — seller Kaka</b>'], bucket:'plan',
+    note:['卖家已定，可下单','Seller settled — ready to order']}],
+ notes:[
+  ['<b>要的是二版（2nd Edition）</b>，查证：Grail Games 出品，<b>全新美术、人数提到 3–9 人、规则精简</b>，更侧重桌上嘴炮。下单前跟卖家确认是二版。','<b>The 2nd Edition is the one</b> : from Grail Games, with <b>all-new art, the player count raised to 3-9, and streamlined rules</b> that push the table talk further. Confirm with the seller that it is the second edition.'],
+ ]
+},
+{
+ id:'modernart', py:'X', style:'德', bgg:null, name:['现代艺术 Modern Art（华夏豪华版）','Modern Art (Huaxia deluxe edition)'], cat:['竞拍','Auction'], owned:false,
+ buy:[{item:['华夏豪华版本体','Huaxia deluxe edition, base game'], kind:K_NEW, lang:L_CN,
+    where:['<b>鳐鳐鱼 yaofish</b>','<b>Seller Yaoyaoyu</b>'], bucket:'plan',
+    note:['卖家已定，可下单','Seller settled — ready to order']}],
+ notes:[['Knizia 竞拍经典。<b>认准华夏豪华版</b>，别买成普通版。',
+     'A Knizia auction classic. <b>Make sure it is the Huaxia deluxe edition</b>, not the standard one.']]
+},
+{
+ id:'dogdice', py:'G', hl:'中', style:'毛', bgg:null, name:['狗运当骰 Spots','Spots'], cat:['骰子','Dice'], owned:true,
+ have:['简体中文版本体','Simplified Chinese edition, base game'],
+ buy:[],
+ blocks:[
+  {h:['关于骰子','About the dice '],
+   sub:['当初想要它的理由之一是「骰子能挪去别的桌游用」，所以专门查了一下。','One reason for wanting it was that the dice could be reused in other games — so that got checked specifically.'],
+   table:{head:[['想知道的','Question'],['查到的','What was found']], rows:[
+   [['骰子数量','How many dice'],['<b>没查到准确数字</b> —— CMYK 官网、各零售页都没列组件清单，BGG 拒绝抓取。下单前问卖家或看盒背','<b>No exact figure found</b> — neither the CMYK site nor the retail listings publish a component list, and BGG refuses to be fetched. Ask the seller, or read the back of the box']],
+   [['骰子长什么样','What the dice look like'],['<b>定制六面骰</b>：圆角，点数不是规整圆点，而是做成不规则的「狗斑」形状，配合卡面美术','<b>Custom six-sided dice</b>: rounded corners, and the pips are irregular dog-spot shapes rather than clean circles, matching the card art']],
+   [['盒内其他','What else is in the box'],['狗卡（每张 1–3 个放骰位）、木质小骨头（零食标记）、厚纸板技能片','Dog cards (each with one to three dice spaces), small wooden bones as treat tokens, and chunky cardboard trick tiles']]
+   ]},
+   after:['⚠ <b>结论是这条理由不成立</b> —— 骰子是刻意做成狗斑样式的定制骰，点数不规整、不是标准排布，拿去当通用 d6 会难读。当收藏或本游戏专用没问题，<b>当通用骰子替换件不合适</b>。',
+      '⚠ <b>That reason did not hold up</b> — the dice are deliberately styled as dog spots, with irregular pips in a non-standard layout, so they read poorly as generic d6s. Fine as a collectible or for this game, <b>but not as spare dice for other games</b>.']}
+ ],
+},
+{
+ id:'botc', py:'R', style:'毛', bgg:null, name:['染·钟楼谜团','Blood on the Clocktower'], cat:['身份推理','Social deduction'], owned:false,
+ have:['无（<b>已是一星说书人</b>，正在备考二星）','Not owned yet (<b>already a one-star Storyteller</b>, now working toward two-star)'],
+ buy:[{item:['绝世演出 / 实验性角色合集 The Carousel','The Carousel — Experimental Character Collection'],
+    kind:K_EXP, lang:L_TBC, where:['—','—'], bucket:'nope',
+    note:['<b>一星已过，这部分进了二星的考核范围</b> —— 要不要为此加购还没定','<b>One-star is done, so this is now inside the two-star exam scope</b> — whether to buy for it is still undecided']},
+    {item:['官方中文版基础盒','Official Chinese base box'], kind:K_NEW, lang:L_CN,
+    where:['集石商城／美团·大众点评核实过的授权实体店（<b>卖家待定</b>）',
+        'The JiShi official store, or a licensed physical shop verified on Meituan / Dianping (<b>seller TBC</b>)'],
+    bucket:'plan', note:['盗版泛滥，渠道必须核实','Bootlegs are everywhere — the channel has to be verified']}],
+ todo:[
+  ['问卡卡小草莓（微信里就有，考试报手机号那个联系人）：「暗流涌动剧情包」到底是什么内容？和基础盒什么关系？',
+   'Ask Kaka Xiaocaomei (already in WeChat — the contact used to register the exam phone number): what exactly is the "Trouble Brewing story pack", and how does it relate to the base box?'],
+  ['问卡卡小草莓：游园惊梦／无名之墓／凶宅魅影 在不在中文基础盒里？（英文官网明确说不在）',
+   'Ask Kaka Xiaocaomei: are 游园惊梦 / 无名之墓 / 凶宅魅影 included in the Chinese base box? (The English official site says they are not.)'],
+  ['问卡卡小草莓：店里的实体桌游是不是集石授权正版？',
+   'Ask Kaka Xiaocaomei: are the physical games sold in the shop licensed by JiShi?']
+ ],
+ blocks:[
+  {h:['盒内含物 vs 需另购','What is in the base box vs what must be bought separately'],
+   sub:['依据版权方 TPI 官网 What&rsquo;s in the Box。交叉验证：钟楼百科抓取的三大剧本角色数为 镇民 39 / 外来者 12 / 爪牙 12 / 恶魔 9 / 旅行者 15 = 87，与官网 99 unique characters 分项一致（87 + 12 传奇角色 = 99）。',
+     'Based on the rights holder TPI&rsquo;s official What&rsquo;s in the Box page. Cross-check: character counts for the three main scripts scraped from the Clocktower wiki — 39 Townsfolk / 12 Outsiders / 12 Minions / 9 Demons / 15 Travellers = 87, matching the official "99 unique characters" breakdown (87 + 12 Fabled = 99).'],
+   table:{head:[['内容','Content'],['在基础盒？','In the base box?'],['说明','Note']], rows:[
+   [['暗流涌动 Trouble Brewing','Trouble Brewing'],['✅ 在','✅ Yes'],['官网：20 each for the game&rsquo;s <b>first three editions</b>','Official site: 20 each for the game&rsquo;s <b>first three editions</b>']],
+   [['黯月初升 Bad Moon Rising','Bad Moon Rising'],['✅ 在','✅ Yes'],['同上','Same']],
+   [['梦殒春宵 Sects &amp; Violets','Sects &amp; Violets'],['✅ 在','✅ Yes'],['同上','Same']],
+   [['旅行者 15 + 传奇角色 12','15 Travellers + 12 Fabled'],['✅ 在','✅ Yes'],['计入官网的 99 个角色','Counted in the official 99 characters']],
+   [['魔典（盒体本身）＋城镇广场布＋4 个角色收纳盒','The Grimoire (the box itself) + town square cloth + 4 character storage boxes'],['✅ 在','✅ Yes'],['魔典就是盒子本身','The Grimoire is the box']],
+   [['游园惊梦 / 无名之墓 / 凶宅魅影','游园惊梦 / 无名之墓 / 凶宅魅影'],['❌ 不在','❌ No'],['官网只承诺 first three editions','The site only promises the first three editions']],
+   [['实验性角色 / 绝世演出','Experimental characters / 绝世演出'],['❌ 不在','❌ No'],['属二星说书人范围 —— <b>一星已过，现在进入考核范围</b>','Two-star Storyteller material — <b>one-star is done, so this is now in scope</b>']],
+   [['华灯初上 / 山雨欲来','华灯初上 / 山雨欲来'],['❌ 不在','❌ No'],['中文独占国风系列','Chinese-exclusive guofeng series']],
+   [['无上愉悦 / 窃窃私语','无上愉悦 / 窃窃私语'],['❌ 不在','❌ No'],['小型剧本（汀西维尔模式，5–6 人）','Small scripts (Teensyville format, 5–6 players)']]
+   ]},
+   after:['<b>「暗流涌动剧情包」存疑</b> —— 淘宝卡卡桌游在卖。卡卡是集石<b>唯一授权</b>的说书人认证培训／考核机构（可信度高），但「授权做认证」≠「授权卖实体桌游」，是两回事。而且暗流涌动本来就在基础盒里，单卖说不通。判断依据：官方中文豪华实体版首发价 666 元；若「剧情包」只要几十块，基本可定性为拆盒或盗版。',
+      '<b>The "Trouble Brewing story pack" is questionable</b> — Taobao seller Kaka lists one. Kaka is JiShi&rsquo;s <b>only licensed</b> Storyteller certification and examination provider, which is credible — but "licensed to certify" is not "licensed to sell physical games"; those are different things. And Trouble Brewing is in the base box anyway, so selling it separately makes little sense. Yardstick: the official Chinese deluxe physical edition launched at ¥666; if the "story pack" costs a few dozen yuan, it is a split box or a bootleg.']}
+ ],
+ notes:[['一星考核范围正是基础盒里那三个剧本，基础盒就够考 —— <b>一星已经拿到了</b>。二星的范围超出基础盒（实验性角色／绝世演出不在盒内），要不要为此加购还没定。',
+     'The one-star exam covers exactly the three scripts in the base box, so the base box alone was enough to sit it — and <b>one-star is done</b>. Two-star reaches beyond the base box (the experimental characters and 绝世演出 are not in it); whether to buy for that is still undecided.']]
+},
+{
+ id:'colt', py:'K', hl:'-', style:'毛', bgg:null, name:['柯尔特快车 Colt Express','Colt Express'], cat:['编程／派对','Programming &amp; party'], owned:false,
+ buy:[{item:['<b>The Complete Collection</b>（全收藏版）','<b>The Complete Collection</b>'], kind:K_NEW, lang:L_EN,
+    where:['Tabletop Tycoon 官网 / Miniature Market / TLAMA / Team Board Game 预购，US$250','Tabletop Tycoon, Miniature Market, TLAMA or Team Board Game pre-order, US$250'], bucket:'plan',
+    note:['<span class="urgent">⏳ 限时 · pledge manager 会先于发货锁单</span><b>就买这个</b>。Gamefound late pledge 比零售便宜约 C$110；<b>发货 2026-12 / 2027-01</b>。⚠ 锁单日通常在发货前 2–4 个月，<b>需去 Your pledge 页确认关闭日期</b>','<b>This is the one.</b> The Gamefound late pledge runs about C$110 below retail; <b>delivery is December 2026 / January 2027</b>. ⚠ A pledge manager normally locks two to four months before shipping, so <b>check the closing date on the Your pledge page</b>.']}],
+ blocks:[
+  {h:['✅ 已定：买 Complete Collection，大盒版不要了','✅ Decided: the Complete Collection; the Big Box route is dropped'],
+   sub:['你问得对 —— <b>大盒版本来就不全</b>。而且现在查到了更全的：<b>Colt Express: The Complete Collection</b>（Tabletop Tycoon 出品，Gamefound 众筹已成功，BGG #462062），Miniature Market 已开预购。',
+     'The question was the right one — <b>the Big Box was never complete</b>. And a fuller edition now exists: <b>Colt Express: The Complete Collection</b> from Tabletop Tycoon, successfully funded on Gamefound (BGG #462062), with Miniature Market taking pre-orders.'],
+   table:{head:[['内容','Content'],['大盒版 Big Box','Big Box'],['Complete Collection','Complete Collection']], rows:[
+   [['本体','Base game'],['✅','✅'],['✅','✅']],
+   [['马匹与驿站 Horses &amp; Stagecoach','Horses &amp; Stagecoach'],['✅','✅'],['✅','✅']],
+   [['警长与囚犯 Marshal &amp; Prisoners','Marshal &amp; Prisoners'],['✅','✅'],['✅','✅']],
+   [['<b>Couriers &amp; Armored Train</b>','<b>Couriers &amp; Armored Train</b>'],['❌ <b>盒子里连位置都没留</b>','❌ <b>the box has no slot for it</b>'],['<b>✅</b>','<b>✅</b>']],
+   [['<b>十周年扩 Happy 10th Anniversary</b>','<b>Happy 10th Anniversary</b>'],['❌','❌'],['<b>✅</b>','<b>✅</b>']],
+   [['<b>十年间的全部 promo</b>','<b>Every promo from the past decade</b>'],['❌','❌'],['<b>✅</b>','<b>✅</b>']],
+   [['<b>定制角色模型</b>','<b>Custom character miniatures</b>'],['❌','❌'],['<b>✅</b>','<b>✅</b>']],
+   [['3D 纸板火车','3D cardboard train'],['✅','✅'],['✅ 含车头、车厢、马车','✅ locomotive, cars and carriage']],
+   [['新角色','New character'],['Silk','Silk'],['含全部','all included']]
+   ]},
+   after:['✅ <b>已决定：买 Complete Collection，大盒版路线不要了。</b>2–9 人 / 40–60 分钟 / 10+。这符合你「优先升级大盒／新版」的原则 —— 现在买大盒版，等于买一个注定要被取代的版本，而且还得再单买 Couriers 扩（US\.99）。',
+      '✅ <b>Decided: buy the Complete Collection; the Big Box route is dropped.</b> 2–9 players / 40–60 minutes / 10+. This fits the stated preference for the fullest edition — buying the Big Box now means buying something already superseded, and still paying US\.99 separately for Couriers.']},
+  {h:['能不能买 / 值不值','Can it be bought, and is it worth it? Checked 2026-09-02'],
+   sub:['<b>能买，但还是预购状态，而且价格不低。</b><br>Tycoon Games 官网、Miniature Market、TLAMA games、Team Board Game 都挂着 <b>US$250</b> 的预购。<br>⚠ <b>两个要注意的点</b>：① <b>发售时间已经推迟了</b>。Miniature Market 还挂着「2026 年 4 月」，但那是过期信息 —— 欧洲零售商 TLAMA games 的口径是 <b>「Preorder December 2026」，预计 2027-01-27 前送达</b>。也就是说比原定晚了约 9 个月，而且距今还有 4–5 个月。② US$250 对比「大盒版约 US$40–50 + Couriers 扩 US$39.99 ≈ US$90」，<b>贵了约 US$160</b>。<br><b>这 160 买到的是</b>：十周年扩、十年间全部 promo、定制角色模型、高级收纳。玩法内容上，大盒+Couriers 已经覆盖了四个扩里的三个。',
+     '<b>Yes, but it is still a pre-order, and not a cheap one.</b><br>Tycoon Games, Miniature Market, TLAMA games and Team Board Game all list it at <b>US$250</b> for pre-order.<br>⚠ <b>Two caveats</b>: first, the listed release estimate is <b>March-April 2026</b>, yet it is now September and the listings still say pre-order — either delayed or stale, and no official delay notice turned up. Second, US$250 against roughly US$90 for the Big Box (US$40-50) plus the Couriers expansion (US$39.99) is about <b>US$160 more</b>.<br><b>What that buys</b>: the 10th Anniversary expansion, a decade of promos, custom miniatures and premium storage. On gameplay content alone, the Big Box plus Couriers already covers three of the four expansions.'],
+   after:['<b>我的看法</b>：如果只是想玩全，大盒 + Couriers 约 US$90 就够，现货可得。US$250 那份溢价主要买的是模型、promo 和收藏属性 —— 值不值取决于你把它当游戏还是当收藏。<br>另外<b>它不是马上能到的东西</b>：最新口径是 2026 年 12 月备货、2027 年 1 月底前送达。<b>没必要现在就把钱压进去</b> —— 可以等临近发售再下单，或者盯现货。价格方面 TLAMA 标 €245.37（原价 €257.74），和美国的 US 差不多。',
+      '<b>My read</b>: to simply play the whole game, the Big Box plus Couriers at around US$90 does it, and both are in stock. The US$250 premium mostly buys miniatures, promos and collectability — worth it or not depending on whether this is a game or a collection piece.<br>It is also five months past its stated release, so <b>ask the seller for a real ship date before ordering</b> rather than paying and waiting.']},  {h:['中文版大盒的真伪','Is the Chinese Big Box genuine? Checked 2026-09-02'],
+   sub:['<b>结论：几乎可以确定不是正版。</b>三条依据 ——<br>① <b>查不到任何官方中文大盒</b>。Colt Express 由 Ludonaute 出版、Asmodee 发行；中文这边 GoKids 只出过<b>分装的</b>本体、车马飞渡、警长与囚犯三盒，<b>从未出过大盒版</b>。<br>② <b>价格对不上</b>。英文大盒零售约 US$40–50；100 多人民币约合 US$14，连正版成本都不够。<br>③ 这个模式和阿瓦隆那张真伪对照表完全一致：官方没出的版本 + 远低于成本的价格 = 无授权。<br><b>要中文就买 GoKids 那三盒分装的；要全就等 Complete Collection。</b>',
+     '<b>Verdict: almost certainly not licensed.</b> Three reasons —<br>1. <b>No official Chinese Big Box exists.</b> Colt Express is published by Ludonaute and distributed by Asmodee; on the Chinese side GoKids has only ever released the base game, Horses &amp; Stagecoach and Marshal &amp; Prisoners as <b>separate boxes</b> — never a Big Box.<br>2. <b>The price does not add up.</b> The English Big Box retails around US$40-50; 100-odd RMB is roughly US$14, below the cost of a legitimate copy.<br>3. The pattern matches the authenticity table on the Avalon page exactly: an edition the publisher never made, at a price below cost, means unlicensed.<br><b>For Chinese, buy the three separate GoKids boxes; for completeness, wait for the Complete Collection.</b>']}
+ ],
+ notes:[['2–9 人 / 40–60 分钟 / 10+。玩法：先用卡片排好行动（Schemin），再依次揭示执行（Stealin），看着计划撞车。',
+     '2–9 players / 40–60 minutes / 10+. You program your actions with cards in the Schemin phase, then watch them resolve in order during the Stealin phase as the plans collide.']]
+},
+{
+ id:'bloodbound', py:'S', style:'毛', bgg:null, name:['弑血盟约 Blood Bound','Blood Bound'], cat:['身份推理','Social deduction'], owned:false,
+ buy:[{item:['二版本体','Second edition, base game'], kind:K_NEW, lang:L_EN,
+    where:['北美官方渠道（Fantasy Flight Games 出品）','North American retail (published by Fantasy Flight Games)'],
+    bucket:'maybe', note:['降到观望：<b>正版难寻</b>；扩展问题已查清（没有）','Moved to watching: <b>genuine copies are hard to find</b>; the expansion question is settled (there are none)']}],
+ blocks:[
+  {h:['扩展问题：没有','Expansions: there are none'],
+   sub:['BGG 记录 <b>Blood Bound 的扩展数为 0</b>。所以「不确定有没有扩」这条顾虑可以消掉了 —— <b>买二版本体就是完整的</b>，不存在漏买扩展的风险。剩下的顾虑只有正版难寻。',
+     'BoardGameGeek records <b>zero expansions</b> for Blood Bound. So that worry can be set aside — <b>the second-edition base box is the complete game</b>, with nothing to miss. The only remaining concern is finding a genuine copy.']},
+  {h:['⚠ 只要正版','⚠ Genuine copies only'],
+   sub:['<b>没查到任何官方中文版</b> —— 出版社是 Fantasy Flight Games，只出英文版。所以淘宝／京东上标「精品中文版」「中文盒装」的，基本可判定为无授权自制。要正版就买英文原版，走北美官方渠道。',
+     '<b>No official Chinese edition of any kind was found</b> — Fantasy Flight Games publishes it in English only. So Taobao / JD listings advertising a "premium Chinese edition" or "Chinese boxed set" are almost certainly unlicensed. For a genuine copy, buy the English original through North American retail.']}
+ ],
+ notes:[['<b>认准二版</b> —— 插画风美术；规则与一版基本一致。设计师 Kalle Krenzer。',
+     '<b>Get the second edition</b> — illustrated art style; the rules are essentially the same as the first. Designed by Kalle Krenzer.'],
+     ['中文译名不统一：《弑血盟约》《鲜血盟约》《血之羁绊》都指这一款；繁中作《血契猎杀》。淘宝搜不到就换个名字再搜。',
+     'The Chinese title is not standardised: 弑血盟约, 鲜血盟约 and 血之羁绊 all refer to this game; Traditional Chinese uses 血契獵殺. If one name returns nothing on Taobao, try another.']]
+},
+{
+ id:'terrorscape', py:'E', style:'美', bgg:null, name:['恶夜杀机 2','Terrorscape 2'], cat:['不对称阵营','Asymmetric factions'], owned:false,
+ buy:[{item:['Deluxe All-In <b>大盒版</b>','Deluxe All-In <b>big box</b>'], kind:K_NEW, lang:L_EN,
+    where:['二手（eBay／BGG 市场）','Secondhand (eBay or the BGG marketplace)'], bucket:'maybe', note:['<b>❌ 已错过，两条路都关了</b>：Gamefound 的 pledge manager <b>2026-04-10 关闭</b>，货已于 6 月出仓、8 月送达；The Game Steward 代订显示 <b>All Sold</b>。<br>Deluxe All-In 含本体 + 三扩（Insanity Cure／Depraved Hunger／Fatal Funtime）+ 豪华模型 + 亚克力标记 + 全部解锁目标。<b>现在只能走二手，或等日后的零售版</b>（零售版通常不含众筹专属件）。','<b>❌ Missed — both routes are closed</b>: the Gamefound pledge manager shut on 2026-04-10 and the games shipped in June, arriving in August; The Game Steward lists it as All Sold. Only the secondhand market or a later retail edition remain, and retail editions usually omit the crowdfunding exclusives.']}],
+ todo:[['主项目页已关闭新 pledge，尽快查 pledge manager 是否还能补票；不行就走众筹代订商。',
+     'The main project page no longer takes new pledges — check the pledge manager for a late pledge as soon as possible; failing that, go through a crowdfunding agent.']],
+ notes:[['Ice Makes 出品，独立续作，1v多恐怖追逃。All-In 含本体 + Insanity Cure / Depraved Hunger / Fatal Funtime 三扩 + 豪华方块模型 + 模型包 + 亚克力标记 + 烫金杀手终极卡 + 三款屏风贴面 + 豪华收纳盒 + 全部解锁目标。预计 2026-11-30 发货。',
+     'From Ice Makes; a standalone sequel, one-vs-many horror chase. The All-In covers the base game plus the Insanity Cure / Depraved Hunger / Fatal Funtime expansions, deluxe cube models, a miniatures pack, acrylic markers, a foiled ultimate killer card, three screen skins, a deluxe storage box, and every unlocked stretch goal. Estimated shipping 2026-11-30.']]
+},
+{
+ id:'totan', py:'T', style:'美', bgg:null, name:['天方夜谭 40 周年版','Tales of the Arabian Nights: 40th Anniversary Edition'],
+ cat:['叙事冒险','Narrative adventure'], owned:false,
+ buy:[{item:['豪华版（官网写作 Gamefound Deluxe Version，即众筹的 Sultan&rsquo;s Favor 档）',
+       'Deluxe edition (listed as the Gamefound Deluxe Version &mdash; the campaign&rsquo;s Sultan&rsquo;s Favor tier)'],
+    kind:K_NEW, lang:L_EN, where:['<b>Play to Z 官网</b>，$100 USD —— 发行商自营，只寄北美','<b>Play to Z</b> (the publisher&rsquo;s own shop), $100 USD &mdash; ships to North America only'],
+    bucket:'plan', note:['有货，官网标「数量极少」','In stock; the shop lists it as extremely limited']},
+   {item:['6 个人物模型 PTZ73408-MINIS','6 character minis PTZ73408-MINIS'],
+    kind:K_ACC, lang:L_EN, where:['<b>Board Game Bliss</b>，CAD $27.95 —— 加拿大本地店','<b>Board Game Bliss</b>, CAD $27.95 &mdash; a Canadian shop'],
+    bucket:'plan', note:['缺货，接受预购','Out of stock; taking pre-orders']}],
+ todo:[
+  ['等 Play to Z 回复 —— 2026-09-14 已发邮件问能否免运费寄到 BC。过几天没回就直接下单，豪华版限量，不值得为省运费一直等。',
+   'Wait for Play to Z to reply &mdash; an email asking for free shipping to BC went out on 2026-09-14. If there is no answer in a few days, just order: the deluxe is limited and not worth holding out on over shipping.'],
+  ['结账时看寄加拿大的运费（要填地址才显示）。高得离谱就回头比 The Game Steward 的 $139.99 打包。',
+   'Check the shipping to Canada at checkout (it only shows once an address is entered). If it is unreasonable, compare against The Game Steward&rsquo;s $139.99 bundle.'],
+  ['在 Board Game Bliss 预购模型。',
+   'Pre-order the minis at Board Game Bliss.']
+ ],
+ blocks:[
+  {h:['渠道比价（2026-09-14）','Price comparison (2026-09-14)'],
+   table:{head:[['方案','Option'],['内容','Contents'],['价格','Price'],['货况','Stock']], rows:[
+   [['<b>Play to Z 官网</b>','<b>Play to Z shop</b>'],['豪华版','Deluxe edition'],
+    ['$100，只寄北美，运费结账时显示','$100, North America only, shipping shown at checkout'],['<b>有货</b>，数量极少','<b>In stock</b>, extremely limited']],
+   [['<b>Board Game Bliss 模型包</b>','<b>Board Game Bliss minis pack</b>'],['6 个人物模型','6 character minis'],
+    ['CAD $27.95','CAD $27.95'],['缺货，可预购','Out of stock, pre-order open']],
+   [['The Game Steward 打包','The Game Steward bundle'],['豪华版 + 6 模型 + 全部解锁延伸目标','Deluxe + 6 minis + all unlocked stretch goals'],
+    ['$139.99，免运只到美国本土','$139.99, free shipping US-domestic only'],['有货','In stock']],
+   [['GameNerdz 模型包','GameNerdz minis pack'],['6 个人物模型','6 character minis'],['$20','$20'],['缺货','Out of stock']],
+   [['Gamefound 众筹','Gamefound campaign'],['豪华版 $100 + 模型 $20','Deluxe $100 + minis $20'],['$120','$120'],['<b>已关</b>','<b>Closed</b>']],
+   [['Miniature Market','Miniature Market'],['<b>标准版</b>，不是豪华版','<b>Standard</b> edition, not the deluxe'],['$68','$68'],['有货，不是想要的那个','In stock, but not the one wanted']]
+   ]},
+   after:['选 Play to Z 官网：限量的豪华版先按众筹价锁定；模型是普通零售品，以后补得到。合计 $100 + CAD $27.95，跟打包价差不多。',
+      'Go with Play to Z: lock in the limited deluxe at the campaign price now; the minis are an ordinary retail item and can be added later. $100 + CAD $27.95 comes out close to the bundle price.']}
+ ],
+ notes:[
+  ['<b>发行商是 Play to Z</b>。The Game Steward 是美国零售商，众筹时批量下单再转卖，不是发行商。',
+   '<b>The publisher is Play to Z.</b> The Game Steward is a US retailer that backs campaigns in bulk and resells the pledges; it is not the publisher.'],
+  ['<b>「Sultan&rsquo;s Favor」是豪华版的档位名，不是游戏名</b> —— 游戏是 Play to Z 的 Tales of the Arabian Nights 40 周年版（1985 年原作重制）。找货时用游戏全名搜，只搜 Sultan&rsquo;s Favor 会漏掉大部分卖家。',
+   '<b>&ldquo;Sultan&rsquo;s Favor&rdquo; is the name of the deluxe pledge tier, not the game</b> &mdash; the game is Play to Z&rsquo;s Tales of the Arabian Nights 40th Anniversary Edition (a remake of the 1985 original). Search on the full game name; searching only for Sultan&rsquo;s Favor misses most sellers.'],
+  ['<b>零售标准版和豪华版玩法完全一样</b>（200+ 条新故事段落、单人模式都有），差在配件：豪华版是亚克力立牌、木制计数器、秘密目标转盘、刻字骰子、局部 UV 和烫金卡，另加一个<b>飞毯造型的阿拉丁模型</b>（只在豪华版里，只换外观）。标准版是纸板立牌、纸板计数、纸本目标。',
+   '<b>The retail standard edition plays exactly the same</b> (the 200+ new story passages and the solo mode are in both); the difference is components. The deluxe has acrylic standees, wooden trackers, secret-goal dials, engraved dice, spot UV and foil cards, plus a <b>flying-carpet Aladdin miniature</b> (deluxe only, cosmetic). The standard edition has cardboard standees, cardboard tokens and paper goal pads.'],
+  ['众筹的付费加购只有两样：6 个人物模型（$20）和一包 6 个亚克力立牌（$5）。豪华版本身已带立牌，那包是多一套，缺了不算缺内容。',
+   'The campaign had only two paid add-ons: the 6 character minis ($20) and a set of 6 acrylic standees ($5). The deluxe already includes standees, so that set is a spare; missing it loses no content.'],
+  ['从美国寄到加拿大：桌游<b>零关税</b>（税则 9504.90 为 Free），但要交 GST + BC PST，快递可能另收清关手续费，货到时付。',
+   'Shipping from the US to Canada: board games carry <b>no customs duty</b> (tariff item 9504.90 is Free), but GST and BC PST apply, and the courier may add a brokerage fee, all paid on delivery.'],
+  ['中文名待确认 —— 常见中译《天方夜谭》，未查到官方简中版。',
+   'Chinese title unconfirmed &mdash; commonly rendered 天方夜谭; no official Simplified Chinese edition found.']
+ ]
+},
+{
+ id:'loveletter', py:'G', style:'毛', bgg:null, name:['诡镇奇谈：洛夫克拉夫特情书','Arkham Horror: Lovecraft Letter'], cat:['轻策／家庭','Light &amp; family'], owned:false,
+ buy:[{item:['本体','Base game'], kind:K_NEW, lang:L_CN,
+    where:['淘宝','Taobao'], bucket:'maybe',
+    note:['<b>最想要的一版情书</b>，但版本／语言／价格全部待确认','<b>The Love Letter edition most wanted</b>, but edition, language and price are all unconfirmed']}],
+ todo:[['确认版本／语言／价格，再定从哪买。',
+     'Confirm the edition, language and price, then decide where to buy it.']],
+ notes:[['<b>别名</b>：也叫「情书 诡镇奇谈版」「情书：克苏鲁」，繁中作《詭鎮奇談：克蘇魯情書》。原名是 <b>Lovecraft Letter</b>（不是 Love Letter），Z-Man Games 出品，设计师 Seiji Kanai —— 搜不到就换这几个名字试。',
+     '<b>Also known as</b> 情书 诡镇奇谈版 or 情书：克苏鲁; Traditional Chinese uses 詭鎮奇談：克蘇魯情書. The actual title is <b>Lovecraft Letter</b> (not Love Letter), published by Z-Man Games, designed by Seiji Kanai — try those names if a search comes up empty.']]
+},
+{
+ id:'pkmadv', py:'B', style:'毛', bgg:null, name:['宝可梦奇遇','Pok&eacute;mon 30th-anniversary card game (宝可梦奇遇)'],
+ cat:['轻策／家庭','Light &amp; family'], owned:false,
+ have:['无 —— <b>考虑买</b>；这一格已经定了选它，不买<a href="#/g/cabo">卡波</a>','Not owned — <b>on the buy list</b>; this is the pick for the niche, over <a href="#/g/cabo">Cabo</a>'],
+ buy:[{item:['本体','Base game'], kind:K_NEW, lang:L_CN,
+    where:['淘宝（有中文版）','Taobao — a Chinese edition exists'], bucket:'plan',
+    note:['<b>二选一已定：选它</b>，不买卡波','<b>The head-to-head is settled: this one</b>, and Cabo is out']}],
+ notes:[
+  ['<b>宝可梦 30 周年</b>的轻策卡牌。规则：每人抽 6 张摆成 <b>2×3</b>，各翻开 1 张开局；目标是收服 6 只宝可梦，<b>总分最低者胜</b>。同数字配对可让该列直接归零，特殊卡先触发能力再结算基础分。会加减法就能玩。',
+   'A light card game for the <b>Pokémon 30th anniversary</b>. Each player takes six cards laid out <b>2×3</b> and flips one to start; the goal is to collect six Pokémon and finish with the <b>lowest total</b>. Matching numbers zero out a column, and special cards resolve their ability before scoring. Basic arithmetic is all it takes.'],
+  ['<b>为什么算卡波的平替</b>：同样是「凑最小点数 + 配对消除」那一路，而且<b>有中文版、淘宝买得到</b> —— 卡波没有官方中文版，正版还得从 Bézier 买英文二版。两款二选一即可。',
+   '<b>Why it substitutes for Cabo</b>: the same lowest-total, match-to-cancel family, and crucially it <b>has a Chinese edition available on Taobao</b> — whereas Cabo has no official Chinese release and a genuine copy means importing Bézier&rsquo;s English second edition. One or the other will do.'],
+  ['初代经典角色登场：胖丁、伊布、梦幻、皮卡丘、妙蛙种子、杰尼龟、耿鬼、喷火龙等。',
+   'The first-generation favourites appear: Jigglypuff, Eevee, Mew, Pikachu, Bulbasaur, Squirtle, Gengar, Charizard and others.']
+ ]
+},
+{
+ id:'cabo', py:'K', style:'毛', bgg:null, name:['卡波 Cabo','Cabo'], cat:['轻策／家庭','Light &amp; family'], owned:false,
+ buy:[{item:['本体 —— <b>大盒／标准版都行</b>','Base game — <b>Big Box or standard, either is fine</b>'], kind:K_NEW, lang:['<b>待确认</b>','<b>TBC</b>'],
+    where:['淘宝（有货未验证）','Taobao (stock unverified)'],
+    bucket:'maybe', note:['<b>已被取代</b> —— 同类只留一个，选了<a href="#/g/pkmadv">宝可梦奇遇</a>','<b>Superseded</b> — one game per niche, and <a href="#/g/pkmadv">宝可梦奇遇</a> got the slot']}],
+ blocks:[
+  {h:['⚠ 只要正版','⚠ Genuine copies only'],
+   sub:['<b>没查到官方中文版</b> —— 二版由 <b>Bézier Games</b> 于 2019 年 4 月出版（新美术、规则修订、计分本、4 张玩家参考卡）。要正版就买 Bézier 的英文二版；淘宝上的「卡波中文版」授权情况不明，别默认是正版。不管从哪买，都要确认是原版盒。',
+     '<b>No official Chinese edition found</b> — the second edition was published by <b>Bézier Games</b> in April 2019 (new art, revised rules, a scorepad and four player reference cards). For a genuine copy, buy the Bézier English second edition; the licensing behind Taobao "Chinese edition" listings is unclear, so do not assume they are legitimate. Check with the friend too that theirs is an original box.']}
+ ],
+ todo:[['找货源，并确认<b>是不是 Bézier 原版</b>。',
+     'Find a source, and confirm it is a genuine B&eacute;zier printing.']],
+ notes:[['<b>为什么降到观望</b>：<b>结论：不买卡波。</b>同类游戏只留一个最想要的 —— 这一档选了 <a href="#/g/pkmadv"><b>宝可梦奇遇</b></a>（宝可梦 30 周年，有中文版、淘宝有货，玩法同属「凑最小点数 + 配对消除」）。卡波留在观望，除非以后发现它明显更好玩。',
+     '<b>Why this dropped to watching</b> : the substitute has been identified: <a href="#/g/pkmadv"><b>宝可梦奇遇</b></a>, the Pokémon 30th-anniversary card game, which has a Chinese edition on Taobao. Same lowest-total, match-to-cancel family — <b>one or the other</b> will do.'],
+     ['<b>别名</b>：卡波 / 卡布 / Cabo，二版盒面写的是大写 <b>CABO</b>。',
+     '<b>Also known as</b> 卡波 or 卡布 in Chinese; the second-edition box reads <b>CABO</b>.']]
+},
+{
+ id:'coup', py:'Z', style:'毛', bgg:null, name:['政变 Coup','Coup'], cat:['身份推理','Social deduction'], owned:false,
+ buy:[{item:['本体','Base game'], kind:K_NEW, lang:['英文 或 繁中授权版','English, or the licensed Traditional Chinese edition'],
+    where:['待定（见下方正版渠道）','TBC — see the genuine-copy routes below'], bucket:'maybe',
+    note:['降到观望：<b>正版难寻</b>；扩展情况见下','Moved to watching: <b>genuine copies are hard to find</b>; see below on expansions']}],
+ blocks:[
+  {h:['扩展情况','Expansions'],
+   sub:['<b>有扩，而且有个省事的答案</b>：<b>Coup 豪华版（Deluxe Edition）本身就含 Reformation 的审判官（Inquisitor）角色和派系玩法</b>，还把原版角色卡重绘了。也就是说想要「本体 + 扩」，直接买豪华版一盒就够，不用分开买。',
+     '<b>Yes, and there is a shortcut</b>: the <b>Coup Deluxe Edition already contains the Inquisitor role and Factions play from Reformation</b>, with the original role cards redrawn. So for base game plus expansion, the Deluxe Edition is a single box rather than two purchases.'],
+   table:{head:[['产品','Product'],['是什么','What it is']], rows:[
+   [['Coup: Reformation','Coup: Reformation'],['扩展 —— 加审判官角色、派系机制，人数上限提到 10 人','An expansion — adds the Inquisitor, the Allegiance mechanic, and raises the player cap to 10']],
+   [['Coup 豪华版 Deluxe Edition','Coup Deluxe Edition'],['<b>本体 + 已含 Reformation 的审判官与派系</b>，角色卡重绘','<b>The base game with Reformation&rsquo;s Inquisitor and Factions already included</b>, and redrawn role cards']],
+   [['Coup: Rebellion G54','Coup: Rebellion G54'],['<b>是另一款独立游戏</b>（重制版），不是本体的扩','<b>A separate standalone game</b> (a reimplementation), not an expansion of the base']],
+   [['Rebellion G54: Anarchy','Rebellion G54: Anarchy'],['G54 的扩，加 7 个角色 —— 只对 G54 有意义','An expansion for G54 adding seven roles — only relevant if you own G54']]
+   ]}},
+  {h:['⚠ 只要正版','⚠ Genuine copies only'],
+   sub:['出版社是 <b>Indie Boards &amp; Cards</b> —— 和<a href="#/g/avalon">抵抗组织：阿瓦隆</a>同一家。阿瓦隆在大陆盗版泛滥的那套情况，这款照搬，下单前必须核实。',
+     'Published by <b>Indie Boards &amp; Cards</b> — the same house as <a href="#/g/avalon">The Resistance: Avalon</a>. The bootleg problem documented on the Avalon page applies here too, so the seller has to be verified before ordering.'],
+   table:{head:[['路线','Route'],['语言','Language'],['说明','Note']], rows:[
+   [['英文原版','English original'],['英文','English'],['Indie Boards &amp; Cards 出品，走北美官方渠道','Published by Indie Boards &amp; Cards — buy through North American retail']],
+   [['新天鹅堡《政变风云：城邦》','Swan Panasia 政變風雲：城邦'],['繁中','Traditional Chinese'],['目前查到的<b>唯一授权中文版</b>，新天鹅堡官方网店','The <b>only licensed Chinese edition</b> found — Swan Panasia official store']],
+   [['<b>没查到官方简体中文版</b>','<b>No official Simplified Chinese edition found</b>'],['—','—'],['淘宝上的「简中版」需自行验证授权，别默认是正版','Taobao "Simplified Chinese editions" have to be verified — do not assume they are licensed']]
+   ]}}
+ ],
+ notes:[['嘴炮 + 隐藏身份，2–6 人 / 约 15 分钟，5 种角色各有技能与反制。设计师 Rikki Tahta。',
+     'Bluffing with hidden roles, 2–6 players / about 15 minutes; five character types, each with an action and a counter. Designed by Rikki Tahta.'],
+     ['简中通行名《政变》；繁中版作《政变风云：城邦》或《政变疑云》。',
+     'Known in Simplified Chinese as 政变; Traditional Chinese editions use 政變風雲：城邦 or 政變疑雲.']]
+},
+{
+ id:'lotr', py:'M', style:'德', bgg:null, name:['魔戒：命运同盟','The Lord of the Rings: Fate of the Fellowship'],
+ cat:['合作／战役','Co-op &amp; campaign'], owned:false,
+ have:['无 —— <b>想买是定了的</b>，卡的是选哪个版本',
+    'Not owned — <b>the decision to buy is settled</b>; what is open is which edition'],
+ buy:[{item:['本体','Base game'], kind:K_NEW, lang:['中文 或 英文（待定）','Chinese or English (TBD)'],
+    where:['英文版：加拿大 401 Games／Board Game Bliss <b>CAD $64.95</b>（两家现断货）；简中待查',
+      'English: <b>CAD $64.95</b> at 401 Games / Board Game Bliss in Canada (both out of stock); Chinese not yet priced'],
+    bucket:'plan', note:['想买是定的，卡在选版本 —— 独占已查清，只差简中到手价',
+      'The buy is decided, the edition is not — exclusives are settled, only the Chinese landed price is missing']}],
+ todo:[
+  ['查<b>简中版到手价</b>（天猫 Asmodee 旗舰店／淘宝，含运费），和英文版的 CAD $64.95 比。',
+   'Price the <b>Simplified Chinese edition landed</b> (Asmodee Tmall store or Taobao, shipping included) against the CAD $64.95 English one.'],
+  ['顺带问简中版有没有自己的首发 promo。',
+   'While there, ask whether the Simplified Chinese edition carries a launch promo of its own.'],
+  ['等 401 Games／Board Game Bliss 补货，复核 CAD $64.95 还作不作数。',
+   'Wait for 401 Games / Board Game Bliss to restock, then re-check that CAD $64.95 still holds.'],
+  ['两边差不多就走简中（牌面文字多，和<a href="#/g/arkham">诡镇奇谈</a>一样好读）。',
+   'If they are close, take the Simplified Chinese one — the cards carry a lot of text, and it reads as easily as <a href="#/g/arkham">Arkham Horror</a>.']
+ ],
+ blocks:[
+  {h:['价格与独占（2026-09-04 查证）','Price and exclusives — checked 2026-09-04'],
+   table:{head:[['项','Item'],['结果','Finding']], rows:[
+   [['美国 MSRP','US MSRP'],['US$79.99','US$79.99']],
+   [['美国折扣店实售','US street price'],['US$64.99（Miniature Market）','US$64.99 (Miniature Market)']],
+   [['加拿大实售','Canadian street price'],['<b>CAD $64.95</b> —— 401 Games、Board Game Bliss，两家目前都断货','<b>CAD $64.95</b> — 401 Games and Board Game Bliss, both currently out of stock']],
+   [['众筹独占','Crowdfunding exclusives'],['<b>没有</b> —— 这不是众筹游戏，Z-Man 纯零售发行','<b>None</b> — this was never crowdfunded; Z-Man released it straight to retail']],
+   [['渠道独占','Retail exclusive'],['<b>「白袍甘道夫」promo</b>：1 张角色卡 + 1 个木质角色立牌，经 Hobby Next 计划的参与实体店发放，不是预订赠品','<b>A Gandalf the White promo</b>: one character card and one wooden character figure, handed out by local game stores in the Hobby Next programme — not a pre-order bonus']],
+   [['影响玩法吗','Does it change play?'],['<b>不影响</b> —— 甘道夫由灰袍转白袍的能力变化本体规则里本来就有，promo 给的只是专属美术','<b>No</b> — Gandalf changing from Grey to White already happens under the base rules; the promo only supplies alternate art']]
+   ]},
+   after:['✅ <b>英文版就在加拿大买。</b>CAD $64.95 按汇率比美国折扣价还便宜约 27%，另省跨境运费与关税 —— 上面那个 US$79.99 是厂商建议零售价，不是实售价。独占这条也查清了：纯美术，<b>不构成选版本的理由</b>。<br>⚠ 别和《<b>魔戒同盟</b>》搞混：那是另一款吃墩游戏（1–4 人），天猫首发 promo「加拉德瑞尔的礼物」是它的，不是这款的。',
+      '✅ <b>Buy the English edition in Canada.</b> At the exchange rate CAD $64.95 undercuts even the discounted US price by roughly 27%, and skips cross-border shipping and duty — the US$79.99 above is the suggested retail price, not what anyone pays. The exclusive question is settled too: art only, <b>not a reason to pick one edition over the other</b>.<br>⚠ Do not confuse this with <b>The Lord of the Rings: Fellowship</b>, a separate 1&ndash;4 player trick-taking game — the Galadriel promo on Tmall belongs to that one, not this.']},
+  {h:['未来会有扩展吗？','Will there be expansions? Checked 2026-09-02'],
+   sub:['<b>没有正式公布，但设计师明确在做。</b>Matt Leacock 的开发日志里写着：<b>应 Z-Man 的要求</b>，他开始琢磨扩展的点子 —— 把「索伦的爪牙 Agents of Sauron」规则、伤势与治疗动作、可升级角色这些<b>推进了一个「可能的扩展」</b>，还试过一个「馈赠 Gifts」的概念。<br>也就是说：<b>有内容是被有意留给扩展的</b>，但没有名称、没有日期、没有官方公告。',
+     '<b>Nothing is officially announced, but the designer is visibly working on it.</b> Matt Leacock&rsquo;s development notes say that <b>at Z-Man&rsquo;s request</b> he began exploring expansion ideas — pushing the Agents of Sauron rules, wounds and a Heal action, and upgradeable characters into <b>a possible expansion</b>, along with a &ldquo;Gifts&rdquo; concept.<br>So content was deliberately held back for one — but there is no name, no date and no announcement.'],
+   after:['⚠ <b>这条直接影响选中文版还是英文版。</b>如果以后真出扩展，中文版能不能拿到是未知数 —— <a href="#/g/arkham">诡镇奇谈</a>就是活生生的例子：正版归来系列压根没出简中，逼得只能收第三方。<br><b>如果扩展对你重要，英文版更保险；如果只打算玩本体，中文版读起来更舒服。</b>本体牌面文字量不小，这是当初倾向简中的理由。',
+      '⚠ <b>This bears directly on the Chinese-versus-English choice.</b> If expansions do arrive, whether they reach Chinese is unknown — <a href="#/g/arkham">Arkham Horror</a> is the cautionary case: the Return-to series never had a Simplified Chinese release at all, which is why third-party copies were the only option.<br><b>If expansions matter, English is the safer bet; if only the base game will ever be played, Chinese reads more comfortably.</b> The cards carry a fair amount of text, which was the original argument for Chinese.']}
+ ], notes:[
+  ['Z-Man Games 2025 年出品，设计师 Matt Leacock —— 就是《瘟疫危机》的作者，本作用的也是瘟疫危机那套合作系统。',
+   'Published by Z-Man Games in 2025, designed by Matt Leacock — the designer of Pandemic, and it runs on that same co-op system.'],
+  ['合作游戏：每人控 2 个角色，保护弗罗多送戒去魔多，躲戒灵和索伦之眼。共 13 个可玩角色、24 个目标、14 个事件，重玩性靠这些组合。',
+   'Co-operative: each player controls two characters, escorting Frodo to Mordor while evading the Nazg&ucirc;l and the Eye of Sauron. 13 playable characters, 24 objectives and 14 events supply the replay value.'],
+  ['繁中版名《魔戒：遠征隊的宿命》，和简中名不同。',
+   'The Traditional Chinese edition is titled 魔戒：遠征隊的宿命 — a different name from the Simplified Chinese one.']
+ ]
+},
+{
+ id:'warhammer', py:'Z', style:'美', bgg:null, name:['战锤 40K','Warhammer 40,000'], cat:['其他','Other'], owned:false,
+ buy:[{item:['11 版入门套装','11th-edition starter set'], kind:K_NEW, lang:['<b>待确认</b>','<b>TBC</b>'],
+    where:['<b>待定</b>','<b>TBC</b>'], bucket:'maybe', note:['<b>大坑</b> —— 模型要自己拼、自己上色，规则版本每几年一换，配套的书、涂料、工具都是持续开销。想清楚再进。','<b>A money pit</b> — the miniatures have to be assembled and painted by hand, the rules get a new edition every few years, and the codexes, paints and tools are an ongoing cost. Go in with eyes open.']}]
+},
+{
+ id:'kraken', py:'X', style:'毛', bgg:null, name:['险恶迷航 Feed the Kraken','Feed the Kraken'],
+ cat:['身份推理','Social deduction'], owned:false,
+ buy:[{item:['<b>豪华版 Deluxe</b>','<b>Deluxe Edition</b>'], kind:K_NEW, lang:['英文／德文','English or German'],
+    where:['Funtails 官网 / 众筹代订商','Funtails direct, or a crowdfunding reseller'], bucket:'maybe',
+    note:['<b>不急。</b>Funtails 官网 <b>US$115 ≈ C$159</b>。<br><b>玩法和基础版一模一样</b>，豪华版加的全是配件：3 个克拉肯模型、豪华徽章、11 个水手袋、11 枚筹码式阵营片，外加航海卡收纳盒／地图档案盒／深海弃牌盒和双层内衬。<br>⚠ <b>在加拿大其实没得选</b> —— 官网写明基础版<b>不供应美加和欧洲其他地区</b>，直接引导买豪华版（英国零售价 £65，且已售罄）。<br>⚠ <b>简中版是基础版</b> —— 要豪华版只能买英／德文。','<b>No hurry.</b> <b>US$115 (about C$159)</b> direct from Funtails.<br><b>Gameplay is identical to the Basic edition</b>; everything the Deluxe adds is components — three Kraken miniatures, deluxe badges, 11 seabags and 11 poker-style faction chips, plus a navigation card box, map archive, deep sea discard box and double-layered inlays.<br>⚠ <b>In Canada there is effectively no choice</b>: Funtails states the Basic edition is not supplied to the US, Canada or the rest of Europe and points buyers to the Deluxe (a UK listing at £65 is sold out).<br>⚠ <b>The Simplified Chinese release is the Basic edition</b>, so the Deluxe means English or German.']}],
+ notes:[['三方隐藏身份：忠诚海员要把船开到港口，海盗要开去海盗湾，邪教徒要把船喂给克拉肯。船长制 + 航向投票，和<a href="#/g/avalon">阿瓦隆</a>同一挂但多一层「操舵」机制。',
+     'A three-faction hidden-role game: loyal sailors steer for port, pirates for the pirate cove, and the cult wants the ship fed to the Kraken. Captaincy and course voting put it in the <a href="#/g/avalon">Avalon</a> family, with a steering layer on top.']]
+},
+{
+ id:'survive', py:'T', style:'毛', bgg:null, name:['逃离亚特兰蒂斯 Survive','Survive: Escape from Atlantis! / Survive The Island'],
+ cat:['轻策／家庭','Light &amp; family'], owned:false,
+ buy:[{item:['<b>Survive The Island</b>（新版，就买这个）','<b>Survive The Island</b> (the current edition)'], kind:K_NEW, lang:L_EN,
+    where:['401 Games <b>C$36.95，现货</b>','401 Games, <b>C$36.95, in stock</b>'], bucket:'maybe',
+    note:['<b>不急，但要买就买这版。</b>Zygomatic 2024 年出，是现行版：<b>2–5 人内置</b>（老版只有 2–4，要靠扩展才能 5 人）、配件和包装翻新、多一只新怪物。<br>比 30 周年版<b>更便宜、有现货、内容更多</b>。','<b>No hurry, but this is the one to buy.</b> Zygomatic, 2024, and the edition currently in print: <b>2-5 players built in</b> (the older editions cap at four and needed an expansion for five), refreshed components and packaging, and one extra monster.<br>Cheaper than the 30th Anniversary edition, in stock, and with more in the box.']},
+   {item:['Monster Pack','Monster Pack'], kind:K_EXP, lang:L_EN, where:W_NA, bucket:'maybe',
+    note:['新版的扩展 —— 加<b>翼龙、鲸鱼、章鱼</b>三只怪物。本体到手再考虑。','The expansion for the current edition, adding a <b>pterodactyl, a whale and an octopus</b>. Worth considering only once the base game is here.']},
+   {item:['30 周年版 Stronghold 2012','30th Anniversary Edition (Stronghold, 2012)'], kind:K_NEW, lang:L_EN,
+    where:['—','—'], bucket:'nope',
+    note:['<b>不要了</b> —— 曾以为它是最好的一版，其实是<b>更贵、更难买、内容更少</b>的那个：只有 2–4 人，而且<b>海豚和潜水骰在这一版被砍掉了</b>（2011 那版本来有），后来才单独补卖。C$40–45 且多家缺货。','<b>Dropped</b> — once assumed to be the definitive edition, it is in fact the pricier, scarcer and thinner one: four players maximum, and the <b>dolphins and dive dice were cut from this printing</b> (the 2011 Stronghold release had them) and only sold separately later. C$40-45 and out of stock at most retailers.']}],
+ notes:[['2–5 人。亚特兰蒂斯正在沉没，把自己的探险者送上四周的小岛 —— 坐船快、游泳慢，海里还有鲨鱼、鲸鱼和海怪。经典的互坑家庭游戏。',
+     '2-5 players. Atlantis is sinking and you ferry your explorers to the surrounding islands — boats are fast, swimming is slow, and sharks, whales and sea monsters are waiting. A classic take-that family game.'],
+    ['⚠ <b>老版的扩展也有合集</b>：《<b>Survive: Dolphins &amp; Squids &amp; 5-6 Players...Oh My!</b>》把海豚与潜水骰、巨型乌贼、5–6 人三个小包合成一盒 —— 但那是配 30 周年版的，<b>和新版不是一条线</b>，别买混了。',
+     '⚠ <b>The older expansions do have a bundle</b>: <b>Survive: Dolphins &amp; Squids &amp; 5-6 Players...Oh My!</b> combines the Dolphins &amp; Dive Dice, Giant Squid and 5-6 player kits into one box — but it belongs to the 30th Anniversary line, <b>not the current edition</b>, so do not mix the two up.'],
+    ['同一游戏历代名字很多：Escape from Atlantis（1982 Waddingtons）→ The Island（Asmodee）→ Survive: Escape from Atlantis!（Stronghold）→ Survive The Island（Zygomatic）。搜的时候几个名字都试。',
+     'The game has carried many names: Escape from Atlantis (Waddingtons, 1982), The Island (Asmodee), Survive: Escape from Atlantis! (Stronghold) and now Survive The Island (Zygomatic). Try all of them when searching.']]
+},
+{
+ id:'wyrmspan', py:'W', style:'德', bgg:null, name:['Wyrmspan','Wyrmspan'],
+ cat:['引擎构筑','Engine building'], owned:false,
+ buy:[{item:['本体','Base game'], kind:K_NEW, lang:L_TBC, where:['—','—'], bucket:'nope',
+    note:['<b>不买</b> —— 引擎构筑这一格已经由<a href="#/g/wingspan">展翅翱翔</a>占住，而且那边扩展已经收得很全。Wyrmspan 虽是独立游戏、卡牌与展翅<b>不兼容</b>，但玩感同源，按「一类一款」的原则不重复进。','<b>Not buying</b> — the engine-building slot is held by <a href="#/g/wingspan">Wingspan</a>, whose expansions are already nearly complete. Wyrmspan is a standalone game and its cards are <b>not compatible</b> with Wingspan, but it scratches the same itch, so the one-per-niche rule keeps it out.']}],
+ notes:[['Stonemaier 出品，盒上印「A Wingspan Game」。1–5 人 / 90–120 分钟 / 14+。开局在绯红洞窟、黄金洞穴、紫晶深渊各有一个已挖掘位，边挖洞边引龙入住。发售当天创下 Stonemaier 单日销量纪录。',
+     'From Stonemaier Games, badged &ldquo;A Wingspan Game&rdquo;. 1-5 players / 90-120 minutes / 14+. You begin with one excavated space each in the Crimson Cavern, Golden Grotto and Amethyst Abyss, then dig further and entice dragons to move in. It set the record for Stonemaier&rsquo;s largest single-day sales.'],
+     ['中文名<b>待确认</b> —— 未核实官方简中译名。','Chinese title <b>unconfirmed</b>.']]
+},
+{
+ id:'thunderroad', py:'T', style:'美', bgg:null, name:['Thunder Road: Vendetta','Thunder Road: Vendetta'],
+ cat:['竞速／撞车','Racing &amp; combat'], owned:false,
+ buy:[{item:['本体','Base game'], kind:K_NEW, lang:L_TBC, where:['—','—'], bucket:'nope',
+    note:['<b>不买</b> —— <b>对赛车类不感兴趣</b>。规则不难、评价也不差，但这一类玩法本身不对口味 —— 不是价格或版本的问题，以后再看到大盒打折也不用回头。','<b>Not buying</b> — <b>racing games simply hold no interest</b>. The rules are light and the reviews are good, but the genre itself does not appeal; this is not a question of price or edition, so a future sale on the big box changes nothing.']}],
+ notes:[['Restoration Games 出品，1986 年同名旧作的重制。2–4 人 / 45–75 分钟 / 10+。骰子驱动的公路厮杀：每人一队三辆车加一架直升机，掷骰分配移动、撞车、开火；赛道由图块拼成并不断往前滚动，被甩在尾端图块上的车直接报废。赢法是第一个冲线，或撑到最后一个还有车能开。',
+     'From Restoration Games, a remake of the 1986 original. 2-4 players / 45-75 minutes / 10+. Dice-driven highway carnage: each player runs a crew of three cars plus a helicopter, assigning dice to move, ram and shoot. The track is built from tiles and scrolls forward continuously, and any car left on the trailing tile is wrecked. You win by crossing the finish line first, or by being the last player with a car still running.'],
+    ['大盒＝<b>Maximum Chrome 极限大盒版</b>：本体 ＋ 四个扩（Big Rig and the Final Five、Carnage at Devils Run、Choppe Shoppe、Extra Ammo）＋ 两个本版独占（German Engineering、EmberCo），合订规则书、塑料内衬、烫金盒。',
+     'The big box is <b>Maximum Chrome</b>: the base game, all four expansions (Big Rig and the Final Five, Carnage at Devils Run, Choppe Shoppe, Extra Ammo) and two edition exclusives (German Engineering, EmberCo), with a consolidated rulebook, a moulded insert and a foil-stamped box.'],
+    ['繁中版《雷霆之路：末路狂飆》已由嘖嘖众筹推出（含极限大盒版），<b>简中版未见</b>。',
+     'A Traditional Chinese edition, 雷霆之路：末路狂飆, was crowdfunded on zeczec (Maximum Chrome included). <b>No Simplified Chinese edition has been found.</b>']]
+},
+{
+ id:'nucleum', py:'H', style:'德', bgg:null, name:['核子激荡 Nucleum','Nucleum'],
+ cat:['重度德式','Heavy euro'], owned:false,
+ buy:[{item:['本体','Base game'], kind:K_NEW, lang:L_TBC, where:['—','—'], bucket:'nope',
+    note:['<b>不买</b> —— 查过评价后决定不收（2026-09-14）。重度德式，门槛高。','<b>Not buying</b> — decided against it after reading the reviews (2026-09-14). A heavy euro with a steep learning curve.']}],
+ notes:[['Board&amp;Dice 出品，简中版是戏梦桌游。1–4 人 / 60–150 分钟 / 14+。扮演 19 世纪萨克森的工业家：铺轨道网、盖城市建筑、给建筑供电、完成合同和里程碑；每人有一套不对称科技。',
+     'From Board&amp;Dice; the Simplified Chinese edition is by 戏梦桌游. 1-4 players / 60-150 minutes / 14+. Players are industrialists in 19th-century Saxony, laying track networks, constructing and powering city buildings, and fulfilling contracts and milestones, each with their own asymmetric technologies.'],
+    ['评价很高（BGG 约 8.1），评测把它归到 Brass（伯明翰）那一路路网游戏里。但 BGG 重度 <b>4.19 / 5</b>，头几局门槛高、容易卡。',
+     'Very well reviewed (around 8.1 on BGG), and reviewers place it alongside the Brass family of network builders. But its BGG weight is <b>4.19 / 5</b>, so the first few plays are a real hurdle.'],
+    ['扩展有 Australia、Court of Progress（前进议会）、Energy Research Institute 等。',
+     'Expansions include Australia, Court of Progress and Energy Research Institute.']]
+},
+{
+ id:'aoi', py:'S', style:'德', bgg:null, name:['神秘大地：大创造时代 Terra Mystica: Age of Innovation','Terra Mystica: Age of Innovation'],
+ cat:['重度德式','Heavy euro'], owned:false,
+ buy:[{item:['本体','Base game'], kind:K_NEW, lang:L_TBC, where:['—','—'], bucket:'nope',
+    note:['<b>不买</b> —— 查过评价后决定不收（2026-09-14）。重度德式，门槛高。','<b>Not buying</b> — decided against it after reading the reviews (2026-09-14). A heavy euro with a steep learning curve.']}],
+ notes:[['Feuerland 2023 年出，是《神秘大地 Terra Mystica》的独立进阶版，评测直接叫它「Terra Mystica 进阶版」。12 个派系抢 7 种地形的六角格地图，新增四色「书本」资源。60–150 分钟。',
+     'Published by Feuerland in 2023, a standalone advanced take on Terra Mystica — reviewers simply call it &ldquo;Terra Mystica: Advanced&rdquo;. Twelve factions compete on a hex map of seven terrain types, with a new four-colour book resource. 60-150 minutes.'],
+    ['评价很高，被称为系列又一部杰作；但规则书文字多、不带新手，评测普遍建议找会玩的人教，别自己啃规则书。',
+     'Very highly rated and called another masterpiece in the series, but the rulebook is dense and does not hold your hand; most reviewers advise learning it from someone who already plays.'],
+    ['繁中版是新天鹅堡的《神秘大地：大創造時代》。',
+     'The Traditional Chinese edition is Swan Panasia&rsquo;s 神秘大地：大創造時代.']]
+},
+{
+ id:'digout', py:'J', style:'毛', bgg:null, name:['掘地出笼 Dig Your Way Out','Dig Your Way Out'],
+ cat:['轻策／派对','Light / party'], owned:false,
+ buy:[{item:['本体 + 深入掘地 + 众筹独占内容','Base game + Dig In + the campaign exclusives'], kind:K_NEW, lang:L_EN, where:['等下次众筹','The next crowdfunding campaign'], bucket:'maybe',
+    note:['<b>等下次众筹</b> —— 要连独占内容一起收；目前没有新众筹的消息','<b>Waiting for the next campaign</b> — only worth it with the exclusives; none has been announced']}],
+ blocks:[
+  {h:['完整内容：零售 vs 众筹独占','What complete means: retail vs campaign exclusives'],
+   sub:['2026-09-16 查证。','Checked 2026-09-16.'],
+   table:{head:[['内容','Content'],['零售买得到？','At retail?'],['说明','Notes']], rows:[
+    [['本体','Base game'],['✅','✅'],['已含团队模式和中立角色 Michels（2019 年众筹解锁，之后并入零售本体）','Already includes Team mode and the Michels neutral characters, unlocked in the 2019 campaign and folded into the retail box']],
+    [['深入掘地 Dig In','Dig In'],['✅','✅'],['唯一的零售扩展：典狱长 + 6 个可替换的新地点','The only retail expansion: the Warden plus 6 alternative locations']],
+    [['警官巴斯特 Officer Buster','Officer Buster'],['❌ 众筹独占','❌ Campaign exclusive'],['2019 年第一次众筹的小扩展','Mini expansion from the first campaign in 2019']],
+    [['名囚角色','Famous-inmate characters'],['❌ 众筹独占','❌ Campaign exclusive'],['2023 年深入掘地众筹的解锁目标，照影视里的著名囚犯画的；官方明说不进零售','Stretch goals from the 2023 Dig In campaign, drawn after famous inmates from film and TV; the publisher said they will never reach retail']]]},
+   after:['截至 2026-09-16 <b>没查到 Borderline 有新众筹的消息</b>；以前的独占内容下次会不会重开，也没有说法。众筹版没有中文（深入掘地那场只有英／法／荷／德）。',
+     'As of 2026-09-16 <b>Borderline has announced no new campaign</b>, and nothing says past exclusives would be offered again. Campaign editions have no Chinese (Dig In shipped in English, French, Dutch and German only).']}],
+ notes:[['David Simide 设计，2019 年 Kickstarter（近 2000 人支持）。2–6 人 / 约 45–60 分钟，复杂度约 2 / 5。玩家是囚犯：翻找材料造工具、拿香烟买，或者从别人手里抢，挖够隧道分就越狱成功；可以入帮派拿被动加成。',
+     'Designed by David Simide and funded on Kickstarter in 2019 by nearly 2,000 backers. 2-6 players / about 45-60 minutes / complexity around 2 of 5. You are an inmate: scavenge materials to craft tools, buy them with cigarettes or take them from other players, and escape once you have dug enough tunnel points. Joining a gang grants passive bonuses.'],
+    ['定位是互坑聚会游戏。评测说它「让一桌人又笑又吵」，是偏小品的一款。',
+     'A take-that party game; one review says it has &ldquo;everyone laughing and bickering&rdquo;, and it sits closer to a filler than a main event.'],
+    ['扩展是《深入掘地 Dig In》。',
+     'The expansion is Dig In.']]
+},
+{
+ id:'dungeonfighter', py:'D', style:'毛', bgg:null, name:['地城勇士 Dungeon Fighter','Dungeon Fighter'],
+ cat:['敏捷／合作','Dexterity &amp; co-op'], owned:false,
+ buy:[{item:['本体','Base game'], kind:K_NEW, lang:L_TBC, where:['—','—'], bucket:'nope',
+    note:['<b>不买</b> —— 查过评价后决定不收（2026-09-14）。','<b>Not buying</b> — decided against it after reading the reviews (2026-09-14).']}],
+ notes:[['合作闯地城，1–6 人。核心玩法是<b>扔骰子</b>：骰子要先在桌上弹一下、再落到靶子图板上才算伤害，怪物还常附带奇怪的扔法限制。三层地城，最后打 Boss。',
+     'A co-operative dungeon crawl for 1-6 players built on <b>throwing dice</b>: a die must bounce off the table before landing on the target board to deal damage, and monsters often add odd throwing restrictions. Three dungeon levels, then the final boss.'],
+    ['评价看人：喜欢的一桌能笑翻，评测打分在 6–8 / 10 之间；手上功夫差的人会很挫败。',
+     'It depends on the table: the right group finds it hilarious, reviewers land anywhere from 6 to 8 out of 10, and players without a steady hand can find it frustrating.'],
+    ['现行是第二版（Horrible Guild），简中版是一刻馆。',
+     'The current printing is the Second Edition from Horrible Guild; the Simplified Chinese edition is by 一刻馆.']]
+},
+{
+ id:'dontstarve', py:'J', style:'美', bgg:null, name:['饥荒 Don&rsquo;t Starve: The Board Game','Don&rsquo;t Starve: The Board Game'],
+ cat:['合作／生存','Co-op survival'], owned:false,
+ buy:[{item:['本体','Base game'], kind:K_NEW, lang:L_TBC, where:['—','—'], bucket:'nope',
+    note:['<b>不买</b> —— 补投价和众筹一样，但众筹早期的两个赠品拿不到：Muscle Madness（Wolfgang 角色扩展，开众筹 72 小时内下单才送）和 Constant Curiosities（开众筹前关注才送）（2026-09-14）。','<b>Not buying</b> &mdash; the late pledge costs the same as the campaign, but misses the two early freebies: Muscle Madness (the Wolfgang character expansion, for pledges in the first 72 hours) and Constant Curiosities (for pre-launch followers) (2026-09-14).']}],
+ notes:[['Glass Cannon Unplugged 出品（做 Frostpunk 桌游的那家），Klei 官方授权。1–4 人合作，可单人；roguelike 生存，每局从头开始。2025 年 Kickstarter 众筹 510 万美元，是当年最大的桌游众筹。',
+     'From Glass Cannon Unplugged, the studio behind the Frostpunk board game, officially licensed by Klei. A 1-4 player co-op with true solo play: roguelike survival where every game starts from scratch. Its 2025 Kickstarter raised US$5.1 million, the biggest tabletop campaign of the year.'],
+    ['补投在官方商店：Give Me Everything! $599／All-In $469（含 Chester 收纳大盒和全套配件）／只含游戏内容的 All-In Gameplay $289（塑料模型）或 $249（亚克力立牌）。英文版预计 2027 年第一季度发货，其他语言晚 4 个月。',
+     'Late pledges run through the official store: Give Me Everything! $599 / All-In $469 (with the Chester storage big box and every accessory) / gameplay-only All-In $289 (plastic miniatures) or $249 (acrylic standees). English is due in Q1 2027, other languages four months later.'],
+    ['补投可选<b>简体中文</b>（2024 年公布时说不出中文，后来加上了）。简中版桌游的正式名字没核实，这里暂用电子游戏的名字《饥荒》。',
+     'The late pledge offers <b>Simplified Chinese</b> (the 2024 announcement said there would be none; it was added later). The official Chinese title of the board game is unverified, so the video game&rsquo;s name, 饥荒, stands in for now.']]
+},
+{
+ id:'incangold', py:'Y', style:'美', bgg:null, name:['印加宝藏 Incan Gold','Incan Gold'],
+ cat:['推运气','Push your luck'], owned:false,
+ buy:[{item:['本体','Base game'], kind:K_NEW, lang:L_TBC, where:['—','—'], bucket:'nope',
+    note:['<b>不买</b> —— 自己说的「放到不要」（2026-09-25），以后推荐时跳过。','<b>Not buying</b> — "put it under no" (2026-09-25); skip it in future recommendations.']}],
+ notes:[['Alan R. Moon / Bruno Faidutti 设计。推运气 + 灾难卡：每轮翻卡往神庙深处走，同一种灾难出现两次就全员空手而归。',
+     'Designed by Alan R. Moon and Bruno Faidutti. Push-your-luck with hazard cards: each round goes deeper into the temple, and a second copy of the same hazard sends everyone still inside home empty-handed.']]
+},
+{
+ id:'clank', py:'C', style:'美', bgg:null, name:['Clank! 十周年众筹 Clank! 10th Anniversary Kickstarter','Clank! 10th Anniversary Kickstarter'],
+ cat:['牌库构筑 + 地城探险','Deck-building dungeon crawl'], owned:false,
+ buy:[{item:['众筹','Kickstarter'], kind:K_NEW, lang:L_EN, where:['Kickstarter','Kickstarter'], bucket:'nope',
+    note:['<b>不 back</b>（2026-09-27）—— 没玩过，花 US$205 等一年不值；真想试先零售买基础版。','<b>Not backing</b> (2026-09-27) — never played it, and US$205 plus a year&rsquo;s wait is not worth it; buy the retail base game first if curious.']}],
+ notes:[['Dire Wolf 出品。众筹 2026-10-01 9:01 MST 收官，预计 2027-08 发货。','From Dire Wolf. Campaign ends 2026-10-01 9:01 MST; estimated delivery 2027-08.'],
+    ['档位：$115 = Cube of Holding 收纳盒 + 新扩 The Forgotten Vault（<b>不含基础版</b>）；$205 = 基础版 + 5 个扩展；$435 = 全收 12 件。运费到 BC 约 US$31–50。',
+     'Tiers: $115 = Cube of Holding storage box + the new Forgotten Vault expansion (<b>no base game</b>); $205 = base game + 5 expansions; $435 = all 12 items. Shipping to BC about US$31–50.'],
+    ['众筹独占 17 张 promo 卡，官方说之后不零售。','17 Kickstarter-exclusive promo cards that will not be sold at retail.']]
+}
+];
+
+/* 要出：在游戏对象上加 sell:['中文品相说明','English condition note']，这里自动汇总 */
+
+var MEMO = [
+ ['Taobao 上的西方桌游供货情况<b>不要默认有货</b>，逐个核实',
+  '<b>Never assume</b> a Western board game is actually in stock on Taobao — verify each one'],
+ ['中文授权版可以是正规官方版本（如<a href="#/g/botc">染·钟楼谜团</a>）—— 但<a href="#/g/avalon">阿瓦隆没有</a>',
+  'A licensed Chinese edition can be a legitimate official product (<a href="#/g/botc">Blood on the Clocktower</a> is one) — but <a href="#/g/avalon">Avalon has none</a>'],
+ ['<b>要出更大更好的大盒版就等等</b> —— 下单前先查有没有 complete／all-in／周年豪华版在路上。买一个注定被取代的版本，往往还得为缺的扩展再花一笔。',
+  '<b>If a bigger, better box is coming, wait</b> — check for a complete, all-in or anniversary edition before ordering. Buying an edition that is about to be superseded usually also means paying again for whatever it left out.'],
+ ['<b>优先升级大盒／新版，但不是必须</b> —— 有更全的大盒或更新的版本就值得考虑换，不过要看新版到底多了什么：内容升级值得换，纯美术刷新一般不值。',
+  '<b>Prefer the big box or the newest edition, but it is not a rule</b> — a fuller box or a newer printing is worth considering, judged on what it actually adds: new content justifies replacing, a pure art refresh usually does not.'],
+ ['<b>同类游戏只留一个最想要的</b>，除非另一个也特别好玩 —— 观望档里不少条目不是被否掉，只是同类比较中落选了。',
+  '<b>Only the most-wanted game in each niche gets bought</b>, unless a second is exceptional in its own right — much of what sits on the watch list was not rejected, it simply lost a head-to-head.'],
+ ['本清单里的<b>「中文版」＝简体中文版</b>；繁体中文版一律写明「繁中」。',
+  'In this list <b>&ldquo;Chinese edition&rdquo; means the Simplified Chinese edition</b>; Traditional Chinese editions are always labelled as such.'],
+ ['中文名以<b>简体中文版</b>为准。繁中名不同的：茂林源记＝繁中「茂林源記」，领土＝繁中「皇舆争霸」，矮人矿工＝繁中「矮人矿坑」，誓约者＝繁中「守誓者」，弑血盟约＝繁中「血契猎杀」。Dark Cities 四作没有官方简中版，用的是繁中／民间译名。',
+  'Chinese titles here follow the <b>Simplified Chinese</b> editions. Where Traditional Chinese differs: 茂林源记 vs 茂林源記 (Root), 领土 vs 皇舆争霸 (Dominion), 矮人矿工 vs 矮人矿坑 (Saboteur), 誓约者 vs 守誓者 (Oathsworn), 弑血盟约 vs 血契猎杀 (Blood Bound). The four Dark Cities titles have no official Simplified Chinese edition — those names are Traditional Chinese or community translations.']
+];
+
+/* ---------- 渲染 ---------- */
+function byId(id){ for (var i=0;i<GAMES.length;i++) if (GAMES[i].id===id) return GAMES[i]; return null; }
+function gameLink(g){ return '<a href="#/g/' + g.id + '">' + t(g.name) + '</a>'; }
+function itemsIn(b){
+ var out = [];
+ GAMES.forEach(function(g){ (g.buy||[]).forEach(function(it){ if (it.bucket===b) out.push({g:g, it:it}); }); });
+ return out;
+}
+function bucketOf(g){ return g.owned ? 'owned' : ((g.buy && g.buy[0] && g.buy[0].bucket) || 'maybe'); }
+/* 版本标签：中文版／英文版／都行 —— 直接看 lang 里的中文串，不另存一份 */
+function langCls(lang){
+ var zh = String(lang && lang[0] || '');
+ var cn = zh.indexOf('中文') !== -1, en = zh.indexOf('英文') !== -1;
+ if (cn && en) return 't-lboth';
+ if (cn) return 't-lcn';
+ if (en) return 't-len';
+ return 't-cat';
+}
+function langTag(lang){
+ return '<span class="tag ' + langCls(lang) + '">' + t(lang) + '</span>';
+}
+function langOf(g){ return (g.buy && g.buy[0] && g.buy[0].lang) || null; }
+function initialOf(g){
+ if (LANG === 'en'){
+  var m = String(t(g.name)).replace(/<[^>]*>/g,'').match(/[A-Za-z]/);
+  return m ? m[0].toUpperCase : '#';
+ }
+ return g.py || '#';
+}
+function byInitial(a,b){
+ var ia = initialOf(a), ib = initialOf(b);
+ if (ia !== ib) return ia < ib ? -1 : 1;
+ var na = t(a.name), nb = t(b.name);
+ return na < nb ? -1 : (na > nb ? 1 : 0);
+}
+function linkBtns(g){
+ return (g.links||[]).map(function(l){
+  return '<a class="xlink" href="' + encodeURI(l.href) + '" target="_blank">' + t(l.title) + ' ↗</a>';
+ }).join('');
+}
+
+function gameCard(g, cls, items, showHave){
+ var lg = g.owned ? null : langOf(g);
+ var h = '<div class="card ' + cls + '"><p class="name">' + gameLink(g) + '</p>'
+  + '<div class="tags"><span class="tag t-' + cls + '">' + t(BUCKETS[cls].label) + '</span>'
+  + '<span class="tag t-cat">' + t(g.cat) + '</span>'
+  + (lg && cls !== 'owned' ? langTag(lg) : '')
+  + (g.sell && cls !== 'sell' ? '<span class="tag t-sell">' + t(UI.sellTag) + '</span>' : '') + haveLangTag(g) + styleTag(g) + bggTag(g)
+  + (g.dislike ? '<span class="tag t-dislike">' + t(UI.dislike) + '</span>' : '') + '</div>';
+
+ if (showHave){
+  h += '<p class="note">' + t(UI.havelbl)
+    + (g.owned ? t(g.have || ['本体','Base game'])
+         : '<span class="none">' + t(g.have || UI.notowned) + '</span>') + '</p>';
+ }
+
+ if (items && items.length){
+  h += '<p class="buyhd">' + t(cls === 'nope' ? UI.bDropped : UI.bBuy) + '</p><ul class="buys">';
+  items.forEach(function(it){
+   var n = t(it.note);
+   h += '<li><b>' + t(it.item) + '</b>'
+    + '<span class="tag t-cat">' + t(it.kind) + '</span>' + langTag(it.lang)
+    + '<span class="tag t-' + it.bucket + '">' + t(BUCKETS[it.bucket].label) + '</span>'
+    + '<span class="tag t-cat">' + t(it.where) + '</span>'
+    + (n ? '<span class="bn">' + n + '</span>' : '') + '</li>';
+  });
+  h += '</ul>';
+ }
+
+ if (cls === 'sell' && g.sell){
+  h += '<p class="buyhd">' + t(UI.bSellInfo) + '</p><ul class="buys">'
+    + '<li><b>' + t(UI.thCond) + '</b><span class="bn">' + t(g.sell) + '</span></li>'
+    + '</ul>';
+ }
+ return h + linkBtns(g) + '</div>';
+}
+
+var STYLE_LBL = {'毛':'styleMao','美':'styleMei','德':'styleDe'};
+function haveLangTag(g){
+ if (!g.owned || !g.hl || g.hl === '-') return '';
+ var key = g.hl === '中' ? 'hlCn' : (g.hl === '英' ? 'hlEn' : 'hlTbd');
+ var cls = g.hl === '中' ? 'l-cn' : (g.hl === '英' ? 'l-en' : 'l-tbd');
+ return '<span class="tag t-lang ' + cls + '">' + t(UI[key]) + '</span>';
+}
+function styleTag(g){
+ if (!g.style) return '';
+ return '<span class="tag t-sty s-' + (g.style === '毛' ? 'mao' : (g.style === '美' ? 'mei' : 'de'))
+    + '">' + t(UI[STYLE_LBL[g.style]]) + '</span>';
+}
+/* 评分三个来源：bgg = BGG 平均分，js = 集石，xwj = 新物集。
+   缺哪个就不算哪个；一个都没有就没有综合分。 */
+var RATE_SRC = [
+ {k:'bgg', lbl:['BGG','BGG']},
+ {k:'js',  lbl:['集石','JiShi']},
+ {k:'xwj', lbl:['新物集','Xinwuji']}
+];
+function rateParts(g){
+ var out = [];
+ RATE_SRC.forEach(function(s){
+  var v = g[s.k];
+  if (v !== null && v !== undefined && !isNaN(v)) out.push({k:s.k, lbl:s.lbl, v:v});
+ });
+ return out;
+}
+function rateAvg(g){
+ var p = rateParts(g);
+ if (!p.length) return null;
+ var sum = 0;
+ p.forEach(function(x){ sum += x.v; });
+ return Math.round(sum / p.length * 10) / 10;
+}
+function bggTag(g){
+ var a = rateAvg(g);
+ if (a === null) return '';
+ var p = rateParts(g);
+ var brk = p.map(function(x){ return t(x.lbl) + ' ' + x.v.toFixed(1); }).join(' · ');
+ return '<span class="tag t-bgg" title="' + brk + '">' + t(UI.rateLbl) + ' ' + a.toFixed(1) + '</span>'
+   + (p.length > 1 ? '<span class="tag t-cat">' + brk + '</span>' : '');
+}
+function byBgg(a,b){
+ var x = rateAvg(a), y = rateAvg(b);
+ x = (x === null) ? -1 : x;
+ y = (y === null) ? -1 : y;
+ if (x !== y) return y - x;
+ return byInitial(a,b);
+}
+
+function buyItems(g){ return (g.buy || []).filter(function(it){ return it.bucket !== 'nope'; }); }
+var BPRI = ['plan','consider','maybe'];
+function primaryBucket(g){
+ for (var i = 0; i < BPRI.length; i++){ if (itemsOf(g, BPRI[i]).length) return BPRI[i]; }
+ return null;
+}
+function itemsOf(g, b){
+ return (g.buy || []).filter(function(it){ return it.bucket === b; });
+}
+
+function fixedCls(b){ return function(){ return b; }; }
+
+/* 另外两份清单 —— 相对路径，这个 html 单独发给别人时点不动，
+   就像血染那个说书人练习页的链接一样。自己本机打开才跳得过去。 */
+function xlinks(){
+ return '<div class="xlinks"><span>' + t(UI.xlinkLbl) + '</span>'
+  + '<a href="../lego/乐高清单.html">' + t(UI.xLego) + '</a>'
+  + '<a href="pokemon-tcg/宝可梦清单.html">' + t(UI.xPoke) + '</a>'
+  + '<a href="../figures/手办清单.html">' + t(UI.xFigs) + '</a></div>';
+}
+
+function renderAll(){
+ var pool = filtered();
+ var all = (FILT === 'all');
+ var h = '<p class="secnote">' + t(UI.wallHint) + '</p>' + sortSeg() + wallLegend() + xlinks();
+
+ if (!pool.length) return h + '<p class="note">' + t(UI.filtEmpty) + '</p>';
+
+ if (SORT === 'cat'){
+  h += catShelves(pool);
+ } else if (SORT === 'bgg'){
+  var sortedB = pool.slice().sort(byBgg);
+  var withB = sortedB.filter(function(g){ return g.bgg !== null && g.bgg !== undefined; }).length;
+  h += wallSec(t(UI.sortBgg), withB + ' / ' + pool.length, '', sortedB, true, bucketOf);
+ } else if (SORT === 'py'){
+  var sorted = pool.slice().sort(byInitial), order = [], groups = {};
+  sorted.forEach(function(g){
+   var L = initialOf(g);
+   if (!groups[L]){ groups[L] = []; order.push(L); }
+   groups[L].push(g);
+  });
+  order.forEach(function(L){ h += wallSec(L, groups[L].length, '', groups[L], true, bucketOf); });
+ } else if (FILT === 'nope' || FILT === 'sell'){
+  /* 这两档不按采购分档排，直接一架列完 */
+  h += wallSec(t(FILT === 'nope' ? BUCKETS.nope.full : BUCKETS.sell.full), pool.length,
+         t(FILT === 'nope' ? UI.hintNope : UI.hintSell), pool, true, fixedCls(FILT));
+ } else {
+  /* 选了某一档时，只出那一档的架 —— 否则点「观望」还会冒出「已买」，很乱 */
+  if (all || FILT === 'owned'){
+   var owned = pool.filter(function(g){ return g.owned && !g.sell; });
+   h += wallSec(t(BUCKETS.owned.full), owned.length, t(UI.hintOwn), owned, true, fixedCls('owned'));
+  }
+
+  var SECTIONS = [
+   {b:'plan',   own:true, title:UI.secRefill,    hint:UI.hintRefill},
+   {b:'plan',   own:false, title:UI.secNewGame,    hint:UI.hintNewGame},
+   {b:'consider', own:null, title:BUCKETS.consider.full, hint:UI.hintCons},
+   {b:'maybe',  own:null, title:BUCKETS.maybe.full,  hint:UI.hintMay}
+  ];
+  SECTIONS.forEach(function(sec){
+   var b = sec.b;
+   if (!all && FILT !== b) return;
+   var gs = pool.filter(function(g){
+    return primaryBucket(g) === b && (sec.own === null || g.owned === sec.own);
+   });
+   if (!gs.length) return;
+   var n = 0;
+   gs.forEach(function(g){ n += buyItems(g).length; });
+   h += wallSec(t(sec.title), n, t(sec.hint), gs, true, fixedCls(b));
+  });
+ }
+
+ /* 不买了／要出这两架，只在「全部」或正好筛到它们时才另起一架 */
+ if (all || FILT === 'nope'){
+  var nopeGs = pool.filter(function(g){ return itemsOf(g,'nope').length; });
+  var nopeN = 0;
+  nopeGs.forEach(function(g){ nopeN += itemsOf(g,'nope').length; });
+  if (all) h += wallSec(t(BUCKETS.nope.full), nopeN, t(UI.hintNope), nopeGs, true, fixedCls('nope'));
+ }
+ if (all){
+  var sells = pool.filter(function(g){ return g.sell; });
+  h += wallSec(t(BUCKETS.sell.full), sells.length, t(UI.hintSell), sells, true, fixedCls('sell'));
+ }
+
+ h += '<h2>' + t(UI.bMemo) + '</h2><ul class="memo">'
+   + MEMO.map(function(m){ return '<li>' + t(m) + '</li>'; }).join('') + '</ul>';
+ return h;
+}
+
+function sortSeg(){
+ var hint = SORT === 'py' ? UI.sortHint
+      : (SORT === 'bgg' ? UI.bggHint
+      : (SORT === 'cat' ? UI.catHint : UI.groupHint));
+ return '<div class="sortrow"><span class="seg"><span class="sgl">' + t(UI.sortLbl) + '</span>'
+  + '<a class="sg' + (SORT === 'group' ? ' on' : '') + '" data-sort="group">' + t(UI.sortGrp) + '</a>'
+  + '<a class="sg' + (SORT === 'cat' ? ' on' : '') + '" data-sort="cat">' + t(UI.sortCat) + '</a>'
+  + '<a class="sg' + (SORT === 'py' ? ' on' : '') + '" data-sort="py">' + t(UI.sortPy) + '</a>'
+  + '<a class="sg' + (SORT === 'bgg' ? ' on' : '') + '" data-sort="bgg">' + t(UI.sortBgg) + '</a></span>'
+  + '<span class="sortnote">' + t(hint) + '</span></div>';
+}
+
+/* ---------- 游戏墙 ---------- */
+/* 盒面底色沿用风格标签那三色；标签文案／语言标签直接复用上面的 styleTag、haveLangTag */
+var STYLE_CLS = {'毛':'s-mao', '美':'s-mei', '德':'s-de'};
+
+/* 盒面上中西文各占一行：'矮人矿工 Saboteur' → ['矮人矿工', 'Saboteur'] */
+function splitTitle(s){
+ s = String(s);
+ var i = s.search(/\s[A-Za-z(（]/);
+ if (i > 0 && /[一-鿿]/.test(s.slice(0, i))) return [s.slice(0, i), s.slice(i + 1)];
+ return [s, ''];
+}
+
+/* 真盒面的逻辑：名字越短，字印得越大 */
+function tileSize(s){
+ var p = String(s).replace(/<[^>]*>/g, '').replace(/&[a-z]+;/gi, 'x'), w = 0;
+ for (var i = 0; i < p.length; i++) w += (p.charCodeAt(i) > 255) ? 1 : 0.55;
+ if (w <= 4) return 25;
+ if (w <= 6) return 21;
+ if (w <= 9) return 18;
+ if (w <= 13) return 16;
+ return 14.5;
+}
+
+function wallTile(g, cls, showCat){
+ var big, sub;
+ if (LANG === 'en'){
+  big = t(g.name);
+  sub = splitTitle(g.name[0])[0];
+ } else {
+  var sp = splitTitle(g.name[0]);
+  big = sp[0];
+  sub = sp[1] || g.name[1] || '';
+ }
+
+ var nPlan = itemsOf(g, 'plan').length;
+ var mk = '';
+ if (g.sell) mk += '💰';
+ if (nPlan) mk += '🛒' + (nPlan > 1 ? nPlan : '');
+ if (g.dislike) mk += '👎';
+
+ var lg = g.owned ? '' : (langOf(g) ? langTag(langOf(g)) : '');
+
+ return '<button class="wt ' + (STYLE_CLS[g.style] || 's-none') + (g.sell ? ' wsell' : '')
+  + '" data-id="' + g.id + '" data-cls="' + cls + '" aria-expanded="false">'
+  + '<span class="wn" style="font-size:' + tileSize(big) + 'px">' + big + '</span>'
+  + (sub ? '<span class="ws">' + sub + '</span>' : '')
+  + '<span class="wtags">'
+  + '<span class="tag t-' + cls + '">' + t(BUCKETS[cls].label) + '</span>'
+  + (showCat && g.cat ? '<span class="tag t-cat">' + t(g.cat) + '</span>' : '')
+  + haveLangTag(g) + lg
+  + '</span>'
+  + '<span class="wf">'
+  + (mk ? '<span class="wmk">' + mk + '</span>' : '')
+  + '<span class="wbgg"' + (rateAvg(g) !== null ? ' title="' + rateParts(g).map(function(x){ return t(x.lbl) + ' ' + x.v.toFixed(1); }).join(' · ') + '"' : '')
+   + '>' + (rateAvg(g) !== null ? rateAvg(g).toFixed(1) : '') + '</span>'
+  + '</span></button>';
+}
+
+/* 标记维度：和风格一样，点一下只看这一类 */
+/* 「要出」和「还要补」已在顶部筛选条里（sell / plan），这里不再重复 */
+var MARKS = [
+ {k:'dislike', lbl:UI.dislike,              test:function(g){ return !!g.dislike; }}
+];
+function markDef(k){
+ for (var i = 0; i < MARKS.length; i++) if (MARKS[i].k === k) return MARKS[i];
+ return null;
+}
+
+/* 图例即筛选器 */
+function wallLegend(){
+ var h = '<div class="wlegend"><span class="wll">' + t(UI.wallLeg) + '</span>';
+ ['毛', '美', '德'].forEach(function(k){
+  var n = GAMES.filter(function(g){ return g.style === k; }).length;
+  h += '<a data-sty="' + k + '"' + (FSTY === k ? ' class="on"' : '') + '>'
+    + styleTag({style:k}) + '<span class="lgn">' + n + '</span></a>';
+ });
+ h += '<span class="wsep">|</span><span class="wll">' + t(UI.wallMk) + '</span>';
+ MARKS.forEach(function(m){
+  var n = GAMES.filter(m.test).length;
+  h += '<a data-mk="' + m.k + '"' + (FMK === m.k ? ' class="on"' : '') + '>'
+    + t(m.lbl) + '<span class="lgn">' + n + '</span></a>';
+ });
+ if (FSTY || FMK || FILT !== 'all') h += '<a class="wclear" data-clear="1">× ' + t(UI.clearFilt) + '</a>';
+ return h + '</div>';
+}
+
+/* 一架 = 标题 + 计数 + 说明 + 一格格的盒子 */
+function wallSec(title, n, note, list, showCat, clsOf){
+ if (!list.length) return '';
+ return '<div class="wsec"><h2>' + title + '<span class="wcount">' + n + '</span></h2>'
+  + (note ? '<p class="secnote">' + note + '</p>' : '')
+  + '<div class="wgrid">'
+  + list.map(function(g){ return wallTile(g, clsOf(g), showCat); }).join('')
+  + '</div></div>';
+}
+
+/* 按分类分架：两款以上的各自一架，只有一款的并到「一类一款」 */
+/* ---------- 只看某一档 ---------- */
+var FILTS = [
+ {k:'all',   lbl:['全部','All'],       test:function(){ return true; }},
+ {k:'owned',  lbl:BUCKETS.owned.label,   test:function(g){ return g.owned && !g.sell; }},
+ {k:'plan',   lbl:['🤔 考虑买','🤔 Considering'], test:function(g){ return primaryBucket(g) === 'plan'; }},
+ {k:'maybe',  lbl:BUCKETS.maybe.label,   test:function(g){ return primaryBucket(g) === 'maybe'; }},
+ {k:'nope',   lbl:BUCKETS.nope.label,   test:function(g){ return itemsOf(g, 'nope').length > 0; }},
+ {k:'sell',   lbl:BUCKETS.sell.label,   test:function(g){ return !!g.sell; }}
+];
+function filtDef(k){
+ for (var i = 0; i < FILTS.length; i++) if (FILTS[i].k === k) return FILTS[i];
+ return FILTS[0];
+}
+/* 三个维度是「且」的关系：状态 × 风格 × 标记 */
+function filtered(){
+ var bt = filtDef(FILT).test, mk = markDef(FMK);
+ return GAMES.filter(function(g){
+  if (!bt(g)) return false;
+  if (FSTY && g.style !== FSTY) return false;
+  if (mk && !mk.test(g)) return false;
+  return true;
+ });
+}
+function filtTabs(){
+ return FILTS.map(function(f){
+  var n = GAMES.filter(f.test).length;
+  return '<a class="mb' + (FILT === f.k ? ' on' : '') + '" data-filt="' + f.k + '">'
+    + t(f.lbl) + '<span class="mbn">' + n + '</span></a>';
+ }).join('');
+}
+function setFilt(v){
+ if (FILT === v) return;
+ FILT = v;
+ try { localStorage.setItem('bg-filt', FILT); } catch (e) {}
+ route(true);
+}
+/* 风格／标记：点已选中的那个＝取消 */
+function setSty(v){
+ FSTY = (FSTY === v) ? '' : v;
+ try { localStorage.setItem('bg-sty', FSTY); } catch (e) {}
+ route(true);
+}
+function setMk(v){
+ FMK = (FMK === v) ? '' : v;
+ try { localStorage.setItem('bg-mk', FMK); } catch (e) {}
+ route(true);
+}
+function clearFilts(){
+ FILT = 'all'; FSTY = ''; FMK = '';
+ try {
+  localStorage.setItem('bg-filt', FILT);
+  localStorage.setItem('bg-sty', '');
+  localStorage.setItem('bg-mk', '');
+ } catch (e) {}
+ route(true);
+}
+
+function catShelves(list){
+ var order = [], groups = {};
+ list.forEach(function(g){
+  var k = g.cat ? t(g.cat) : t(UI.wallNoStyle);
+  if (!groups[k]){ groups[k] = []; order.push(k); }
+  groups[k].push(g);
+ });
+ var multi = order.filter(function(k){ return groups[k].length > 1; })
+          .sort(function(a, b){ return groups[b].length - groups[a].length; });
+ var singles = order.filter(function(k){ return groups[k].length === 1; })
+           .map(function(k){ return groups[k][0]; });
+
+ var h = '';
+ multi.forEach(function(k){ h += wallSec(k, groups[k].length, '', groups[k], false, bucketOf); });
+ h += wallSec(t(UI.wallOthers), singles.length, t(UI.wallOthNote), singles, true, bucketOf);
+ return h;
+}
+
+/* 点开一格 —— 在同一行下面就地展开总览清单那张卡 */
+function toggleDetail(tile){
+ var openTile = document.querySelector('.wt.on');
+ var openPanel = document.querySelector('.wdet');
+ var same = (openTile === tile);
+ if (openPanel) openPanel.parentNode.removeChild(openPanel);
+ if (openTile){ openTile.classList.remove('on'); openTile.setAttribute('aria-expanded', 'false'); }
+ if (same) return;
+
+ var g = byId(tile.getAttribute('data-id'));
+ if (!g) return;
+ var cls = tile.getAttribute('data-cls');
+ tile.classList.add('on');
+ tile.setAttribute('aria-expanded', 'true');
+
+ var d = document.createElement('div');
+ d.className = 'wdet';
+ d.innerHTML = gameCard(g, cls, (cls === 'nope' ? itemsOf(g, 'nope') : buyItems(g)), true)
+   + '<a class="xlink" href="#/g/' + g.id + '">' + t(UI.wallFull) + ' →</a>';
+
+ /* 插到本行最后一格之后，这样展开的面板整行铺开、不在行里留洞 */
+ var grid = tile.parentNode, last = tile, top = tile.offsetTop;
+ var tiles = grid.querySelectorAll('.wt');
+ for (var i = 0; i < tiles.length; i++){ if (tiles[i].offsetTop === top) last = tiles[i]; }
+ grid.insertBefore(d, last.nextSibling);
+}
+
+function renderGame(id){
+ return '<div class="narrow">' + renderGameInner(id) + '</div>';
+}
+
+function renderGameInner(id){
+ var g = byId(id);
+ if (!g) return '<p>' + t(UI.notfound) + '<a href="#/list">' + t(UI.backlist) + '</a></p>';
+ var b = bucketOf(g);
+ var lg = g.owned ? null : langOf(g);
+ var h = '<div class="gh"><h2>' + t(g.name) + '</h2>'
+  + '<div class="tags"><span class="tag t-' + b + '">' + t(BUCKETS[b].label) + '</span>'
+  + (lg ? langTag(lg) : '')
+  + '<span class="tag t-cat">' + t(g.cat) + '</span></div></div>';
+
+ h += '<div class="block"><h3>' + t(UI.bHave) + '</h3><div class="have">'
+  + (g.owned ? t(g.have || ['本体','Base game'])
+        : '<span class="none">' + t(g.have || UI.notowned) + '</span>')
+  + '</div></div>';
+
+ if (g.links && g.links.length){
+  h += '<div class="block"><h3>' + t(UI.bLinks) + '</h3>';
+  g.links.forEach(function(l){
+   h += '<a class="bigl" href="' + encodeURI(l.href) + '" target="_blank">'
+    + '<span class="bl-t">' + t(l.title) + ' ↗</span>'
+    + '<span class="bl-d">' + t(l.desc) + '</span></a>';
+  });
+  h += '</div>';
+ }
+
+ if (g.buy && g.buy.length){
+  h += '<div class="block"><h3>' + t(UI.bBuy) + '</h3><div class="tblwrap"><table><tr>'
+   + '<th>' + t(UI.thItem) + '</th><th>' + t(UI.thKind) + '</th><th>' + t(UI.thLang)
+   + '</th><th>' + t(UI.thWhere) + '</th><th>' + t(UI.thStat) + '</th></tr>';
+  g.buy.forEach(function(it){
+   var n = t(it.note);
+   h += '<tr><td>' + t(it.item) + '</td><td>' + t(it.kind) + '</td><td>' + t(it.lang) + '</td><td>'
+    + t(it.where) + '</td><td>' + t(BUCKETS[it.bucket].label) + (n ? '<br>' + n : '') + '</td></tr>';
+  });
+  h += '</table></div></div>';
+ }
+
+ if (g.todo && g.todo.length){
+  h += '<div class="block"><h3>' + t(UI.bTodo) + '</h3><ol class="todo">'
+   + g.todo.map(function(x){ return '<li>' + t(x) + '</li>'; }).join('') + '</ol></div>';
+ }
+
+ (g.blocks||[]).forEach(function(bl){
+  h += '<div class="block"><h3>' + t(bl.h) + '</h3>';
+  if (bl.sub) h += '<p class="secnote">' + t(bl.sub) + '</p>';
+  if (bl.bul) h += '<ul class="bul">' + bl.bul.map(function(x){ return '<li>' + t(x) + '</li>'; }).join('') + '</ul>';
+  if (bl.table){
+   h += '<div class="tblwrap" style="margin-top:10px"><table><tr>'
+    + bl.table.head.map(function(x){ return '<th>' + t(x) + '</th>'; }).join('') + '</tr>'
+    + bl.table.rows.map(function(r){
+      return '<tr>' + r.map(function(c){ return '<td>' + t(c) + '</td>'; }).join('') + '</tr>';
+     }).join('')
+    + '</table></div>';
+  }
+  if (bl.after) h += '<p class="note" style="margin-top:10px">' + t(bl.after) + '</p>';
+  h += '</div>';
+ });
+
+ if (g.notes && g.notes.length){
+  h += '<div class="block"><h3>' + t(UI.bNotes) + '</h3><ul class="bul">'
+   + g.notes.map(function(n){ return '<li>' + t(n) + '</li>'; }).join('') + '</ul></div>';
+ }
+
+ var i = GAMES.indexOf(g);
+ var prev = GAMES[(i-1+GAMES.length)%GAMES.length], next = GAMES[(i+1)%GAMES.length];
+ h += '<div class="pn"><a href="#/g/' + prev.id + '">← ' + t(prev.name) + '</a>'
+  + '<a href="#/all">' + t(UI.allup) + '</a>'
+  + '<a href="#/g/' + next.id + '">' + t(next.name) + ' →</a></div>';
+ return h;
+}
+
+function toggleLang(){
+ LANG = (LANG === 'zh') ? 'en' : 'zh';
+ try { localStorage.setItem('bg-lang', LANG); } catch (e) {}
+ route(true);
+}
+
+function setSort(v){
+ if (SORT === v) return;
+ SORT = v;
+ try { localStorage.setItem('bg-sort', SORT); } catch (e) {}
+ route(true);
+}
+
+function route(keepScroll){
+ var hash = location.hash || '#/list';
+ var app = document.getElementById('app'), bar = document.getElementById('modebar');
+ var langBtn = '<a class="mb lang" id="langbtn" title="' + t(UI.langLbl) + '">🌐 '
+   + t(UI.langLbl) + '：' + t(UI.langbtn) + '</a>';
+ var m = hash.match(/^#\/g\/(.+)$/);
+
+ document.documentElement.lang = (LANG === 'en') ? 'en' : 'zh-CN';
+ document.title = t(UI.title).replace('&amp;', '&');
+ document.getElementById('h1').innerHTML = t(UI.title);
+ document.getElementById('sub').innerHTML = t(UI.updated);
+ document.getElementById('foot').innerHTML = t(UI.foot);
+
+ if (m){
+  bar.innerHTML = '<a class="mb back" href="#/all">' + t(UI.allback) + '</a>' + langBtn;
+  app.innerHTML = renderGame(m[1]);
+ } else {
+  bar.innerHTML = '<span class="mbl">' + t(UI.filtLbl) + '</span>' + filtTabs() + langBtn;
+  app.innerHTML = renderAll();
+ }
+ var sgs = app.querySelectorAll('.sg');
+ for (var si = 0; si < sgs.length; si++){
+  sgs[si].addEventListener('click', function(){ setSort(this.getAttribute('data-sort')); });
+ }
+ var fts = bar.querySelectorAll('[data-filt]');
+ for (var fi = 0; fi < fts.length; fi++){
+  fts[fi].addEventListener('click', function(){ setFilt(this.getAttribute('data-filt')); });
+ }
+ var lgs = app.querySelectorAll('.wlegend a');
+ for (var li = 0; li < lgs.length; li++){
+  lgs[li].addEventListener('click', function(){
+   if (this.getAttribute('data-clear')) return clearFilts();
+   if (this.getAttribute('data-sty')) return setSty(this.getAttribute('data-sty'));
+   if (this.getAttribute('data-mk')) return setMk(this.getAttribute('data-mk'));
+  });
+ }
+ document.getElementById('langbtn').addEventListener('click', toggleLang);
+ if (!keepScroll) window.scrollTo(0, 0);
+}
+
+/* 点格子就地展开 —— 挂在 #app 上，重渲染后依然有效 */
+document.getElementById('app').addEventListener('click', function(e){
+ var el = e.target;
+ while (el && el !== this && !(el.classList && el.classList.contains('wt'))) el = el.parentNode;
+ if (el && el !== this && el.classList && el.classList.contains('wt')) toggleDetail(el);
+});
+
+window.addEventListener('hashchange', function(){ route(); });
+route(true);
+</script>
+</body>
+</html>
