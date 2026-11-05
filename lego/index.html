@@ -127,8 +127,8 @@ function t(v){ return Object.prototype.toString.call(v) === '[object Array]' ? (
 
 var UI = {
  title:  ['乐高收藏清单', 'LEGO Collection'],
- updated: ['更新日期：2026-09-14 · 价格为美元官方定价，加币以 lego.com/en-ca 为准；拼奇一条是非乐高，另计',
-      'Updated 2026-09-14 · Prices are official US$ RRP; confirm CAD on lego.com/en-ca. The one Pantasy entry is not LEGO and is priced separately'],
+ updated: ['更新日期：2026-11-04 · 价格为美元官方定价，加币以 lego.com/en-ca 为准；拼奇一条是非乐高，另计',
+      'Updated 2026-11-04 · Prices are official US$ RRP; confirm CAD on lego.com/en-ca. The one Pantasy entry is not LEGO and is priced separately'],
  langLbl: ['语言 Language', '语言 Language'],
  langbtn: ['EN', '中文'],
  filtLbl: ['只看', 'Show'],
@@ -171,12 +171,14 @@ var SERIES = [
  {k:'grey', title:['灰顶城堡 · 模块系统','Hogwarts Castle — the modular system'],
   n:['2024 年至今','2024 onward'],
   note:['灰顶、人仔比例、能拼成一整座城堡的那一套，和 2018–2020 的绿顶是两回事。' +
-     '<b>难补的六个已经全部到手</b> —— 五个停产的加一个 GWP 专属的。剩下七个全在官网有售，是钱和时机的问题，不用抢。' +
-     '停产时间是玩家社区预估，不是乐高公告。<br><b>2026-09-06 在官网下了两单，买了哪几盒还没填</b> —— 草药课和飞行课先还标着「现在买」。',
+     '难补的停产件里，<b>五个已确认到手</b> —— 四个停产的加一个 GWP 专属的；<b>猫头鹰棚屋 76430 待回家确认到底有没有</b>，确认前不算已有、也不从缺口里删。' +
+     '其余八个里七个官网有售，76430 若确认没有就只能走二手 —— 是钱和时机的问题，不用抢。停产时间是玩家社区预估，不是乐高公告。<br>' +
+     '<b>草药课 76445 和飞行课 76447 仍未买：定在 2026 年黑五（11/27–30）下手，两盒都是 2026-12-31 退市。</b>',
      'The grey-roofed, minifigure-scale Hogwarts that assembles into one castle — a different thing from the ' +
-     '2018–2020 green-roofed version. <b>Every hard-to-get piece is already secured</b>: five retired sets plus one ' +
-     'GWP exclusive. Everything still missing is on LEGO.com, so this is now a budget-and-timing question, not a hunt. ' +
-     'Retirement dates are fan-compiled community estimates, not LEGO announcements.<br><b>Two orders were placed on LEGO.com on 2026-09-06, and which sets they contained is not recorded yet</b> — Herbology and Flying Lessons stay marked “buy now” until it is.']},
+     '2018–2020 green-roofed version. Of the hard-to-get retired pieces, <b>five are confirmed in hand</b> — four retired sets plus one ' +
+     'GWP exclusive — while <b>the Owlery, 76430, is still to be confirmed at home</b>: until then it counts neither as owned nor as dropped, and it stays in the gap list. ' +
+     'Seven of the remaining eight are on LEGO.com; if 76430 turns out not to be owned, it is secondhand only — so this is a budget-and-timing question, not a hunt. ' +
+     'Retirement dates are fan-compiled community estimates, not LEGO announcements.<br><b>Herbology Class (76445) and Flying Lessons (76447) are still to buy: the plan is Black Friday 2026 (27–30 Nov), and both retire on 31 Dec 2026.</b>']},
  {k:'collectors', title:['珍藏版系列','Collectors’ Edition line'], n:['已齐','Complete'],
   note:['古灵阁 · 对角巷 · 陋居 · 霍格沃茨特快 · 霍格莫德村，全部到手。' +
      '<b>套装编号还没核对</b> —— 哪天对着盒子把号补上，不然以后查价、卖货都要重新翻一遍。',
@@ -185,9 +187,13 @@ var SERIES = [
  {k:'green', title:['绿顶模块城堡','Green-roof modular Hogwarts'], n:['2018–2020 · 出售中','2018–2020 · selling'],
   note:['2026-09-03 决定出掉，钱转去补灰顶还差的那部分。',
      'Decided 2026-09-03 to sell it and put the proceeds toward what the grey-roof system still needs.']},
- {k:'gwp', title:['Restaurants of the World','Restaurants of the World'], n:['GWP 系列 · 待定','GWP series · undecided'],
-  note:['四个季度 GWP 小套装。9月3号一度决定退出，<b>9月14号改回待定</b>：希腊还没买，二选一 —— 慢慢把希腊收齐，或者不收了、把日本和墨西哥卖掉。',
-     'A quarterly gift-with-purchase series. Dropped on 3 Sep, then <b>reopened on 14 Sep</b>: Greece is still missing, and the choice is either to collect it slowly or to stop and sell Japan and Mexico.']},
+ {k:'gwp', title:['Restaurants of the World','Restaurants of the World'], n:['GWP 系列 · 只差希腊','GWP series · only Greece missing'],
+  note:['四个季度 GWP 小套装。<b>2026-11-02 更正过一次记反的账</b>：已有的是日本、墨西哥和第四弹意大利，缺的是第三弹希腊（此前记录把希腊和意大利记反了）。希腊已过满赠期，只能走二手，已设专门盯梢慢慢收。',
+     'A quarterly gift-with-purchase series. <b>Holdings were corrected on 2026-11-02</b> — Greece and Italy had been recorded the wrong way round: Japan, Mexico and the fourth release, Italy, are in hand, and the third release, Greece, is the one still missing. Greece is past its gift window, so it is secondhand only, and a dedicated watch is running for it.']},
+ {k:'beasts', title:['神奇动物 · 收藏范围的例外','Fantastic Beasts — the exception to the scope'],
+  n:['已停产 · 只走二手','Retired · secondhand only'],
+  note:['收藏口径：只收哈利波特＋Restaurants of the World，其他系列基本不要，星战和超级英雄不碰；经典黄脸人仔不喜欢（哈利波特的真实肤色人仔没问题，餐厅系列虽是黄脸也整套照收）。神奇动物这两套是明确留下的例外——一直想要，还没买；都是 2018 年的，早已停产，只能走二手。',
+     'Scope: Harry Potter plus Restaurants of the World only — other themes are generally out, and Star Wars and super heroes are not collected. Classic yellow minifigure faces are not liked (realistic skin tones in Harry Potter are fine, and the restaurant series is collected as complete sets despite its yellow faces). These two Fantastic Beasts sets are the stated exception — long wanted, not yet bought; both are from 2018 and long retired, so secondhand only.']},
  {k:'pantasy', title:['其他品牌积木','Non-LEGO brick sets'], n:['拼奇 Pantasy','Pantasy'],
   note:['不是乐高的积木放这里。定价、渠道、二手行情都和乐高不是一套，所以不混进上面的系列。',
      'Brick sets that are not LEGO. Pricing, retail channels and the secondhand market all work differently, so they are kept out of the LEGO sections above.']},
@@ -211,8 +217,10 @@ var SETS = [
      'having it means everything left is just money.']},
  {id:'76426', num:'76426', series:'grey', st:'own', price:37.99,
   name:['船屋','Boathouse'], tag:['2025/12 停产','Retired 12/2025']},
- {id:'76430', num:'76430', series:'grey', st:'own', price:44.99,
-  name:['猫头鹰棚屋','Owlery'], tag:['2025/12 停产','Retired 12/2025']},
+ {id:'76430', num:'76430', series:'grey', st:'buy', price:44.99,
+  name:['猫头鹰棚屋','Owlery'], tag:['待回家确认 · 2025/12 停产','To confirm at home · Retired 12/2025'],
+  note:['2026-11-01 在 Nanaimo 本地看到全新未拆 CA$70 —— 已停产，正是模块城堡缺口之一。你说可能已经有、要回家找一找再告诉；截至 11-03 还没回报，卖家也没有联系。所以这条只标<b>待确认</b>：不记已有、不记放弃，也不从缺口里删。',
+     'Spotted new and sealed locally in Nanaimo for CA$70 on 2026-11-01 — retired, and one of the modular castle gaps. You said you might already have it and would check at home; as of 3 Nov there is no word back yet, and the seller has not been contacted. So this stays <b>to confirm</b>: not counted as owned, not dropped, and not removed from the gap list.']},
  {id:'76431', num:'76431', series:'grey', st:'own', price:39.99,
   name:['魔药课','Potions Class'], tag:['2025/12 停产','Retired 12/2025'],
   note:['可替换模块。','A swappable module.']},
@@ -220,11 +228,13 @@ var SETS = [
   name:['决斗俱乐部','Dueling Club'], tag:['2025/12 停产','Retired 12/2025'],
   note:['配景件。','A furnishing piece.']},
  {id:'76445', num:'76445', series:'grey', st:'now', price:49.99,
-  name:['草药课','Herbology Class'], tag:['预计 2026/12 停产','Expected to retire 12/2026'],
-  note:['和飞行课是剩下七个里<b>唯二有时间压力</b>的，合计 US$129.98。',
-     'This and Flying Lessons are the <b>only two of the seven with a clock on them</b> — US$129.98 together.']},
+  name:['草药课','Herbology Class'], tag:['2026-12-31 退市','Retires 31 Dec 2026'],
+  note:['和飞行课是剩下八个里<b>唯二有时间压力</b>的，合计 US$129.98，同为 <b>2026-12-31 退市</b>；计划赶 2026 年黑五（11/27–30）买。',
+     'This and Flying Lessons are the <b>only two of the eight with a clock on them</b> — US$129.98 together, both <b>retiring 31 Dec 2026</b>; the plan is to buy them over Black Friday 2026 (27–30 Nov).']},
  {id:'76447', num:'76447', series:'grey', st:'now', price:79.99,
-  name:['飞行课','Flying Lessons'], tag:['预计 2026/12 停产','Expected to retire 12/2026']},
+  name:['飞行课','Flying Lessons'], tag:['2026-12-31 退市','Retires 31 Dec 2026'],
+  note:['同草药课：<b>2026-12-31 退市</b>，黑五（11/27–30）是计划下手窗口。',
+     'Same clock as Herbology: <b>retires 31 Dec 2026</b>, with Black Friday (27–30 Nov) as the planned buying window.']},
  {id:'76454', num:'76454', series:'grey', st:'buy', price:259.99,
   name:['主塔','The Main Tower'], tag:['等折扣','Wait for a sale'],
   note:['没有停产迹象。和东翼两件占了剩余预算一多半，值得等一次 15–20% 的活动。',
@@ -281,9 +291,20 @@ var SETS = [
      '<b>Re-run in 07/2026</b>, which put a second batch into circulation — expect the bottom of the range.']},
  {id:'40908', num:'40908', series:'gwp', st:'buy', price:null,
   name:['希腊 · 海边小馆','Greece · seaside taverna'], tag:['还没买 · 待定','Not bought · undecided'],
-  note:['窗口 2026/8/11–20 已过，官网买不到了，要收只能走二手（BrickLink / eBay，一般是 ARV 的 2–4 倍）。慢慢收，还是放弃、把日本和墨西哥卖掉 —— 还没定。客服那条路已经试过，不用再打。',
+  note:['窗口 2026/8/11–20 已过，官网买不到了，要收只能走二手（BrickLink / eBay，一般是 ARV 的 2–4 倍）。已设专门盯梢，慢慢收。客服那条路已经试过，不用再打。',
      'The 11–20 Aug 2026 window closed, so it is no longer on LEGO.com — collecting it means the secondhand market (BrickLink or eBay, usually 2–4× ARV). ' +
-     'Whether to collect it slowly or give up and sell Japan and Mexico is still open. Customer service has already been tried; no more calls.']},
+     'A dedicated watch is running for a secondhand copy. Customer service has already been tried; no more calls.']},
+
+ {id:'40909', num:'40909', series:'gwp', st:'own', price:null,
+  name:['意大利 · 披萨店','Italy · pizzeria'], tag:['第四弹 · 317 pcs','Fourth release · 317 pcs'],
+  note:['2026/10/13–19 的满赠（第四弹），官网一度售罄；你 10/16 说乐高方面“已经可以给我了”，这套已落实到手。',
+     'The fourth quarterly gift, offered 13–19 Oct 2026 and sold out online at one point; on 16 Oct you said LEGO had agreed to get you one, so this set is secured.']},
+
+ /* ---- 神奇动物 ---- */
+ {id:'75952', num:'75952', series:'beasts', st:'buy', price:null,
+  name:['纽特的神奇动物手提箱','Newt’s Case of Magical Creatures'], tag:['已停产','Retired']},
+ {id:'75951', num:'75951', series:'beasts', st:'buy', price:null,
+  name:['格林德沃的逃亡','Grindelwald’s Escape'], tag:['已停产','Retired']},
 
  /* ---- 其他品牌 ---- */
  {id:'pantasy87003', num:'87003', series:'pantasy', st:'own', price:null,
@@ -299,14 +320,18 @@ var SETS = [
   note:['2026-09-03 决定不买，太贵。跟着一起放弃的是只有买它才送的 <b>5011072 魔法部电话亭</b> —— ' +
      '那是带透镜图片的金属摆件，不是砖砌套装，本来也不算收藏品。',
      'Decided against on 2026-09-03 — too expensive. Dropping it also drops <b>5011072, the Ministry Phone Booth</b>, ' +
-     'which comes free only with this set — and that is a metal trinket with a lenticular image, not a brick-built set.']}
+     'which comes free only with this set — and that is a metal trinket with a lenticular image, not a brick-built set.']},
+ {id:'76470', num:'76470', series:'dropped', st:'nope', price:null,
+  name:['飞天福特安格利亚','Flying Ford Anglia'], tag:['哈利波特系列','Harry Potter'],
+  note:['2026-10-19 明确说不要。只有一个边界还没最后定：你说的“只收哈利波特”是指模块化城堡那条线、还是整个哈利波特系列——定下来之前，这套按不要记。',
+     'Marked do-not-buy on 2026-10-19. One boundary is still unconfirmed: whether “Harry Potter only” means the modular castle line or the whole Harry Potter theme. Until that is settled, this set stays recorded as not buying.']}
 ];
 
 var GWP_NOTE = ['<b>如果决定卖：</b>GWP 一般卖到 ARV 的 2–4 倍，但手上这两个不能挂同一个价。未拆封对小赠品的溢价比对大套装更明显。' +
-        '这类小件在 <b>BrickLink</b> 比 eBay 好卖 —— 买家是专门凑 GWP 的人，邮费也低，可以和绿顶分开卖，本来就是两拨人。',
+        '这类小件在 <b>BrickLink</b> 比 eBay 好卖 —— 买家是专门凑 GWP 的人，邮费也低，可以和绿顶分开卖，本来就是两拨人。人偶跟整套一起走，不单独拆卖。',
         '<b>If they are sold:</b> GWPs go for roughly 2–4× ARV, but these two should not carry the same price. Sealed matters more ' +
         'on small gifts than on large sets. <b>BrickLink</b> suits them better than eBay — the buyers are people completing GWP runs ' +
-        'and postage is trivial. Sell them separately from the green-roof castle; it is a different crowd.'];
+        'and postage is trivial. Sell them separately from the green-roof castle; it is a different crowd. Minifigures stay with their sets and are not parted out separately.'];
 
 /* ---------- 工具 ---------- */
 function byId(id){ for (var i=0;i<SETS.length;i++) if (SETS[i].id===id) return SETS[i]; return null; }
@@ -400,8 +425,8 @@ function totals(list){
  var sum = buy.reduce(function(a,s){ return a + (s.price || 0); }, 0);
  return '<div class="tot"><span>' + (LANG === 'en' ? 'Still to buy' : '还差')
   + '</span><b>≈ US$' + sum.toFixed(2) + '</b><span>'
-  + (LANG === 'en' ? 'roughly CAD $1,050–1,100 · the green-roof sale should cover most of it'
-          : '加币大概一千出头 · 绿顶卖掉的钱基本能覆盖') + '</span></div>';
+  + (LANG === 'en' ? 'roughly CAD $1,100–1,150 · the green-roof sale should cover most of it'
+          : '加币大概一千一出头 · 绿顶卖掉的钱基本能覆盖') + '</span></div>';
 }
 
 function renderSet(id){
