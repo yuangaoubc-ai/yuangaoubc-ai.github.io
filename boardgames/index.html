@@ -268,7 +268,7 @@ function t(v){ return Object.prototype.toString.call(v) === '[object Array]' ? (
 
 var UI = {
  title:  ['桌游收藏清单', 'Board Game Collection'],
- updated: ['更新日期：2026-09-21', 'Updated 2026-09-21'],
+ updated: ['更新日期：2026-11-06', 'Updated 2026-11-06'],
  overview:['📋 总览清单', '📋 Overview'],
  bygame: ['📖 逐个桌游', '📖 By Game'],
  allback: ['← 所有桌游', '← All games'],
@@ -496,12 +496,15 @@ var GAMES = [
  id:'wingspan', py:'Z', hl:'英', style:'德', bgg:8.1, js:7.8, name:['展翅翱翔 Wingspan','Wingspan'], cat:['引擎构筑','Engine building'], owned:true,
  have:['<b>英文版</b>本体 <b>+ 除大盒 Nesting Box 和粉丝版 Fan Art Pack 以外的全部扩展</b>（✅ 照片确认到大洋洲扩、亚洲扩）','<b>English</b> base game <b>plus every expansion except the Nesting Box and Fan Art Pack</b> (Oceania and Asia confirmed by photo)'],
  buy:[
-  {item:['大盒 Nesting Box + 签名卡','Nesting Box + signed cards'], kind:K_ACC, lang:L_EN,
+  {item:['大盒 Nesting Box','Nesting Box'], kind:K_ACC, lang:L_EN,
    where:['<b>温哥华朋友</b>（备选：Stonemaier Canada，缺货）','<b>A friend in Vancouver</b> (fallback: Stonemaier Canada, out of stock)'],
    bucket:'plan', note:['待问价','Need to ask the price']},
   {item:['粉丝版 Fan Art Pack','Fan Art Pack'], kind:K_EXP, lang:L_EN,
    where:['<b>温哥华朋友</b>','<b>A friend in Vancouver</b>'], bucket:'plan',
-   note:['待问价，一起问','Ask about both together']}
+   note:['待问价，一起问','Ask about both together']},
+  {item:['设计师签名卡','Designer-signed card'], kind:K_ACC, lang:L_EN,
+   where:['—','—'], bucket:'nope',
+   note:['<b>买不到</b> —— Stonemaier 2026-11-02 回复：$1 加购是随机签名卡（Random Signed Card），只有 Jamey Stegmaier 签他自己设计的游戏，从不含 Wingspan','<b>Not available</b> — Stonemaier replied on 2026-11-02: the $1 add-on is a Random Signed Card, signed only by Jamey Stegmaier and only for his own designs, so it never includes Wingspan']}
  ],
  todo:[['问温哥华朋友这两件的价格与品相。谈不成再回 Stonemaier Canada 登记补货通知。',
      'Ask the Vancouver friend the price and condition of both. If that falls through, sign up for a Stonemaier Canada restock alert.']],
@@ -538,16 +541,16 @@ var GAMES = [
  buy:[
   {item:['Hollywood 1947（第五作）','Hollywood 1947 (fifth title)'], kind:K_NEW, lang:L_EN,
    where:['Facade 官店（AllPlay 运营）/ 零售','Facade shop (run by AllPlay) / retail'],
-   bucket:'plan', note:['<b>官店标准／豪华／Upgrade Kit 均在售，随时可买</b>；2026-11-04 已随 Roma 邮件一并向 Facade 询问豪华版','<b>Standard, Deluxe and Upgrade Kit all in stock at the official shop, buyable any time</b>; the Deluxe was also asked about in the 2026-11-04 email to Facade']},
+   bucket:'plan', note:['<b>官店标准／豪华／Upgrade Kit 均在售，随时可买</b>','<b>Standard, Deluxe and Upgrade Kit all in stock at the official shop, buyable any time</b>']},
   {item:['Roma XLI（第六作）','Roma XLI (sixth title)'], kind:K_NEW, lang:L_EN,
-   where:['已去信 Facade 官方询问（等回复）；零售预订','Asked Facade directly by email (awaiting reply); retail pre-orders'], bucket:'plan',
-   note:['<b>late pledge 已关闭</b>：非 backer 已无官方渠道买独占盒 Spoils of War（12 张 Fortuna 卡），零售豪华版不带 Spoils。2026-11-04 已发邮件问 Roma 豪华版 + Spoils，等回复','<b>The late pledge is closed</b>: non-backers no longer have an official route to the exclusive Spoils of War box (12 Fortuna cards), and the retail Deluxe does not include Spoils. Facade was emailed on 2026-11-04 about the Roma Deluxe plus Spoils; awaiting a reply']}
+   where:['AllPlay 零售预订；独占盒等 Facade 回信','AllPlay retail pre-order; the exclusive boxes wait on Facade'], bucket:'plan',
+   note:['<b>想要的是两个众筹独占盒</b>：Spoils of War 和 Bounties of Peace。零售不带，已追问 Facade','<b>What he wants is the two Kickstarter-exclusive boxes</b>, Spoils of War and Bounties of Peace. Retail does not include them; Facade has been asked again']}
  ],
  todo:[
-  ['<b>Roma XLI：等 Facade 回复</b> —— late pledge 已关、非 backer 无官方渠道买 Spoils of War；2026-11-04 已发邮件（To help@facadegames.com，CC help@allplay.com）问 Roma 豪华版 + Spoils 的余货／候补／再售，连同 1–4 的升级套件清单，等官方回复，结果回来前不再另找路。',
-   '<b>Roma XLI: awaiting Facade&rsquo;s reply</b> — the late pledge is closed and Spoils of War is no longer officially available to non-backers; an email went to Facade on 2026-11-04 (CC AllPlay) asking about leftover / waitlist / resale options for the Roma Deluxe plus Spoils, and for the upgrade kits for Books 1–4. No other route is being chased until they reply.'],
-  ['<b>Hollywood 1947 不用抢</b> —— 正常零售商品，Facade 官店标准／豪华／Upgrade Kit 均在售；已随 Roma 邮件一并问了豪华版，等回复后一起定。',
-   '<b>Hollywood 1947 is in no rush</b> — a regular retail title, with Standard, Deluxe and Upgrade Kit all in stock at the Facade shop; the Deluxe was included in the Roma email, so decide both together once Facade replies.']
+  ['<b>Roma XLI：等 Facade 回信</b> —— late pledge 已关，零售版不带众筹独占盒；之前说的"late pledge 11-05 截止"查无出处，已撤回。2026-11-04 去信 Facade（抄送 AllPlay）。<b>2026-11-05 客服 Caroline 回信</b>只给了 AllPlay 的 Roma 零售预订（标准 US$25／豪华 US$45／Index 空盒 US$15）和购买渠道页，对独占盒只字未提。当天已追问，<b>只问 Spoils of War 和 Bounties of Peace 两盒</b>有没有余货、候补或再售，等回复。<br>两盒内容：Spoils of War = Fortuna 事件卡 12 张 + 奖章 9 + 花环 7 + 杯垫 1；Bounties of Peace = Triumphs of Roma 迷你扩展 15 张目标卡 + 木制月桂 9 + 杯垫 1 + 防水贴纸 3 张 + 随机珐琅徽章 1。众筹顶配 US$55 = 豪华版 + 这两盒。官方 FAQ：两盒是独立小盒，不建议硬塞进书盒。<br>其他路：Team Board Game（新加坡）挂 Deluxe + Spoils 众筹预订 S$64，未核实能否下单、发不发加拿大；Game Steward 全套 US$114.99，嫌贵没买。',
+   '<b>Roma XLI: waiting for Facade</b> — the late pledge is closed and retail does not include the Kickstarter exclusives; the "late pledge closes 11-05" date had no source and was withdrawn. Facade was emailed on 2026-11-04 (cc AllPlay). <b>Caroline replied on 2026-11-05</b> with only the AllPlay retail pre-order for Roma (Standard US$25 / Deluxe US$45 / empty Index box US$15) and the where-to-buy page, saying nothing about the exclusives. A follow-up went the same day <b>asking only about Spoils of War and Bounties of Peace</b> — leftover stock, a waitlist or a resale. Awaiting a reply.<br>Contents: Spoils of War = 12 Fortuna event cards + 9 medals + 7 wreaths + 1 coaster; Bounties of Peace = the Triumphs of Roma mini-expansion (15 objective cards) + 9 wooden laurels + 1 coaster + 3 waterproof stickers + 1 random enamel pin. The top Kickstarter tier (US$55) was the Deluxe plus both boxes. The official FAQ says both are separate small boxes and advises against forcing them into the book box.<br>Other routes: Team Board Game (Singapore) lists Deluxe + Spoils as a Kickstarter pre-order at S$64 — not checked whether it can be ordered or ships to Canada; Game Steward has the full set at US$114.99, judged too expensive.'],
+  ['<b>Hollywood 1947 不用抢</b> —— 正常零售商品，Facade 官店标准／豪华／Upgrade Kit 均在售。',
+   '<b>Hollywood 1947 is in no rush</b> — a regular retail title, with Standard, Deluxe and Upgrade Kit all in stock at the Facade shop.']
  ],
  notes:[
   ['系列定位是「带推理成分的主题游戏」，<b>不是阿瓦隆那一路</b> —— 信息来自翻牌与场面而非玩家行为，有骰子和淘汰。适合人多、气氛闹的场子。',
@@ -1613,6 +1616,54 @@ notes:[
     ['众筹独占 17 张 promo 卡，官方说之后不零售。','17 Kickstarter-exclusive promo cards that will not be sold at retail.']]
 },
 {
+ id:'risingsun', py:'X', style:'美', bgg:7.75, name:['旭日东升 Rising Sun','Rising Sun'], cat:['区域控制／谈判结盟','Area control &amp; negotiation'], owned:false,
+ buy:[
+  {item:['本体','Base game'], kind:K_NEW, lang:L_EN,
+   where:['一代二手（本地 $90）或二代 401 Games 现货 CA$149.95','First edition secondhand (local, $90) or second edition in stock at 401 Games, CA$149.95'], bucket:'plan',
+   note:['Tycoon 2026-11-04 回信<b>可以直购</b>全套（约 US$285–315 含 $5 卡包）；<b>先想几天、不回复</b>，不要催','Tycoon replied on 2026-11-04 that <b>direct purchase is possible</b> for the full set (about US$285–315 including the $5 card pack); <b>he is thinking it over and not replying yet</b> — do not chase']},
+  {item:['Celestial Influence 全扩盒（二代）','Celestial Influence (second edition, all expansions)'], kind:K_EXP, lang:L_EN,
+   where:['401 Games 现货 CA$149.95','In stock at 401 Games, CA$149.95'], bucket:'plan',
+   note:['一盒打包一代全部扩展，两代可混用','One box holds every first-edition expansion; the two editions mix freely']},
+  {item:['Shogunate Upgrade Pack','Shogunate Upgrade Pack'], kind:K_ACC, lang:L_EN,
+   where:['401 Games CA$89.95','401 Games, CA$89.95'], bucket:'maybe',
+   note:['<b>最先砍</b> —— 只有塑料替换件，无新卡新规则新模型','<b>First to cut</b> — plastic replacements only, no new cards, rules or models']},
+  {item:['Comic Book Extras 卡包','Comic Book Extras card pack'], kind:K_ACC, lang:L_EN,
+   where:['Tycoon $5 复刻版优先；CMON 原版价格合适也收','Tycoon $5 reprint preferred; the CMON original if the price is right'], bucket:'maybe',
+   note:['muse 每天在 Marketplace 盯','muse watches Marketplace daily']}
+ ],
+ notes:[
+  ['Eric Lang 设计，3–5 人。CMON 一代 2018；CMON 把 IP 卖给 Tycoon Games，二代是原样复刻，官方不打算再出新盒。401 三盒合计 CA$389.85 税前（约 CA$437 税后），401 没有 $5 卡包 —— 直购和零售的分岔点只在那包卡。',
+   'Designed by Eric Lang, 3–5 players. CMON first edition 2018; CMON sold the IP to Tycoon Games, whose second edition is a faithful reprint with no new boxes planned. The three boxes at 401 come to CA$389.85 before tax (about CA$437 after); 401 does not carry the $5 card pack — that pack is the only thing separating direct purchase from retail.'],
+  ['中文版：muse 说叫《旭日战魂录》（游人码头），只出过基础 + 大名秘盒；<b>本地没核实到这个名字</b>。只收英文版，不影响买。',
+   'Chinese edition: muse calls it 旭日战魂录 (游人码头), base game plus the Daimyo box only; <b>that name has not been verified here</b>. Only the English edition is wanted, so it does not affect buying.'],
+  ['最优开局人数：<b>4 人或 6 人</b>（偶数必然两两结盟）。官方对落单者零补偿，村规没定。BGG 7.75，约第 156 名（2026-11）。',
+   'Best player counts: <b>4 or 6</b> (an even number always pairs off). The rules give the odd player out nothing; no house rule chosen yet. BGG 7.75, about #156 (2026-11).']
+ ]
+},
+{
+ id:'electrify', py:'E', style:'美', bgg:null, name:['Electrify','Electrify'], cat:['新游戏','New game'], owned:false,
+ buy:[{item:['本体','Base game'], kind:K_NEW, lang:L_EN,
+   where:['VBG 群团购（retailer pledge）US$34.50 + $12 运费','VBG group buy (retailer pledge), US$34.50 + $12 shipping'], bucket:'maybe',
+   note:['muse 评估过值得跟一份，<b>还没回要不要</b>','muse judged it worth joining; <b>no answer given yet</b>']}],
+ notes:[['AEG 出品，John D. Clair 与 Ian Hutchison 设计；Kickstarter 2026-09 上线，个人档 US$39，Visionary 版 US$69。',
+     'From AEG, designed by John D. Clair and Ian Hutchison; on Kickstarter from 2026-09, US$39 for a copy, US$69 for the Visionary edition.']]
+},
+{
+ id:'sapets', py:'X', style:'美', bgg:null, name:['小动物自走棋：卡牌对决','Super Auto Pets: The Card Game'], cat:['卡牌／自走棋','Card game, auto-battler'], owned:false,
+ buy:[{item:['本体（简中）','Base game (Simplified Chinese)'], kind:K_NEW, lang:L_CN,
+   where:['新物集','新物集'], bucket:'maybe',
+   note:['简中版已确认（卡面中文印刷）；<b>等档位截图</b>再逐档核对，还没决定买','The Simplified Chinese edition is confirmed (cards printed in Chinese); <b>waiting for a screenshot of the tiers</b> to check them; not decided']}],
+ notes:[['三个包每包 41 只宠物不重复，共 123 只；加 Bonus Pack 1（12 只）和树懒迷你扩展共 136 只。召唤物只有蜜蜂一种。Bonus Pack 1 是英文版（US$9.99），只走 Plaid Hat 官网和展会，中文版有没有，没有官方消息。',
+     'Three packs of 41 unique pets each, 123 in all; 136 with Bonus Pack 1 (12) and the sloth mini-expansion. The only summon is the bee. Bonus Pack 1 is English (US$9.99), sold only through Plaid Hat and at conventions; nothing official on a Chinese version.']]
+},
+{
+ id:'nemesislegacy', py:'N', style:'美', bgg:null, name:['Nemesis: Legacy','Nemesis: Legacy'], cat:['合作／传承战役','Co-op legacy campaign'], owned:false,
+ buy:[{item:['众筹','Gamefound campaign'], kind:K_NEW, lang:L_EN, where:['—','—'], bucket:'nope',
+   note:['<b>不买</b> —— 2026-11-05 拍板 Nemesis 整个系列不买：坑太深、附加盒太多；Legacy 全合作没有背叛；恐怖位已有诡镇奇谈和恶夜杀机','<b>Not buying</b> — decided on 2026-11-05 to skip the whole Nemesis line: too deep a pit, too many add-on boxes; Legacy is fully co-operative with no traitor; the horror slot already has Arkham Horror and Terrorscape']}],
+ notes:[['Awaken Realms 出品，Nemesis 宇宙的第一个完整战役；Gamefound 众筹 2026-10 超过 €5.7M。',
+     'From Awaken Realms — the first full campaign in the Nemesis universe; its Gamefound campaign passed €5.7M in 2026-10.']]
+},
+{
  id:'pvz', py:'Z', style:'美', bgg:null, name:['植物大战僵尸 Plants vs. Zombies: The Board Game','Plants vs. Zombies: The Board Game'],
  cat:['全合作／塔防','Fully co-operative tower defence'], owned:false,
  buy:[{item:['众筹','Kickstarter'], kind:K_NEW, lang:L_EN, where:['Kickstarter','Kickstarter'], bucket:'nope',
@@ -1632,12 +1683,12 @@ notes:[
  id:'deadofwinter', py:'S', style:'美', bgg:null, name:['死亡寒冬','Dead of Winter'],
  cat:['半合作／隐藏叛徒','Semi-co-op hidden traitor'], owned:false,
  buy:[{item:['本体','Base game'], kind:K_NEW, lang:L_TBC, where:['加拿大零售／二手','Canadian retail / secondhand'], bucket:'maybe',
-   note:['<b>观望</b> —— 2026-11-05 晚用户先想全收三盒、当晚改主意：<b>《漫长之夜》不收了</b>（理由：同类替代品太多、根本玩不完），全收计划取消，整条线降回观望；本体与《交战殖民地》未明确表态，先留观望，有特别好的价再报。<b>没有新版、没有大盒版</b>，不用等。库存现状（2026-11-05 查）：本体零售约 $66–70 一档、时有售罄；《漫长之夜》与《交战殖民地》在加拿大基本绝版、大店普遍售罄，美国 Noble Knight 的交战挂 US$149.95 绝版价，不值。','<b>Watching</b> — on 2026-11-05 he first wanted all three boxes, then changed his mind the same evening: <b>The Long Night is off the list</b> (too many similar alternatives, more than he could ever play), the collect-all-three plan is cancelled, and the whole line is back to watching; he has not ruled on the base game or Warring Colonies — report only an exceptional price. <b>There is no new edition and no big box.</b> Stock picture (checked 2026-11-05): base game about $66-70 CAD at retail, selling out intermittently; The Long Night and Warring Colonies are effectively out of print in Canada and sold out at the big stores; Noble Knight in the US lists Warring Colonies at a US$149.95 scalper price — not worth it.'}],
+   note:['<b>观望</b> —— 2026-11-05 晚用户先想全收三盒、当晚改主意：<b>《漫长之夜》不收了</b>（理由：同类替代品太多、根本玩不完），全收计划取消，整条线降回观望；本体与《交战殖民地》未明确表态，先留观望，有特别好的价再报。<b>没有新版、没有大盒版</b>，不用等。库存现状（2026-11-05 查）：本体零售约 $66–70 一档、时有售罄；《漫长之夜》与《交战殖民地》在加拿大基本绝版、大店普遍售罄，美国 Noble Knight 的交战挂 US$149.95 绝版价，不值。','<b>Watching</b> — on 2026-11-05 he first wanted all three boxes, then changed his mind the same evening: <b>The Long Night is off the list</b> (too many similar alternatives, more than he could ever play), the collect-all-three plan is cancelled, and the whole line is back to watching; he has not ruled on the base game or Warring Colonies — report only an exceptional price. <b>There is no new edition and no big box.</b> Stock picture (checked 2026-11-05): base game about $66-70 CAD at retail, selling out intermittently; The Long Night and Warring Colonies are effectively out of print in Canada and sold out at the big stores; Noble Knight in the US lists Warring Colonies at a US$149.95 scalper price — not worth it.']}],
  notes:[['Plaid Hat Games 出品。全线三盒：本体（2014）、独立扩展《漫长之夜》（可单独玩，也可与本体合并）、扩展《交战殖民地》（本体+长夜+此盒可开 4–11 人两家殖民地对战模式及独狼模块）。半合作丧尸求生：全桌一个共同目标，每人再抽一个秘密目标，牌堆里可能藏着背叛者、也可能根本没有；交集卡驱动剧情抉择。最佳 3–4 人，5 人局常打 2–3 小时；暴露骰运气成分重。',
      'From Plaid Hat Games. Three boxes in the line: the base game (2014), the standalone expansion The Long Night (playable alone or combined with the base game), and the Warring Colonies expansion (base + Long Night + this box unlocks the 4-11 player colony-vs-colony mode and the Lone Wolf module). Semi-co-operative zombie survival: one shared main objective plus a secret objective per player; the deck may hide a betrayer, or there may be none at all; crossroads cards drive story choices. Best with 3-4 players; 5-player games often run 2-3 hours; the exposure die adds heavy luck.']]
 },
 {
- id:'cashnguns', py:'X', style:'美', bgg:null, name:['现金与枪',"Cash 'n Guns"],
+ id:'cashnguns', py:'X', style:'美', bgg:null, name:['现金与枪','Cash &rsquo;n Guns'],
  cat:['派对／虚张声势分赃','Party bluffing & loot-splitting'], owned:false,
  buy:[{item:['二版本体','Second edition base game'], kind:K_NEW, lang:L_TBC, where:['加拿大零售／二手','Canadian retail / secondhand'], bucket:'maybe',
    note:['<b>观望（考虑买）</b> —— 2026-11-05 用户亲口：感兴趣，muse 观察价格。买现行<b>二版</b>。与待购清单里的《百万美金》分工不同、不冲突：百万美金靠嘴炮谈判分赃，这个靠举枪虚张声势。','<b>Watching (considering)</b> — 2026-11-05: he is interested; muse watches prices. Buy the current <b>second edition</b>. It does not clash with Millions of Dollars on the buy list: that one splits loot by negotiation and talk, this one by pointing foam guns and bluffing.']}],
