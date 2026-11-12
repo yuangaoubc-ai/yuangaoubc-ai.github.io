@@ -12,7 +12,8 @@
   h1{font-size:26px;margin:8px 0 4px}
   .sub{color:var(--muted);font-size:14px;margin-bottom:16px}
   .rule{background:#fff8e1;border:1px solid var(--gold);border-radius:10px;padding:12px 16px;font-size:15px;margin-bottom:12px}
-  .draft{background:#fdf0ec;border:1px solid #e0a28c;border-radius:10px;padding:10px 16px;font-size:14px;margin-bottom:24px}
+  .draft{background:#fdf0ec;border:1px solid #e0a28c;border-radius:10px;padding:10px 16px;font-size:14px;margin-bottom:12px}
+  .val{background:#eef6ee;border:1px solid #9dc3a5;border-radius:10px;padding:12px 16px;font-size:15px;margin-bottom:24px}
   h2{font-size:19px;margin:26px 0 10px;border-left:4px solid var(--blue);padding-left:8px}
   table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
   th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;font-size:15px;vertical-align:top}
@@ -21,6 +22,7 @@
   .en{color:var(--muted);font-size:13px}
   .have{color:var(--ok);font-weight:600;white-space:nowrap}
   .tbc{color:var(--warn);font-weight:600;white-space:nowrap}
+  .price{font-weight:600;white-space:nowrap}
   .note{font-size:13px;color:var(--muted)}
   footer{margin-top:32px;color:var(--muted);font-size:13px}
 </style>
@@ -41,27 +43,34 @@
     下次正儿八经清点时逐项核对更新。清单里标「待确认」的就是照片没看清的。
   </div>
 
+  <div class="val">
+    <strong>2026-11-12 查价</strong>（口径：PriceCharting 已成交价，美国市场，1 USD ≈ 1.40 CAD 换算）：
+    本页已标价的 9 件（8 盒 ETB + Charizard UPC）现价合计约 <strong>$1,780</strong>；
+    按加拿大零售价买齐约 $860，约为成本的 <strong>2.1 倍</strong>，无一破发。
+    注意：这是美国成交价，Nanaimo 本地实际卖价通常略低；价格会变，仅作收藏估值参考。
+  </div>
+
   <h2>Elite Trainer Box（ETB）</h2>
   <table>
-    <tr><th>产品</th><th>状态</th><th>备注</th></tr>
-    <tr><td>Mega Evolution ETB（Mega Gardevoir 版）<br><span class="en">超级进化基础包</span></td><td class="have">已有 · 密封</td><td></td></tr>
-    <tr><td>Phantasmal Flames ETB<br><span class="en">Mega 系列 · 喷火龙盒</span></td><td class="have">已有 · 密封</td><td></td></tr>
-    <tr><td>Surging Sparks ETB<br><span class="en">皮卡丘盒</span></td><td class="have">已有 · 密封</td><td></td></tr>
-    <tr><td>Prismatic Evolutions ETB<br><span class="en">伊布盒</span></td><td class="have">已有 · 密封</td><td></td></tr>
-    <tr><td>Stellar Crown ETB<br><span class="en">太乐巴戈斯盒</span></td><td class="have">已有 · 密封</td><td></td></tr>
-    <tr><td>Temporal Forces ETB</td><td class="have">已有 · 密封</td><td></td></tr>
-    <tr><td>Black Bolt ETB<br><span class="en">捷克罗姆盒</span></td><td class="have">已有 · 密封</td><td></td></tr>
-    <tr><td>White Flare ETB<br><span class="en">莱希拉姆盒</span></td><td class="have">已有 · 密封</td><td></td></tr>
-    <tr><td>未认出的 ETB × 1<br><span class="en">米白底 · 金色圆徽</span></td><td class="tbc">待确认</td><td class="note">照片看不清，清点时补名</td></tr>
+    <tr><th>产品</th><th>状态</th><th>现价（CAD）</th><th>备注</th></tr>
+    <tr><td>Mega Evolution ETB（Mega Gardevoir 版）<br><span class="en">超级进化基础包</span></td><td class="have">已有 · 密封</td><td class="price">$157</td><td></td></tr>
+    <tr><td>Phantasmal Flames ETB<br><span class="en">Mega 系列 · 喷火龙盒</span></td><td class="have">已有 · 密封</td><td class="price">$202</td><td></td></tr>
+    <tr><td>Surging Sparks ETB<br><span class="en">皮卡丘盒</span></td><td class="have">已有 · 密封</td><td class="price">$167</td><td class="note">近期成交在回落：11 月初 US$177 → 近日 US$108–122</td></tr>
+    <tr><td>Prismatic Evolutions ETB<br><span class="en">伊布盒</span></td><td class="have">已有 · 密封</td><td class="price">$169</td><td></td></tr>
+    <tr><td>Stellar Crown ETB<br><span class="en">太乐巴戈斯盒</span></td><td class="have">已有 · 密封</td><td class="price">$193</td><td></td></tr>
+    <tr><td>Temporal Forces ETB</td><td class="have">已有 · 密封</td><td class="price">$173–196</td><td class="note">涨幅最大的一盒：Walking Wake 版约 $196、Iron Leaves 版约 $173；零售价仅 $59.99；照片看不清是哪版</td></tr>
+    <tr><td>Black Bolt ETB<br><span class="en">捷克罗姆盒</span></td><td class="have">已有 · 密封</td><td class="price">$203</td><td></td></tr>
+    <tr><td>White Flare ETB<br><span class="en">莱希拉姆盒</span></td><td class="have">已有 · 密封</td><td class="price">$200</td><td></td></tr>
+    <tr><td>未认出的 ETB × 1<br><span class="en">米白底 · 金色圆徽</span></td><td class="tbc">待确认</td><td class="price">—</td><td class="note">照片看不清，清点时补名；若是 30 周年 ETB，现价约 $175（待核对）</td></tr>
   </table>
 
   <h2>合集盒 / 其他产品</h2>
   <table>
-    <tr><th>产品</th><th>状态</th><th>备注</th></tr>
-    <tr><td>Unova 主题合集盒<br><span class="en">Black Bolt &amp; White Flare 主题</span></td><td class="have">已有 · 密封</td><td class="note">具体版本待确认</td></tr>
-    <tr><td>Mega Charizard X ex Ultra-Premium Collection</td><td class="have">已有 · 密封</td><td class="note">目前另在 Marketplace 挂售中；卖掉后从清单移除</td></tr>
-    <tr><td>摊开的彩色盒子若干<br><span class="en">照片左下角</span></td><td class="tbc">待确认</td><td class="note">照片看不清，清点时逐个补</td></tr>
-    <tr><td>疑似 Prismatic Evolutions Booster Bundle<br><span class="en">黄箱照片里的小盒</span></td><td class="tbc">待确认</td><td class="note">需核对是否属实、是否密封</td></tr>
+    <tr><th>产品</th><th>状态</th><th>现价（CAD）</th><th>备注</th></tr>
+    <tr><td>Unova 主题合集盒<br><span class="en">Black Bolt &amp; White Flare 主题</span></td><td class="have">已有 · 密封</td><td class="price">—</td><td class="note">具体版本待确认；本次未查价</td></tr>
+    <tr><td>Mega Charizard X ex Ultra-Premium Collection</td><td class="have">已有 · 密封</td><td class="price">$294</td><td class="note">目前另在 Marketplace 挂售 $310；卖掉后从清单移除</td></tr>
+    <tr><td>摊开的彩色盒子若干<br><span class="en">照片左下角</span></td><td class="tbc">待确认</td><td class="price">—</td><td class="note">照片看不清，清点时逐个补</td></tr>
+    <tr><td>疑似 Prismatic Evolutions Booster Bundle<br><span class="en">黄箱照片里的小盒</span></td><td class="tbc">待确认</td><td class="price">—</td><td class="note">需核对是否属实、是否密封</td></tr>
   </table>
 
   <h2>铁盒（Tins）</h2>
@@ -70,7 +79,7 @@
     <tr><td>精灵球铁盒 3-Pack<br><span class="en">Poké Ball Tin 3-Pack（Premier Ball / Ultra Ball 等）</span></td><td class="have">已有 · 密封</td><td class="note">第三颗球的种类待确认</td></tr>
   </table>
 
-  <footer>最后更新：2026-11-04 · 初步版，数据来源为用户当日照片，未经正式清点。</footer>
+  <footer>最后更新：2026-11-12 · 清单本体仍为 2026-11-04 初步版（照片建档、未经正式清点）；现价为 2026-11-12 查价（PriceCharting 已成交价口径）。</footer>
 </div>
 </body>
 </html>
